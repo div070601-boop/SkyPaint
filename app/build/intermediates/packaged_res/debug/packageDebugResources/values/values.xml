@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#E94560</color>
+    <color name="background">#1A1A2E</color>
+    <color name="primary">#0F3460</color>
+    <color name="primaryDark">#16213E</color>
+    <color name="surface">#16213E</color>
+    <color name="textPrimary">#E8E8E8</color>
+    <color name="textSecondary">#8888AA</color>
+    <color name="toolActive">#E94560</color>
+    <color name="toolInactive">#0F3460</color>
+    <string name="app_name">Feather 3D</string>
+    <style name="Theme.Feather3D" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primaryDark</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+</resources>

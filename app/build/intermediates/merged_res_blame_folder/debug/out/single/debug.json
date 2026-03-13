@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.feather3d.app-merged_res-36:/mipmap_ic_launcher.xml.flat",
+        "source": "com.feather3d.app-main-38:/mipmap/ic_launcher.xml"
+    },
+    {
+        "merged": "com.feather3d.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.feather3d.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.feather3d.app-merged_res-36:/drawable_ic_export.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/ic_export.xml"
+    },
+    {
+        "merged": "com.feather3d.app-merged_res-36:/drawable_ic_clear.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/ic_clear.xml"
+    },
+    {
+        "merged": "com.feather3d.app-merged_res-36:/drawable_ic_launcher.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.feather3d.app-merged_res-36:/drawable_ic_undo.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/ic_undo.xml"
+    }
+]

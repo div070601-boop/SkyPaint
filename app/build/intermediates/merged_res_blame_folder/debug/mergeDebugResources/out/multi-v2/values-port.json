@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.feather3d.app-mergeDebugResources-34:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\div07\\.gradle\\caches\\8.11.1\\transforms\\dd031ae9d4fcc17cfecdfe013ff15699\\transformed\\appcompat-1.7.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

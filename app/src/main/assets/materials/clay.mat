@@ -1,0 +1,19 @@
+material {
+    name : "clay",
+    shadingModel : lit,
+    parameters : [
+        { type : float4, name : baseColor },
+        { type : float,  name : roughness },
+        { type : float,  name : metallic }
+    ]
+}
+
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        material.baseColor = materialParams.baseColor;
+        // Clay is rough and non-metallic
+        material.roughness = 0.8;
+        material.metallic = 0.0;
+    }
+}

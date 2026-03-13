@@ -1,0 +1,39 @@
+com.feather3d.app-graphics-shapes-release-0 C:\Users\div07\.gradle\caches\8.11.1\transforms\04e6c3dbd86ca39b3feab6c27ea1d535\transformed\graphics-shapes-release\res
+com.feather3d.app-transition-1.5.0-1 C:\Users\div07\.gradle\caches\8.11.1\transforms\05bf54c8340ddcab4c5b4ca40b80b8b4\transformed\transition-1.5.0\res
+com.feather3d.app-coordinatorlayout-1.1.0-2 C:\Users\div07\.gradle\caches\8.11.1\transforms\0cc3d9e9c9b446f0e2de0d1c3e7e46a7\transformed\coordinatorlayout-1.1.0\res
+com.feather3d.app-lifecycle-livedata-2.6.2-3 C:\Users\div07\.gradle\caches\8.11.1\transforms\1ba0b1083f89c3716e6c87e732c55e27\transformed\lifecycle-livedata-2.6.2\res
+com.feather3d.app-core-runtime-2.2.0-4 C:\Users\div07\.gradle\caches\8.11.1\transforms\32be09081b4decf6e7c396fa89d8a022\transformed\core-runtime-2.2.0\res
+com.feather3d.app-fragment-1.5.4-5 C:\Users\div07\.gradle\caches\8.11.1\transforms\41fc1775b5e144df388d7ab8d5c86f98\transformed\fragment-1.5.4\res
+com.feather3d.app-annotation-experimental-1.4.1-6 C:\Users\div07\.gradle\caches\8.11.1\transforms\453522f33c6382b47602589fe62a9d32\transformed\annotation-experimental-1.4.1\res
+com.feather3d.app-lifecycle-viewmodel-savedstate-2.6.2-7 C:\Users\div07\.gradle\caches\8.11.1\transforms\5ae817cd53c7525926caddb88ef64501\transformed\lifecycle-viewmodel-savedstate-2.6.2\res
+com.feather3d.app-core-1.18.0-8 C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\res
+com.feather3d.app-filament-android-1.45.0-9 C:\Users\div07\.gradle\caches\8.11.1\transforms\74dd928030fd4a46ee94d8e3553fc10c\transformed\filament-android-1.45.0\res
+com.feather3d.app-material-1.13.0-10 C:\Users\div07\.gradle\caches\8.11.1\transforms\79a2c69ca50b938e76a64599cb1852cc\transformed\material-1.13.0\res
+com.feather3d.app-lifecycle-process-2.6.2-11 C:\Users\div07\.gradle\caches\8.11.1\transforms\89779abd504791a89e75f59c09e027b4\transformed\lifecycle-process-2.6.2\res
+com.feather3d.app-recyclerview-1.2.1-12 C:\Users\div07\.gradle\caches\8.11.1\transforms\8ce57c33183fd16a0ed712742251ec0e\transformed\recyclerview-1.2.1\res
+com.feather3d.app-drawerlayout-1.1.1-13 C:\Users\div07\.gradle\caches\8.11.1\transforms\92bbf16e2e066677bcbed15985f3f872\transformed\drawerlayout-1.1.1\res
+com.feather3d.app-core-ktx-1.18.0-14 C:\Users\div07\.gradle\caches\8.11.1\transforms\950df8ea15a2bdfbd33ed22844c7f790\transformed\core-ktx-1.18.0\res
+com.feather3d.app-activity-1.8.0-15 C:\Users\div07\.gradle\caches\8.11.1\transforms\9920bf1af7e9f2cd085b2ba06e7b84a7\transformed\activity-1.8.0\res
+com.feather3d.app-lifecycle-viewmodel-2.6.2-16 C:\Users\div07\.gradle\caches\8.11.1\transforms\99bd4d18a26f878d1b425d609e9156cc\transformed\lifecycle-viewmodel-2.6.2\res
+com.feather3d.app-viewpager2-1.0.0-17 C:\Users\div07\.gradle\caches\8.11.1\transforms\a0e6331f42d5da861a056b8376b2eecc\transformed\viewpager2-1.0.0\res
+com.feather3d.app-startup-runtime-1.1.1-18 C:\Users\div07\.gradle\caches\8.11.1\transforms\ab95c6704428e3ec90ee9fbb1a2597e7\transformed\startup-runtime-1.1.1\res
+com.feather3d.app-appcompat-resources-1.7.1-19 C:\Users\div07\.gradle\caches\8.11.1\transforms\adac80779ae96b1d87e5e52943ec1788\transformed\appcompat-resources-1.7.1\res
+com.feather3d.app-cardview-1.0.0-20 C:\Users\div07\.gradle\caches\8.11.1\transforms\b348ecdedaaee5aade190ccf76967e62\transformed\cardview-1.0.0\res
+com.feather3d.app-emoji2-views-helper-1.3.0-21 C:\Users\div07\.gradle\caches\8.11.1\transforms\b364971daadb4a6e0fbc6547ae571482\transformed\emoji2-views-helper-1.3.0\res
+com.feather3d.app-constraintlayout-2.1.4-22 C:\Users\div07\.gradle\caches\8.11.1\transforms\c3ba4d8986b45f093bd17c218763a236\transformed\constraintlayout-2.1.4\res
+com.feather3d.app-lifecycle-runtime-2.6.2-23 C:\Users\div07\.gradle\caches\8.11.1\transforms\c3de73c4e70ea6615fd2f2b0ceac62d4\transformed\lifecycle-runtime-2.6.2\res
+com.feather3d.app-lifecycle-livedata-core-2.6.2-24 C:\Users\div07\.gradle\caches\8.11.1\transforms\cb59ed3a0afad9aef0b6141fda2daacf\transformed\lifecycle-livedata-core-2.6.2\res
+com.feather3d.app-dynamicanimation-1.1.0-25 C:\Users\div07\.gradle\caches\8.11.1\transforms\cc4ab323e64ef3b2e05a9dd32e79de87\transformed\dynamicanimation-1.1.0\res
+com.feather3d.app-profileinstaller-1.3.1-26 C:\Users\div07\.gradle\caches\8.11.1\transforms\cdccfea156efb52bd6714e3da58dd3b8\transformed\profileinstaller-1.3.1\res
+com.feather3d.app-core-viewtree-1.0.0-27 C:\Users\div07\.gradle\caches\8.11.1\transforms\d44fb6572cd324b03519d68b0a6cefe3\transformed\core-viewtree-1.0.0\res
+com.feather3d.app-tracing-1.2.0-28 C:\Users\div07\.gradle\caches\8.11.1\transforms\d621641122f01814d2ad103e8da6057d\transformed\tracing-1.2.0\res
+com.feather3d.app-appcompat-1.7.1-29 C:\Users\div07\.gradle\caches\8.11.1\transforms\dd031ae9d4fcc17cfecdfe013ff15699\transformed\appcompat-1.7.1\res
+com.feather3d.app-savedstate-1.2.1-30 C:\Users\div07\.gradle\caches\8.11.1\transforms\ddcde2023b667dd5a7ef3a6351c2921c\transformed\savedstate-1.2.1\res
+com.feather3d.app-emoji2-1.3.0-31 C:\Users\div07\.gradle\caches\8.11.1\transforms\e70e713767f6b5d1ed1fdea069017eec\transformed\emoji2-1.3.0\res
+com.feather3d.app-pngs-32 C:\Users\div07\Desktop\Feather 3d\app\build\generated\res\pngs\debug
+com.feather3d.app-resValues-33 C:\Users\div07\Desktop\Feather 3d\app\build\generated\res\resValues\debug
+com.feather3d.app-packageDebugResources-34 C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.feather3d.app-packageDebugResources-35 C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.feather3d.app-debug-36 C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.feather3d.app-debug-37 C:\Users\div07\Desktop\Feather 3d\app\src\debug\res
+com.feather3d.app-main-38 C:\Users\div07\Desktop\Feather 3d\app\src\main\res

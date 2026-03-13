@@ -1,0 +1,35 @@
+R_DEF: Internal format may change without notice
+local
+color accent
+color background
+color primary
+color primaryDark
+color surface
+color textPrimary
+color textSecondary
+color toolActive
+color toolInactive
+drawable ic_clear
+drawable ic_export
+drawable ic_launcher
+drawable ic_undo
+id bottomToolbar
+id brushSizeLabel
+id brushSizeSlider
+id btnClear
+id btnExport
+id btnModeDraw
+id btnModeInflate
+id btnModeLiquify
+id btnModePinch
+id btnModeSculptAdd
+id btnModeSculptSub
+id btnModeSmooth
+id btnUndo
+id feather3dView
+id statsText
+id topToolbar
+layout activity_main
+mipmap ic_launcher
+string app_name
+style Theme.Feather3D

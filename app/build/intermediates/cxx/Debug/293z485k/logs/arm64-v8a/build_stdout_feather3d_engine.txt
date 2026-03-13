@@ -1,0 +1,12 @@
+ninja: Entering directory `C:\Users\div07\Desktop\Feather 3d\app\.cxx\Debug\293z485k\arm64-v8a'
+[1/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o
+[2/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o
+[3/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o
+[4/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o
+[5/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o
+[6/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o
+[7/11] Building CXX object CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o
+[8/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o
+[9/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o
+[10/11] Building CXX object CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o
+[11/11] Linking CXX shared library "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\293z485k\obj\arm64-v8a\libfeather3d_engine.so"

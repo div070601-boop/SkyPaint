@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 3D Canvas -->
+    <com.feather3d.app.Feather3DView
+        android:id="@+id/feather3dView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Top toolbar -->
+    <LinearLayout
+        android:id="@+id/topToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:background="#CC16213E">
+
+        <!-- App title -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Feather 3D"
+            android:textColor="#E8E8E8"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="8dp" />
+
+        <!-- Stats display -->
+        <TextView
+            android:id="@+id/statsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V: 0 | T: 0"
+            android:textColor="#8888AA"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:paddingEnd="12dp" />
+
+        <!-- Undo button -->
+        <ImageButton
+            android:id="@+id/btnUndo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_undo"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Undo"
+            android:tint="#E8E8E8"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Clear button -->
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_clear"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Clear all"
+            android:tint="#E8E8E8"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Export button -->
+        <ImageButton
+            android:id="@+id/btnExport"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_export"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Export"
+            android:tint="#E8E8E8" />
+    </LinearLayout>
+
+    <!-- Bottom tool panel -->
+    <LinearLayout
+        android:id="@+id/bottomToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="#CC16213E"
+        android:padding="8dp">
+
+        <!-- Brush size slider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                android:textColor="#AAAACC"
+                android:textSize="12sp"
+                android:paddingEnd="8dp" />
+
+            <SeekBar
+                android:id="@+id/brushSizeSlider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:min="1"
+                android:max="100"
+                android:progress="20"
+                android:progressTint="#0F3460"
+                android:thumbTint="#E94560" />
+
+            <TextView
+                android:id="@+id/brushSizeLabel"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textColor="#AAAACC"
+                android:textSize="12sp"
+                android:gravity="end" />
+        </LinearLayout>
+
+        <!-- Tool buttons -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="4dp">
+
+                <!-- Draw (Stroke) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeDraw"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Draw"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Sculpt Add -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeSculptAdd"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Add"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Sculpt Subtract -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeSculptSub"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Sub"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Smooth -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeSmooth"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Smooth"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Liquify -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeLiquify"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Liquify"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Inflate -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModeInflate"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Inflate"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:layout_marginEnd="6dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+                <!-- Pinch -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnModePinch"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Pinch"
+                    android:textSize="12sp"
+                    android:textColor="#E8E8E8"
+                    app:strokeColor="#0F3460"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="12dp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</FrameLayout>
