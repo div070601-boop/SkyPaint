@@ -328,4 +328,26 @@ Java_com_feather3d_app_NativeBridge_getTotalTriangleCount(JNIEnv* env, jclass) {
     return g_engine->getTotalTriangleCount();
 }
 
+// ── Undo / Redo ─────────────────────────────────────────────────────────────
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_undo(JNIEnv* env, jclass) {
+    if (g_engine) g_engine->undo();
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_redo(JNIEnv* env, jclass) {
+    if (g_engine) g_engine->redo();
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_canUndo(JNIEnv* env, jclass) {
+    return g_engine ? (g_engine->canUndo() ? JNI_TRUE : JNI_FALSE) : JNI_FALSE;
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_canRedo(JNIEnv* env, jclass) {
+    return g_engine ? (g_engine->canRedo() ? JNI_TRUE : JNI_FALSE) : JNI_FALSE;
+}
+
 } // extern "C"

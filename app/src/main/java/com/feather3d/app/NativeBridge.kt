@@ -55,15 +55,14 @@ object NativeBridge {
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     @JvmStatic external fun initVoxelGrid(
         resolution: Int,
-        minX: Float, minY: Float, minZ: Float,
-        maxX: Float, maxY: Float, maxZ: Float
+        boundsMin: Float,
+        boundsMax: Float
     )
-    @JvmStatic external fun sculptAt(
-        x: Float, y: Float, z: Float,
-        radius: Float, strength: Float
-    )
+    @JvmStatic external fun beginSculpt()
+    @JvmStatic external fun sculptAt(x: Float, y: Float, z: Float, radius: Float, strength: Float)
+    @JvmStatic external fun endSculpt()
 
-    // ── Liquify ─────────────────────────────────────────────────────────
+    // ── Buffer Data access (Mesh) ─────────────────────────────────────────────────────────
     @JvmStatic external fun setLiquifyRadius(radius: Float)
     @JvmStatic external fun setLiquifyStrength(strength: Float)
     @JvmStatic external fun liquifyAt(
@@ -71,10 +70,8 @@ object NativeBridge {
         dx: Float, dy: Float, dz: Float
     )
 
-    // ── Decimation ──────────────────────────────────────────────────────
     @JvmStatic external fun decimateVoxelMesh(ratio: Float)
 
-    // ── Mesh Data (for renderer) ────────────────────────────────────────
     @JvmStatic external fun getStrokeMeshVertices(index: Int): FloatArray?
     @JvmStatic external fun getStrokeMeshIndices(index: Int): IntArray?
     @JvmStatic external fun getCombinedMeshVertices(): FloatArray?
@@ -90,7 +87,13 @@ object NativeBridge {
     @JvmStatic external fun exportOBJToFile(path: String): Boolean
     @JvmStatic external fun exportGLBToFile(path: String): Boolean
 
-    // ── Scene Info ──────────────────────────────────────────────────────
+    // ── Scene Stats ─────────────────────────────────────────────────────
     @JvmStatic external fun getTotalVertexCount(): Int
     @JvmStatic external fun getTotalTriangleCount(): Int
+
+    // ── Undo / Redo ─────────────────────────────────────────────────────
+    @JvmStatic external fun undo()
+    @JvmStatic external fun redo()
+    @JvmStatic external fun canUndo(): Boolean
+    @JvmStatic external fun canRedo(): Boolean
 }

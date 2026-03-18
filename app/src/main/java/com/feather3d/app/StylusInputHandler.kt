@@ -16,8 +16,10 @@ class StylusInputHandler(
         fun onStrokePoint(worldX: Float, worldY: Float, worldZ: Float,
                           pressure: Float, tilt: Float, timestamp: Float)
         fun onStrokeEnd()
+        fun onSculptBegin()
         fun onSculptPoint(worldX: Float, worldY: Float, worldZ: Float,
                           pressure: Float)
+        fun onSculptEnd()
     }
 
     var listener: Listener? = null
@@ -53,6 +55,7 @@ class StylusInputHandler(
                         processStrokePoint(event)
                     }
                     isSculptMode() || isLiquifyMode() -> {
+                        listener?.onSculptBegin()
                         processSculptPoint(event)
                     }
                 }
@@ -80,8 +83,9 @@ class StylusInputHandler(
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 if (isStroking) {
-                    if (isStrokeMode()) {
-                        listener?.onStrokeEnd()
+                    when {
+                        isStrokeMode() -> listener?.onStrokeEnd()
+                        isSculptMode() || isLiquifyMode() -> listener?.onSculptEnd()
                     }
                     isStroking = false
                     return true

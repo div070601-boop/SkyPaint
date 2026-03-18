@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         // Initialize voxel grid for sculpting (centered, 64³)
         NativeBridge.initVoxelGrid(
             64,
-            -0.5f, -0.5f, -0.5f,
-            0.5f, 0.5f, 0.5f
+            -0.5f,
+            0.5f
         )
 
         setupSystemMenu()
@@ -276,16 +276,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupHistoryPanel() {
         binding.btnUndo.setOnClickListener {
-            val strokeCount = NativeBridge.getStrokeCount()
-            if (strokeCount > 0) {
-                NativeBridge.removeStroke(strokeCount - 1)
+            if (NativeBridge.canUndo()) {
+                NativeBridge.undo()
                 refreshAllMeshes()
-                Toast.makeText(this, "Undo", Toast.LENGTH_SHORT).show()
+                val v = NativeBridge.getTotalVertexCount()
+                val t = NativeBridge.getTotalTriangleCount()
+                binding.statsText.text = "V: $v | T: $t"
             }
         }
 
         binding.btnRedo.setOnClickListener {
-            Toast.makeText(this, "Redo (coming soon)", Toast.LENGTH_SHORT).show()
+            if (NativeBridge.canRedo()) {
+                NativeBridge.redo()
+                refreshAllMeshes()
+                val v = NativeBridge.getTotalVertexCount()
+                val t = NativeBridge.getTotalTriangleCount()
+                binding.statsText.text = "V: $v | T: $t"
+            }
         }
     }
 
@@ -316,7 +323,7 @@ class MainActivity : AppCompatActivity() {
                 .setMessage("Remove all strokes and sculpts?")
                 .setPositiveButton("Clear") { _, _ ->
                     featherView.clearAll()
-                    NativeBridge.initVoxelGrid(64, -0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f)
+                    NativeBridge.initVoxelGrid(64, -0.5f, 0.5f)
                     Toast.makeText(this, "Canvas cleared", Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton("Cancel", null)

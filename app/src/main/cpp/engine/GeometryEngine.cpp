@@ -13,6 +13,27 @@ GeometryEngine::GeometryEngine() {
     m_liquifyBrush.setStrength(0.5f);
 }
 
+// ── Undo / Redo ─────────────────────────────────────────────────────────────
+
+void GeometryEngine::undo() {
+    m_actionStack.undo();
+    
+    // Refresh meshes on undo out of band since stroke count might differ
+    m_strokeMeshes.clear();
+    for (int i = 0; i < m_strokeSystem.getStrokeCount(); ++i) {
+        m_strokeMeshes.push_back(generateMeshFromStroke(m_strokeSystem.getStrokePoints(i)));
+    }
+}
+
+void GeometryEngine::redo() {
+    m_actionStack.redo();
+
+    m_strokeMeshes.clear();
+    for (int i = 0; i < m_strokeSystem.getStrokeCount(); ++i) {
+        m_strokeMeshes.push_back(generateMeshFromStroke(m_strokeSystem.getStrokePoints(i)));
+    }
+}
+
 // ── Stroke Drawing ──────────────────────────────────────────────────────────
 
 void GeometryEngine::beginStroke() {
@@ -40,6 +61,8 @@ int GeometryEngine::endStroke() {
         } else {
             m_strokeMeshes.push_back(std::move(mesh));
         }
+
+        m_actionStack.pushAction(std::make_unique<StrokeAction>(m_strokeSystem, points));
     }
     return index;
 }
@@ -133,22 +156,31 @@ void GeometryEngine::initVoxelGrid(int resolution, const Vec3& boundsMin,
     m_voxelMeshDirty = true;
 }
 
-void GeometryEngine::sculptAt(const Vec3& position, float radius, float strength) {
-    switch (m_drawMode) {
-        case DrawMode::SCULPT_ADD:
-            m_voxelGrid.addSphere(position, radius, strength);
-            break;
-        case DrawMode::SCULPT_SUB:
-            m_voxelGrid.subtractSphere(position, radius, strength);
-            break;
-        case DrawMode::SCULPT_SMOOTH:
-            m_voxelGrid.smooth(position, radius, 2);
-            break;
-        default:
-            m_voxelGrid.addSphere(position, radius, strength);
-            break;
+void GeometryEngine::beginSculpt() {
+    if (m_voxelGrid.isInitialized()) {
+        m_preSculptSnapshot = m_voxelGrid.getField();
     }
+}
+
+void GeometryEngine::sculptAt(const Vec3& position, float radius, float strength) {
+    if (!m_voxelGrid.isInitialized()) return;
+
+    if (m_drawMode == DrawMode::SCULPT_ADD) {
+        m_voxelGrid.addSphere(position, radius, strength);
+    } else if (m_drawMode == DrawMode::SCULPT_SUB) {
+        m_voxelGrid.subtractSphere(position, radius, strength);
+    } else if (m_drawMode == DrawMode::SCULPT_SMOOTH) {
+        m_voxelGrid.smooth(position, radius);
+    }
+
     m_voxelMeshDirty = true;
+}
+
+void GeometryEngine::endSculpt() {
+    if (m_voxelGrid.isInitialized() && !m_preSculptSnapshot.empty()) {
+        m_actionStack.pushAction(std::make_unique<SculptAction>(m_voxelGrid, m_preSculptSnapshot));
+        m_preSculptSnapshot.clear();
+    }
 }
 
 Mesh GeometryEngine::getVoxelMesh() {

@@ -43,6 +43,14 @@ public:
     /// Get raw field data
     const std::vector<float>& getField() const { return m_field; }
 
+    /// Set raw field data (for undo/redo)
+    void setField(const std::vector<float>& field) {
+        if (field.size() == m_field.size()) {
+            m_field = field;
+            markDirty(0, 0, 0, m_resolution - 1, m_resolution - 1, m_resolution - 1);
+        }
+    }
+
     /// Check if grid is initialized
     bool isInitialized() const { return m_resolution > 0; }
 

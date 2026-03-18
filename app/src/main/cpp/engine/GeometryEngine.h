@@ -9,6 +9,7 @@
 #include "LiquifyBrush.h"
 #include "MeshDecimation.h"
 #include "MeshExporter.h"
+#include "Actions.h"
 
 namespace feather {
 
@@ -33,6 +34,12 @@ public:
     // ── Drawing Mode ────────────────────────────────────────────────────
     void setDrawMode(DrawMode mode) { m_drawMode = mode; }
     DrawMode getDrawMode() const { return m_drawMode; }
+
+    // ── Undo / Redo ─────────────────────────────────────────────────────
+    void undo();
+    void redo();
+    bool canUndo() const { return m_actionStack.canUndo(); }
+    bool canRedo() const { return m_actionStack.canRedo(); }
 
     // ── Stroke Drawing ──────────────────────────────────────────────────
     void beginStroke();
@@ -68,7 +75,9 @@ public:
 
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     void initVoxelGrid(int resolution, const Vec3& boundsMin, const Vec3& boundsMax);
+    void beginSculpt();
     void sculptAt(const Vec3& position, float radius, float strength = 1.0f);
+    void endSculpt();
     Mesh getVoxelMesh();
     bool isVoxelGridInitialized() const { return m_voxelGrid.isInitialized(); }
 
@@ -101,6 +110,9 @@ private:
     LiquifyBrush m_liquifyBrush;
     MeshDecimation m_meshDecimation;
     MeshExporter m_meshExporter;
+
+    ActionStack m_actionStack;
+    std::vector<float> m_preSculptSnapshot;
 
     // Cached stroke meshes
     std::vector<Mesh> m_strokeMeshes;
