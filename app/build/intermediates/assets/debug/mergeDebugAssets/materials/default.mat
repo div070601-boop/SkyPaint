@@ -1,6 +1,7 @@
 material {
     name : "default",
     shadingModel : lit,
+    requires : [color],
     parameters : [
         { type : float4, name : baseColor },
         { type : float,  name : roughness },
@@ -11,7 +12,8 @@ material {
 fragment {
     void material(inout MaterialInputs material) {
         prepareMaterial(material);
-        material.baseColor = materialParams.baseColor;
+        // Use per-vertex color, multiplied by baseColor uniform (acts as tint)
+        material.baseColor = getColor() * materialParams.baseColor;
         material.roughness = materialParams.roughness;
         material.metallic = materialParams.metallic;
     }

@@ -1,0 +1,16 @@
+material {
+    name : "unlit",
+    shadingModel : unlit,
+    requires : [color],
+    parameters : [
+        { type : float4, name : baseColor }
+    ]
+}
+
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        // Multiply vertex color by uniform baseColor tint
+        material.baseColor = getColor() * materialParams.baseColor;
+    }
+}

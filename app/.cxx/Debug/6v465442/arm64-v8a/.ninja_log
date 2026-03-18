@@ -1,12 +1,12 @@
 # ninja log v5
-21	3344	7950463885430769	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	4eeb98199c7cbd68
-11	3397	7950463886022733	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
-63	3428	7950463886332977	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	34c0e72f6b0a02e4
-43	3494	7950463886912180	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	7d02def987420039
-87	3743	7950463889437152	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
-33	3781	7950463889834587	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	88dfaf7a57e026fc
-74	3908	7950463891048546	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	58fb169abbb0b296
-0	4367	7950463895704244	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
-53	4797	7950463899999001	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	5415879f58b44dab
-98	4823	7950463900172879	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	d53fd65c36c8c387
-4824	4988	7950463901965341	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	bfa3b1515fe75f45
+23	2931	7955755141332729	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	4eeb98199c7cbd68
+1	3028	7955755142312269	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
+34	3035	7955755142357549	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	7d02def987420039
+57	3093	7955755143016694	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	34c0e72f6b0a02e4
+45	3240	7955755144508905	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	88dfaf7a57e026fc
+68	3353	7955755145626753	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	58fb169abbb0b296
+79	3874	7955755150704381	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	5415879f58b44dab
+112	3936	7955755151381345	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	d53fd65c36c8c387
+18	1897	7955755866591268	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
+41	2098	7955755868649707	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+31	2611	7955755873780477	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018

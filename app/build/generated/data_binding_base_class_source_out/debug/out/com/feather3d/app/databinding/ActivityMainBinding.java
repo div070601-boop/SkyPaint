@@ -31,6 +31,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final SeekBar brushSizeSlider;
 
   @NonNull
+  public final MaterialButton btnAngleSnap;
+
+  @NonNull
   public final ImageButton btnClear;
 
   @NonNull
@@ -38,6 +41,9 @@ public final class ActivityMainBinding implements ViewBinding {
 
   @NonNull
   public final ImageButton btnExport;
+
+  @NonNull
+  public final MaterialButton btnGridSnap;
 
   @NonNull
   public final ImageButton btnMirror;
@@ -55,10 +61,19 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnModeSculpt;
 
   @NonNull
+  public final MaterialButton btnOrtho;
+
+  @NonNull
   public final ImageButton btnRedo;
 
   @NonNull
   public final ImageButton btnSettings;
+
+  @NonNull
+  public final MaterialButton btnSnapView;
+
+  @NonNull
+  public final MaterialButton btnStraight;
 
   @NonNull
   public final MaterialButton btnSubAdd;
@@ -79,13 +94,49 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnUndo;
 
   @NonNull
+  public final View colorBlack;
+
+  @NonNull
+  public final View colorBlue;
+
+  @NonNull
+  public final View colorCyan;
+
+  @NonNull
+  public final View colorGreen;
+
+  @NonNull
+  public final View colorOrange;
+
+  @NonNull
+  public final View colorPink;
+
+  @NonNull
+  public final View colorPurple;
+
+  @NonNull
+  public final View colorRed;
+
+  @NonNull
+  public final View colorWhite;
+
+  @NonNull
+  public final View colorYellow;
+
+  @NonNull
   public final Feather3DView feather3dView;
 
   @NonNull
   public final LinearLayout panelBrushSidebar;
 
   @NonNull
+  public final LinearLayout panelColorPalette;
+
+  @NonNull
   public final LinearLayout panelContextMenu;
+
+  @NonNull
+  public final LinearLayout panelDrafting;
 
   @NonNull
   public final LinearLayout panelHistory;
@@ -99,45 +150,73 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView statsText;
 
+  @NonNull
+  public final TextView textDimension;
+
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull TextView brushSizeLabel,
-      @NonNull SeekBar brushSizeSlider, @NonNull ImageButton btnClear,
-      @NonNull ImageButton btnColorPicker, @NonNull ImageButton btnExport,
+      @NonNull SeekBar brushSizeSlider, @NonNull MaterialButton btnAngleSnap,
+      @NonNull ImageButton btnClear, @NonNull ImageButton btnColorPicker,
+      @NonNull ImageButton btnExport, @NonNull MaterialButton btnGridSnap,
       @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
       @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
-      @NonNull ImageButton btnModeSculpt, @NonNull ImageButton btnRedo,
-      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSubAdd,
-      @NonNull MaterialButton btnSubInflate, @NonNull MaterialButton btnSubPinch,
-      @NonNull MaterialButton btnSubSmooth, @NonNull MaterialButton btnSubSub,
-      @NonNull ImageButton btnUndo, @NonNull Feather3DView feather3dView,
-      @NonNull LinearLayout panelBrushSidebar, @NonNull LinearLayout panelContextMenu,
-      @NonNull LinearLayout panelHistory, @NonNull LinearLayout panelSystemMenu,
-      @NonNull LinearLayout panelToolMenu, @NonNull TextView statsText) {
+      @NonNull ImageButton btnModeSculpt, @NonNull MaterialButton btnOrtho,
+      @NonNull ImageButton btnRedo, @NonNull ImageButton btnSettings,
+      @NonNull MaterialButton btnSnapView, @NonNull MaterialButton btnStraight,
+      @NonNull MaterialButton btnSubAdd, @NonNull MaterialButton btnSubInflate,
+      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubSmooth,
+      @NonNull MaterialButton btnSubSub, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
+      @NonNull View colorBlue, @NonNull View colorCyan, @NonNull View colorGreen,
+      @NonNull View colorOrange, @NonNull View colorPink, @NonNull View colorPurple,
+      @NonNull View colorRed, @NonNull View colorWhite, @NonNull View colorYellow,
+      @NonNull Feather3DView feather3dView, @NonNull LinearLayout panelBrushSidebar,
+      @NonNull LinearLayout panelColorPalette, @NonNull LinearLayout panelContextMenu,
+      @NonNull LinearLayout panelDrafting, @NonNull LinearLayout panelHistory,
+      @NonNull LinearLayout panelSystemMenu, @NonNull LinearLayout panelToolMenu,
+      @NonNull TextView statsText, @NonNull TextView textDimension) {
     this.rootView = rootView;
     this.brushSizeLabel = brushSizeLabel;
     this.brushSizeSlider = brushSizeSlider;
+    this.btnAngleSnap = btnAngleSnap;
     this.btnClear = btnClear;
     this.btnColorPicker = btnColorPicker;
     this.btnExport = btnExport;
+    this.btnGridSnap = btnGridSnap;
     this.btnMirror = btnMirror;
     this.btnModeDraw = btnModeDraw;
     this.btnModeErase = btnModeErase;
     this.btnModeLiquify = btnModeLiquify;
     this.btnModeSculpt = btnModeSculpt;
+    this.btnOrtho = btnOrtho;
     this.btnRedo = btnRedo;
     this.btnSettings = btnSettings;
+    this.btnSnapView = btnSnapView;
+    this.btnStraight = btnStraight;
     this.btnSubAdd = btnSubAdd;
     this.btnSubInflate = btnSubInflate;
     this.btnSubPinch = btnSubPinch;
     this.btnSubSmooth = btnSubSmooth;
     this.btnSubSub = btnSubSub;
     this.btnUndo = btnUndo;
+    this.colorBlack = colorBlack;
+    this.colorBlue = colorBlue;
+    this.colorCyan = colorCyan;
+    this.colorGreen = colorGreen;
+    this.colorOrange = colorOrange;
+    this.colorPink = colorPink;
+    this.colorPurple = colorPurple;
+    this.colorRed = colorRed;
+    this.colorWhite = colorWhite;
+    this.colorYellow = colorYellow;
     this.feather3dView = feather3dView;
     this.panelBrushSidebar = panelBrushSidebar;
+    this.panelColorPalette = panelColorPalette;
     this.panelContextMenu = panelContextMenu;
+    this.panelDrafting = panelDrafting;
     this.panelHistory = panelHistory;
     this.panelSystemMenu = panelSystemMenu;
     this.panelToolMenu = panelToolMenu;
     this.statsText = statsText;
+    this.textDimension = textDimension;
   }
 
   @Override
@@ -179,6 +258,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnAngleSnap;
+      MaterialButton btnAngleSnap = ViewBindings.findChildViewById(rootView, id);
+      if (btnAngleSnap == null) {
+        break missingId;
+      }
+
       id = R.id.btnClear;
       ImageButton btnClear = ViewBindings.findChildViewById(rootView, id);
       if (btnClear == null) {
@@ -194,6 +279,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnExport;
       ImageButton btnExport = ViewBindings.findChildViewById(rootView, id);
       if (btnExport == null) {
+        break missingId;
+      }
+
+      id = R.id.btnGridSnap;
+      MaterialButton btnGridSnap = ViewBindings.findChildViewById(rootView, id);
+      if (btnGridSnap == null) {
         break missingId;
       }
 
@@ -227,6 +318,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnOrtho;
+      MaterialButton btnOrtho = ViewBindings.findChildViewById(rootView, id);
+      if (btnOrtho == null) {
+        break missingId;
+      }
+
       id = R.id.btnRedo;
       ImageButton btnRedo = ViewBindings.findChildViewById(rootView, id);
       if (btnRedo == null) {
@@ -236,6 +333,18 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnSettings;
       ImageButton btnSettings = ViewBindings.findChildViewById(rootView, id);
       if (btnSettings == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSnapView;
+      MaterialButton btnSnapView = ViewBindings.findChildViewById(rootView, id);
+      if (btnSnapView == null) {
+        break missingId;
+      }
+
+      id = R.id.btnStraight;
+      MaterialButton btnStraight = ViewBindings.findChildViewById(rootView, id);
+      if (btnStraight == null) {
         break missingId;
       }
 
@@ -275,6 +384,66 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.colorBlack;
+      View colorBlack = ViewBindings.findChildViewById(rootView, id);
+      if (colorBlack == null) {
+        break missingId;
+      }
+
+      id = R.id.colorBlue;
+      View colorBlue = ViewBindings.findChildViewById(rootView, id);
+      if (colorBlue == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCyan;
+      View colorCyan = ViewBindings.findChildViewById(rootView, id);
+      if (colorCyan == null) {
+        break missingId;
+      }
+
+      id = R.id.colorGreen;
+      View colorGreen = ViewBindings.findChildViewById(rootView, id);
+      if (colorGreen == null) {
+        break missingId;
+      }
+
+      id = R.id.colorOrange;
+      View colorOrange = ViewBindings.findChildViewById(rootView, id);
+      if (colorOrange == null) {
+        break missingId;
+      }
+
+      id = R.id.colorPink;
+      View colorPink = ViewBindings.findChildViewById(rootView, id);
+      if (colorPink == null) {
+        break missingId;
+      }
+
+      id = R.id.colorPurple;
+      View colorPurple = ViewBindings.findChildViewById(rootView, id);
+      if (colorPurple == null) {
+        break missingId;
+      }
+
+      id = R.id.colorRed;
+      View colorRed = ViewBindings.findChildViewById(rootView, id);
+      if (colorRed == null) {
+        break missingId;
+      }
+
+      id = R.id.colorWhite;
+      View colorWhite = ViewBindings.findChildViewById(rootView, id);
+      if (colorWhite == null) {
+        break missingId;
+      }
+
+      id = R.id.colorYellow;
+      View colorYellow = ViewBindings.findChildViewById(rootView, id);
+      if (colorYellow == null) {
+        break missingId;
+      }
+
       id = R.id.feather3dView;
       Feather3DView feather3dView = ViewBindings.findChildViewById(rootView, id);
       if (feather3dView == null) {
@@ -287,9 +456,21 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.panelColorPalette;
+      LinearLayout panelColorPalette = ViewBindings.findChildViewById(rootView, id);
+      if (panelColorPalette == null) {
+        break missingId;
+      }
+
       id = R.id.panelContextMenu;
       LinearLayout panelContextMenu = ViewBindings.findChildViewById(rootView, id);
       if (panelContextMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.panelDrafting;
+      LinearLayout panelDrafting = ViewBindings.findChildViewById(rootView, id);
+      if (panelDrafting == null) {
         break missingId;
       }
 
@@ -317,11 +498,20 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textDimension;
+      TextView textDimension = ViewBindings.findChildViewById(rootView, id);
+      if (textDimension == null) {
+        break missingId;
+      }
+
       return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
-          btnClear, btnColorPicker, btnExport, btnMirror, btnModeDraw, btnModeErase, btnModeLiquify,
-          btnModeSculpt, btnRedo, btnSettings, btnSubAdd, btnSubInflate, btnSubPinch, btnSubSmooth,
-          btnSubSub, btnUndo, feather3dView, panelBrushSidebar, panelContextMenu, panelHistory,
-          panelSystemMenu, panelToolMenu, statsText);
+          btnAngleSnap, btnClear, btnColorPicker, btnExport, btnGridSnap, btnMirror, btnModeDraw,
+          btnModeErase, btnModeLiquify, btnModeSculpt, btnOrtho, btnRedo, btnSettings, btnSnapView,
+          btnStraight, btnSubAdd, btnSubInflate, btnSubPinch, btnSubSmooth, btnSubSub, btnUndo,
+          colorBlack, colorBlue, colorCyan, colorGreen, colorOrange, colorPink, colorPurple,
+          colorRed, colorWhite, colorYellow, feather3dView, panelBrushSidebar, panelColorPalette,
+          panelContextMenu, panelDrafting, panelHistory, panelSystemMenu, panelToolMenu, statsText,
+          textDimension);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

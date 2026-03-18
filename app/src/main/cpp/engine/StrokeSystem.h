@@ -42,6 +42,16 @@ public:
     /// Remove a stroke by index
     void removeStroke(int index);
 
+    /// Push a finalized stroke back (used for Redo)
+    void pushStroke(const std::vector<StrokePoint>& stroke) { m_strokes.push_back(stroke); }
+    
+    /// Pop the last stroke (used for Undo)
+    void popStroke() {
+        if (!m_strokes.empty()) {
+            m_strokes.pop_back();
+        }
+    }
+
     /// Clear all strokes
     void clearAll();
 
