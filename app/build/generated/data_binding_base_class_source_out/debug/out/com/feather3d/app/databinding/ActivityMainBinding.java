@@ -4,13 +4,13 @@ package com.feather3d.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.feather3d.app.Feather3DView;
@@ -22,10 +22,7 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
-
-  @NonNull
-  public final LinearLayout bottomToolbar;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final TextView brushSizeLabel;
@@ -37,28 +34,46 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnClear;
 
   @NonNull
+  public final ImageButton btnColorPicker;
+
+  @NonNull
   public final ImageButton btnExport;
 
   @NonNull
-  public final MaterialButton btnModeDraw;
+  public final ImageButton btnMirror;
 
   @NonNull
-  public final MaterialButton btnModeInflate;
+  public final ImageButton btnModeDraw;
 
   @NonNull
-  public final MaterialButton btnModeLiquify;
+  public final ImageButton btnModeErase;
 
   @NonNull
-  public final MaterialButton btnModePinch;
+  public final ImageButton btnModeLiquify;
 
   @NonNull
-  public final MaterialButton btnModeSculptAdd;
+  public final ImageButton btnModeSculpt;
 
   @NonNull
-  public final MaterialButton btnModeSculptSub;
+  public final ImageButton btnRedo;
 
   @NonNull
-  public final MaterialButton btnModeSmooth;
+  public final ImageButton btnSettings;
+
+  @NonNull
+  public final MaterialButton btnSubAdd;
+
+  @NonNull
+  public final MaterialButton btnSubInflate;
+
+  @NonNull
+  public final MaterialButton btnSubPinch;
+
+  @NonNull
+  public final MaterialButton btnSubSmooth;
+
+  @NonNull
+  public final MaterialButton btnSubSub;
 
   @NonNull
   public final ImageButton btnUndo;
@@ -67,42 +82,67 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Feather3DView feather3dView;
 
   @NonNull
-  public final TextView statsText;
+  public final LinearLayout panelBrushSidebar;
 
   @NonNull
-  public final LinearLayout topToolbar;
+  public final LinearLayout panelContextMenu;
 
-  private ActivityMainBinding(@NonNull FrameLayout rootView, @NonNull LinearLayout bottomToolbar,
-      @NonNull TextView brushSizeLabel, @NonNull SeekBar brushSizeSlider,
-      @NonNull ImageButton btnClear, @NonNull ImageButton btnExport,
-      @NonNull MaterialButton btnModeDraw, @NonNull MaterialButton btnModeInflate,
-      @NonNull MaterialButton btnModeLiquify, @NonNull MaterialButton btnModePinch,
-      @NonNull MaterialButton btnModeSculptAdd, @NonNull MaterialButton btnModeSculptSub,
-      @NonNull MaterialButton btnModeSmooth, @NonNull ImageButton btnUndo,
-      @NonNull Feather3DView feather3dView, @NonNull TextView statsText,
-      @NonNull LinearLayout topToolbar) {
+  @NonNull
+  public final LinearLayout panelHistory;
+
+  @NonNull
+  public final LinearLayout panelSystemMenu;
+
+  @NonNull
+  public final LinearLayout panelToolMenu;
+
+  @NonNull
+  public final TextView statsText;
+
+  private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull TextView brushSizeLabel,
+      @NonNull SeekBar brushSizeSlider, @NonNull ImageButton btnClear,
+      @NonNull ImageButton btnColorPicker, @NonNull ImageButton btnExport,
+      @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
+      @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
+      @NonNull ImageButton btnModeSculpt, @NonNull ImageButton btnRedo,
+      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSubAdd,
+      @NonNull MaterialButton btnSubInflate, @NonNull MaterialButton btnSubPinch,
+      @NonNull MaterialButton btnSubSmooth, @NonNull MaterialButton btnSubSub,
+      @NonNull ImageButton btnUndo, @NonNull Feather3DView feather3dView,
+      @NonNull LinearLayout panelBrushSidebar, @NonNull LinearLayout panelContextMenu,
+      @NonNull LinearLayout panelHistory, @NonNull LinearLayout panelSystemMenu,
+      @NonNull LinearLayout panelToolMenu, @NonNull TextView statsText) {
     this.rootView = rootView;
-    this.bottomToolbar = bottomToolbar;
     this.brushSizeLabel = brushSizeLabel;
     this.brushSizeSlider = brushSizeSlider;
     this.btnClear = btnClear;
+    this.btnColorPicker = btnColorPicker;
     this.btnExport = btnExport;
+    this.btnMirror = btnMirror;
     this.btnModeDraw = btnModeDraw;
-    this.btnModeInflate = btnModeInflate;
+    this.btnModeErase = btnModeErase;
     this.btnModeLiquify = btnModeLiquify;
-    this.btnModePinch = btnModePinch;
-    this.btnModeSculptAdd = btnModeSculptAdd;
-    this.btnModeSculptSub = btnModeSculptSub;
-    this.btnModeSmooth = btnModeSmooth;
+    this.btnModeSculpt = btnModeSculpt;
+    this.btnRedo = btnRedo;
+    this.btnSettings = btnSettings;
+    this.btnSubAdd = btnSubAdd;
+    this.btnSubInflate = btnSubInflate;
+    this.btnSubPinch = btnSubPinch;
+    this.btnSubSmooth = btnSubSmooth;
+    this.btnSubSub = btnSubSub;
     this.btnUndo = btnUndo;
     this.feather3dView = feather3dView;
+    this.panelBrushSidebar = panelBrushSidebar;
+    this.panelContextMenu = panelContextMenu;
+    this.panelHistory = panelHistory;
+    this.panelSystemMenu = panelSystemMenu;
+    this.panelToolMenu = panelToolMenu;
     this.statsText = statsText;
-    this.topToolbar = topToolbar;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -127,12 +167,6 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bottomToolbar;
-      LinearLayout bottomToolbar = ViewBindings.findChildViewById(rootView, id);
-      if (bottomToolbar == null) {
-        break missingId;
-      }
-
       id = R.id.brushSizeLabel;
       TextView brushSizeLabel = ViewBindings.findChildViewById(rootView, id);
       if (brushSizeLabel == null) {
@@ -151,51 +185,87 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnColorPicker;
+      ImageButton btnColorPicker = ViewBindings.findChildViewById(rootView, id);
+      if (btnColorPicker == null) {
+        break missingId;
+      }
+
       id = R.id.btnExport;
       ImageButton btnExport = ViewBindings.findChildViewById(rootView, id);
       if (btnExport == null) {
         break missingId;
       }
 
+      id = R.id.btnMirror;
+      ImageButton btnMirror = ViewBindings.findChildViewById(rootView, id);
+      if (btnMirror == null) {
+        break missingId;
+      }
+
       id = R.id.btnModeDraw;
-      MaterialButton btnModeDraw = ViewBindings.findChildViewById(rootView, id);
+      ImageButton btnModeDraw = ViewBindings.findChildViewById(rootView, id);
       if (btnModeDraw == null) {
         break missingId;
       }
 
-      id = R.id.btnModeInflate;
-      MaterialButton btnModeInflate = ViewBindings.findChildViewById(rootView, id);
-      if (btnModeInflate == null) {
+      id = R.id.btnModeErase;
+      ImageButton btnModeErase = ViewBindings.findChildViewById(rootView, id);
+      if (btnModeErase == null) {
         break missingId;
       }
 
       id = R.id.btnModeLiquify;
-      MaterialButton btnModeLiquify = ViewBindings.findChildViewById(rootView, id);
+      ImageButton btnModeLiquify = ViewBindings.findChildViewById(rootView, id);
       if (btnModeLiquify == null) {
         break missingId;
       }
 
-      id = R.id.btnModePinch;
-      MaterialButton btnModePinch = ViewBindings.findChildViewById(rootView, id);
-      if (btnModePinch == null) {
+      id = R.id.btnModeSculpt;
+      ImageButton btnModeSculpt = ViewBindings.findChildViewById(rootView, id);
+      if (btnModeSculpt == null) {
         break missingId;
       }
 
-      id = R.id.btnModeSculptAdd;
-      MaterialButton btnModeSculptAdd = ViewBindings.findChildViewById(rootView, id);
-      if (btnModeSculptAdd == null) {
+      id = R.id.btnRedo;
+      ImageButton btnRedo = ViewBindings.findChildViewById(rootView, id);
+      if (btnRedo == null) {
         break missingId;
       }
 
-      id = R.id.btnModeSculptSub;
-      MaterialButton btnModeSculptSub = ViewBindings.findChildViewById(rootView, id);
-      if (btnModeSculptSub == null) {
+      id = R.id.btnSettings;
+      ImageButton btnSettings = ViewBindings.findChildViewById(rootView, id);
+      if (btnSettings == null) {
         break missingId;
       }
 
-      id = R.id.btnModeSmooth;
-      MaterialButton btnModeSmooth = ViewBindings.findChildViewById(rootView, id);
-      if (btnModeSmooth == null) {
+      id = R.id.btnSubAdd;
+      MaterialButton btnSubAdd = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubAdd == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubInflate;
+      MaterialButton btnSubInflate = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubInflate == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubPinch;
+      MaterialButton btnSubPinch = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubPinch == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubSmooth;
+      MaterialButton btnSubSmooth = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubSmooth == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubSub;
+      MaterialButton btnSubSub = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubSub == null) {
         break missingId;
       }
 
@@ -211,22 +281,47 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.panelBrushSidebar;
+      LinearLayout panelBrushSidebar = ViewBindings.findChildViewById(rootView, id);
+      if (panelBrushSidebar == null) {
+        break missingId;
+      }
+
+      id = R.id.panelContextMenu;
+      LinearLayout panelContextMenu = ViewBindings.findChildViewById(rootView, id);
+      if (panelContextMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.panelHistory;
+      LinearLayout panelHistory = ViewBindings.findChildViewById(rootView, id);
+      if (panelHistory == null) {
+        break missingId;
+      }
+
+      id = R.id.panelSystemMenu;
+      LinearLayout panelSystemMenu = ViewBindings.findChildViewById(rootView, id);
+      if (panelSystemMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.panelToolMenu;
+      LinearLayout panelToolMenu = ViewBindings.findChildViewById(rootView, id);
+      if (panelToolMenu == null) {
+        break missingId;
+      }
+
       id = R.id.statsText;
       TextView statsText = ViewBindings.findChildViewById(rootView, id);
       if (statsText == null) {
         break missingId;
       }
 
-      id = R.id.topToolbar;
-      LinearLayout topToolbar = ViewBindings.findChildViewById(rootView, id);
-      if (topToolbar == null) {
-        break missingId;
-      }
-
-      return new ActivityMainBinding((FrameLayout) rootView, bottomToolbar, brushSizeLabel,
-          brushSizeSlider, btnClear, btnExport, btnModeDraw, btnModeInflate, btnModeLiquify,
-          btnModePinch, btnModeSculptAdd, btnModeSculptSub, btnModeSmooth, btnUndo, feather3dView,
-          statsText, topToolbar);
+      return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
+          btnClear, btnColorPicker, btnExport, btnMirror, btnModeDraw, btnModeErase, btnModeLiquify,
+          btnModeSculpt, btnRedo, btnSettings, btnSubAdd, btnSubInflate, btnSubPinch, btnSubSmooth,
+          btnSubSub, btnUndo, feather3dView, panelBrushSidebar, panelContextMenu, panelHistory,
+          panelSystemMenu, panelToolMenu, statsText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

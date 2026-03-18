@@ -1,0 +1,2 @@
+ninja: Entering directory `C:\Users\div07\Desktop\Feather 3d\app\.cxx\Debug\6v465442\x86_64'
+ninja: no work to do.
