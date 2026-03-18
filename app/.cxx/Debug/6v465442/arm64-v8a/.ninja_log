@@ -1,12 +1,11 @@
 # ninja log v5
-23	2931	7955755141332729	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	4eeb98199c7cbd68
-1	3028	7955755142312269	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
-34	3035	7955755142357549	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	7d02def987420039
-57	3093	7955755143016694	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	34c0e72f6b0a02e4
-45	3240	7955755144508905	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	88dfaf7a57e026fc
-68	3353	7955755145626753	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	58fb169abbb0b296
-79	3874	7955755150704381	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	5415879f58b44dab
-112	3936	7955755151381345	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	d53fd65c36c8c387
-18	1897	7955755866591268	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
-41	2098	7955755868649707	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
-31	2611	7955755873780477	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
+41	3211	7955757063873368	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	4eeb98199c7cbd68
+11	3420	7955757065866018	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
+21	3425	7955757066004826	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	7d02def987420039
+52	3459	7955757066446674	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	34c0e72f6b0a02e4
+30	3657	7955757068394022	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	88dfaf7a57e026fc
+97	3757	7955757069414597	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+62	3855	7955757070373817	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	58fb169abbb0b296
+72	4453	7955757076389887	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	5415879f58b44dab
+0	4488	7955757076752347	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
+84	4517	7955757077010726	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	d53fd65c36c8c387

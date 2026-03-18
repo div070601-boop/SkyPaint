@@ -21,6 +21,8 @@ set(ENGINE_SOURCES
     engine/LiquifyBrush.cpp
     engine/MeshDecimation.cpp
     engine/MeshExporter.cpp
+    engine/SnapEngine.cpp
+    engine/ActionStack.cpp
     jni_bridge.cpp
 )
 

@@ -95,6 +95,14 @@ class Feather3DView @JvmOverloads constructor(
                 }
             }
 
+            override fun onSculptBegin() {
+                viewScope.launch(Dispatchers.Default) {
+                    engineMutex.withLock {
+                        NativeBridge.beginSculpt()
+                    }
+                }
+            }
+
             override fun onSculptPoint(
                 worldX: Float, worldY: Float, worldZ: Float,
                 pressure: Float
@@ -114,6 +122,14 @@ class Feather3DView @JvmOverloads constructor(
                             }
                             updateStats()
                         }
+                    }
+                }
+            }
+
+            override fun onSculptEnd() {
+                viewScope.launch(Dispatchers.Default) {
+                    engineMutex.withLock {
+                        NativeBridge.endSculpt()
                     }
                 }
             }

@@ -49,7 +49,6 @@ class FilamentRenderer(private val context: Context) {
 
     private var voxelEntity: Int = 0
     private var currentStrokeEntity: Int = 0
-    private var gridEntity: Int = 0
 
     // Camera entity
     @Suppress("unused")
@@ -160,7 +159,7 @@ class FilamentRenderer(private val context: Context) {
             createFallbackMaterial()
         }
 
-        defaultMaterialInstance = defaultMaterial.createInstance().apply {
+        defaultMaterialInstance = defaultMaterial?.createInstance()?.apply {
             // White tint — vertex color provides the actual color
             setParameter("baseColor", Colors.RgbaType.SRGB, 1.0f, 1.0f, 1.0f, 1.0f)
             setParameter("roughness", 0.6f)
@@ -493,7 +492,7 @@ class FilamentRenderer(private val context: Context) {
         RenderableManager.Builder(1)
             .boundingBox(Box(0f, 0f, 0f, 100f, 100f, 100f))
             .geometry(0, RenderableManager.PrimitiveType.TRIANGLES, vb, ib, 0, indexCount)
-            .material(0, defaultMaterialInstance)
+            .material(0, defaultMaterialInstance!!)
             .receiveShadows(true)
             .castShadows(true)
             .build(engine, entity)
@@ -552,8 +551,12 @@ class FilamentRenderer(private val context: Context) {
     fun destroy() {
         clearAll()
 
-        engine.destroyMaterialInstance(defaultMaterialInstance)
-        engine.destroyMaterial(defaultMaterial)
+        defaultMaterialInstance?.let { engine.destroyMaterialInstance(it) }
+        defaultMaterial?.let { engine.destroyMaterial(it) }
+        
+        gridMaterialInstance?.let { engine.destroyMaterialInstance(it) }
+        unlitMaterial?.let { engine.destroyMaterial(it) }
+
         engine.destroyView(view)
         engine.destroyScene(scene)
         engine.destroyRenderer(renderer)
