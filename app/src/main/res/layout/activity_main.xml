@@ -1,49 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 3D Canvas -->
+    <!-- ═══════════════════════════════════════════════════════════════════
+         LAYER 0: Full-bleed 3D Canvas (SurfaceView)
+         ═══════════════════════════════════════════════════════════════════ -->
     <com.feather3d.app.Feather3DView
         android:id="@+id/feather3dView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Top toolbar -->
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL A: System Menu — Top-Left
+         Home / Settings / Export
+         ═══════════════════════════════════════════════════════════════════ -->
     <LinearLayout
-        android:id="@+id/topToolbar"
-        android:layout_width="match_parent"
+        android:id="@+id/panelSystemMenu"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:background="#CC16213E">
+        android:padding="6dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <!-- App title -->
+        <!-- App Name -->
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Feather 3D"
-            android:textColor="#E8E8E8"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-medium"
-            android:paddingStart="8dp" />
-
-        <!-- Stats display -->
-        <TextView
-            android:id="@+id/statsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V: 0 | T: 0"
-            android:textColor="#8888AA"
-            android:textSize="11sp"
-            android:fontFamily="monospace"
+            android:text="SkyPaint"
+            android:textColor="#E0E0FF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="6dp"
             android:paddingEnd="12dp" />
 
-        <!-- Undo button -->
+        <!-- Settings -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_settings"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Settings"
+            app:tint="#C0C0E0"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Export -->
+        <ImageButton
+            android:id="@+id/btnExport"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_export"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Export"
+            app:tint="#C0C0E0" />
+    </LinearLayout>
+
+    <!-- Stats overlay — TopCenter -->
+    <TextView
+        android:id="@+id/statsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="V: 0 | T: 0"
+        android:textColor="#55667788"
+        android:textSize="10sp"
+        android:fontFamily="monospace"
+        android:layout_margin="14dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL B: Tool Menu — Top-Right
+         Draw / Sculpt / Erase / Liquify / Mirror
+         ═══════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelToolMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Draw -->
+        <ImageButton
+            android:id="@+id/btnModeDraw"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_draw"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Draw"
+            app:tint="#E0E0FF"
+            android:layout_margin="2dp" />
+
+        <!-- Sculpt -->
+        <ImageButton
+            android:id="@+id/btnModeSculpt"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_sculpt"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Sculpt"
+            app:tint="#E0E0FF"
+            android:layout_margin="2dp" />
+
+        <!-- Erase -->
+        <ImageButton
+            android:id="@+id/btnModeErase"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_eraser"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Erase"
+            app:tint="#E0E0FF"
+            android:layout_margin="2dp" />
+
+        <!-- Liquify -->
+        <ImageButton
+            android:id="@+id/btnModeLiquify"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_liquify"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Liquify"
+            app:tint="#E0E0FF"
+            android:layout_margin="2dp" />
+
+        <!-- Mirror -->
+        <ImageButton
+            android:id="@+id/btnMirror"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_mirror"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Mirror"
+            app:tint="#E0E0FF"
+            android:layout_margin="2dp" />
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL C: Brush Panel — Left Sidebar (Thumb Reach)
+         Brush Size Slider (vertical) + Color Picker
+         ═══════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelBrushSidebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_marginStart="12dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Brush size label -->
+        <TextView
+            android:id="@+id/brushSizeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textColor="#A0A0C8"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Vertical brush size slider -->
+        <SeekBar
+            android:id="@+id/brushSizeSlider"
+            android:layout_width="200dp"
+            android:layout_height="36dp"
+            android:min="1"
+            android:max="100"
+            android:progress="20"
+            android:progressTint="#7C4DFF"
+            android:thumbTint="#B388FF"
+            android:rotation="270"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="80dp" />
+
+        <!-- Color picker button -->
+        <ImageButton
+            android:id="@+id/btnColorPicker"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_palette"
+            android:background="@drawable/bg_color_swatch"
+            android:contentDescription="Color"
+            app:tint="#FF80AB"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL D: History — Bottom-Left
+         Undo / Redo
+         ═══════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Undo -->
         <ImageButton
             android:id="@+id/btnUndo"
             android:layout_width="40dp"
@@ -51,191 +233,108 @@
             android:src="@drawable/ic_undo"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Undo"
-            android:tint="#E8E8E8"
-            android:layout_marginEnd="4dp" />
+            app:tint="#C0C0E0"
+            android:layout_margin="2dp" />
 
-        <!-- Clear button -->
+        <!-- Redo -->
         <ImageButton
-            android:id="@+id/btnClear"
+            android:id="@+id/btnRedo"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:src="@drawable/ic_redo"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Redo"
+            app:tint="#C0C0E0"
+            android:layout_margin="2dp" />
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL E: Context Menu — Bottom-Center
+         Sub-mode buttons (dynamic based on active tool)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelContextMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Sculpt sub-modes (visible when Sculpt is active) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubAdd"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Add"
+            android:textSize="12sp"
+            android:textColor="#C0C0E0"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubSub"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Sub"
+            android:textSize="12sp"
+            android:textColor="#C0C0E0"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubSmooth"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Smooth"
+            android:textSize="12sp"
+            android:textColor="#C0C0E0"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubInflate"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Inflate"
+            android:textSize="12sp"
+            android:textColor="#C0C0E0"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPinch"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Pinch"
+            android:textSize="12sp"
+            android:textColor="#C0C0E0"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp" />
+
+        <!-- Clear All -->
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_clear"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Clear all"
-            android:tint="#E8E8E8"
-            android:layout_marginEnd="4dp" />
-
-        <!-- Export button -->
-        <ImageButton
-            android:id="@+id/btnExport"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_export"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Export"
-            android:tint="#E8E8E8" />
+            app:tint="#FF5252"
+            android:layout_marginStart="12dp" />
     </LinearLayout>
 
-    <!-- Bottom tool panel -->
-    <LinearLayout
-        android:id="@+id/bottomToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="vertical"
-        android:background="#CC16213E"
-        android:padding="8dp">
-
-        <!-- Brush size slider -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp"
-            android:paddingBottom="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Size"
-                android:textColor="#AAAACC"
-                android:textSize="12sp"
-                android:paddingEnd="8dp" />
-
-            <SeekBar
-                android:id="@+id/brushSizeSlider"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:min="1"
-                android:max="100"
-                android:progress="20"
-                android:progressTint="#0F3460"
-                android:thumbTint="#E94560" />
-
-            <TextView
-                android:id="@+id/brushSizeLabel"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:text="20"
-                android:textColor="#AAAACC"
-                android:textSize="12sp"
-                android:gravity="end" />
-        </LinearLayout>
-
-        <!-- Tool buttons -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="4dp">
-
-                <!-- Draw (Stroke) -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeDraw"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Draw"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Sculpt Add -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeSculptAdd"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Add"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Sculpt Subtract -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeSculptSub"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Sub"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Smooth -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeSmooth"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Smooth"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Liquify -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeLiquify"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Liquify"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Inflate -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModeInflate"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Inflate"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:layout_marginEnd="6dp"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-                <!-- Pinch -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnModePinch"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="Pinch"
-                    android:textSize="12sp"
-                    android:textColor="#E8E8E8"
-                    app:strokeColor="#0F3460"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="12dp" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
