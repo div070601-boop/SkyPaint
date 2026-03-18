@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     // Tool mode categories
     companion object {
+        private const val TOOL_NAVIGATE = -1
         private const val TOOL_DRAW = 0
         private const val TOOL_SCULPT = 1
         private const val TOOL_ERASE = 2
@@ -195,6 +196,9 @@ class MainActivity : AppCompatActivity() {
     // ── Panel B: Tool Menu (Top-Right) ───────────────────────────────────
 
     private fun setupToolMenu() {
+        binding.btnModeNavigate.setOnClickListener {
+            selectTool(TOOL_NAVIGATE, it as ImageButton)
+        }
         binding.btnModeDraw.setOnClickListener {
             selectTool(TOOL_DRAW, it as ImageButton)
         }
@@ -223,6 +227,10 @@ class MainActivity : AppCompatActivity() {
 
         // Set the default sub-mode for each tool category
         when (toolCategory) {
+            TOOL_NAVIGATE -> {
+                setActiveMode(-1) // -1 disables drawing logic in NativeBridge/StylusInput
+                showContextForTool(TOOL_NAVIGATE)
+            }
             TOOL_DRAW -> {
                 setActiveMode(NativeBridge.MODE_STROKE)
                 showContextForTool(TOOL_DRAW)
@@ -369,6 +377,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         when (toolCategory) {
+            TOOL_NAVIGATE -> {
+                add.visibility = View.GONE
+                sub.visibility = View.GONE
+                smooth.visibility = View.GONE
+                inflate.visibility = View.GONE
+                pinch.visibility = View.GONE
+                binding.panelContextMenu.visibility = View.GONE
+            }
             TOOL_DRAW -> {
                 // Show nothing or minimal context
                 add.visibility = View.GONE

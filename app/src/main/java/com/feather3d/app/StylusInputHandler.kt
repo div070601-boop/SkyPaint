@@ -44,6 +44,7 @@ class StylusInputHandler(
         val isPrimaryTouch = event.pointerCount == 1
 
         if (!isPrimaryTouch && !isStylus) return false
+        if (!isStrokeMode() && !isSculptMode() && !isLiquifyMode()) return false
 
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {

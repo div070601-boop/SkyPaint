@@ -27,13 +27,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 27,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 38,
+				"line" : 40,
 				"parent" : 0
 			},
 			{
@@ -45,7 +45,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 29,
+				"line" : 31,
 				"parent" : 0
 			}
 		]
@@ -107,7 +107,9 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10,
+				11
 			],
 			"sysroot" : 
 			{
@@ -167,7 +169,9 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10,
+				11
 			]
 		}
 	],
@@ -225,6 +229,18 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "engine/MeshExporter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/SnapEngine.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/ActionStack.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

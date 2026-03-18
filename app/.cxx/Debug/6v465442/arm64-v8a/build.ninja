@@ -139,6 +139,26 @@ build CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o: CXX_COMPILER__f
   TARGET_COMPILE_PDB = CMakeFiles\feather3d_engine.dir\
   TARGET_PDB = "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.pdb"
 
+build CMakeFiles/feather3d_engine.dir/engine/SnapEngine.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/SnapEngine.cpp || cmake_object_order_depends_target_feather3d_engine
+  DEFINES = -Dfeather3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\SnapEngine.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
+  INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
+  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  TARGET_COMPILE_PDB = CMakeFiles\feather3d_engine.dir\
+  TARGET_PDB = "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.pdb"
+
+build CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/ActionStack.cpp || cmake_object_order_depends_target_feather3d_engine
+  DEFINES = -Dfeather3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\ActionStack.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
+  INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
+  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  TARGET_COMPILE_PDB = CMakeFiles\feather3d_engine.dir\
+  TARGET_PDB = "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.pdb"
+
 build CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/jni_bridge.cpp || cmake_object_order_depends_target_feather3d_engine
   DEFINES = -Dfeather3d_engine_EXPORTS
   DEP_FILE = CMakeFiles\feather3d_engine.dir\jni_bridge.cpp.o.d
@@ -157,7 +177,7 @@ build CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o: CXX_COMPILER__feather3d_
 #############################################
 # Link the shared library C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.so
 
-build C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so: CXX_SHARED_LIBRARY_LINKER__feather3d_engine_Debug CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o | C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so
+build C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so: CXX_SHARED_LIBRARY_LINKER__feather3d_engine_Debug CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o CMakeFiles/feather3d_engine.dir/engine/SnapEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o | C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info
   LINK_FLAGS = -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments  -Wl,-z,max-page-size=16384
   LINK_LIBRARIES = C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so  C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so  -latomic -lm

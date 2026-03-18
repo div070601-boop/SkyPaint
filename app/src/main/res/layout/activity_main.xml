@@ -98,6 +98,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Navigate -->
+        <ImageButton
+            android:id="@+id/btnModeNavigate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_move"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Navigate"
+            app:tint="#424242"
+            android:layout_margin="2dp" />
+
         <!-- Draw -->
         <ImageButton
             android:id="@+id/btnModeDraw"
