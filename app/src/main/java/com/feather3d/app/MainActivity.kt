@@ -227,7 +227,7 @@ class MainActivity : AppCompatActivity() {
         // Update sub-button visuals
         activeSubButton?.let { prev ->
             if (prev is com.google.android.material.button.MaterialButton) {
-                prev.setTextColor(0xFFC0C0E0.toInt())
+                prev.setTextColor(0xFF616161.toInt())
                 prev.setBackgroundColor(0x00000000)
             }
         }
@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
 
         // Reset all text colors
         listOf(add, sub, smooth, inflate, pinch).forEach {
-            it.setTextColor(0xFFC0C0E0.toInt())
+            it.setTextColor(0xFF616161.toInt())
             it.setBackgroundColor(0x00000000)
         }
 

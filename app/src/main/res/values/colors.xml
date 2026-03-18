@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#0F3460</color>
-    <color name="primaryDark">#16213E</color>
-    <color name="accent">#E94560</color>
-    <color name="background">#1A1A2E</color>
-    <color name="surface">#16213E</color>
-    <color name="textPrimary">#E8E8E8</color>
-    <color name="textSecondary">#8888AA</color>
-    <color name="toolActive">#E94560</color>
-    <color name="toolInactive">#0F3460</color>
+    <!-- SkyPaint Sketchbook Color Palette -->
+    <!-- Canvas is WHITE like paper. UI panels are light frosted glass. -->
+    <color name="primary">#5C6BC0</color>         <!-- Indigo 400 -->
+    <color name="primaryDark">#3949AB</color>      <!-- Indigo 600 -->
+    <color name="accent">#7C4DFF</color>           <!-- Deep Purple A200 -->
+    <color name="background">#F5F5F5</color>       <!-- Near-white paper -->
+    <color name="surface">#FFFFFF</color>          <!-- Pure white -->
+    <color name="textPrimary">#212121</color>      <!-- Near-black -->
+    <color name="textSecondary">#757575</color>    <!-- Medium gray -->
+    <color name="toolActive">#7C4DFF</color>       <!-- Purple highlight -->
+    <color name="toolInactive">#BDBDBD</color>     <!-- Light gray -->
+    <color name="panelBg">#E0FFFFFF</color>        <!-- Frosted white 88% -->
+    <color name="canvasWhite">#FAFAFA</color>      <!-- Sketch paper white -->
 </resources>

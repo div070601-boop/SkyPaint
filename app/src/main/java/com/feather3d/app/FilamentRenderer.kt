@@ -194,11 +194,11 @@ class FilamentRenderer(private val context: Context) {
             .build(engine, secondaryLight)
         scene.addEntity(secondaryLight)
 
-        // Set clear color (dark background)
+        // Set clear color (white paper background — sketchbook feel)
         view.blendMode = View.BlendMode.OPAQUE
         renderer.clearOptions = Renderer.ClearOptions().apply {
             clear = true
-            clearColor = floatArrayOf(0x1A / 255f, 0x1A / 255f, 0x2E / 255f, 1.0f)
+            clearColor = floatArrayOf(0.98f, 0.98f, 0.98f, 1.0f) // #FAFAFA white paper
         }
     }
 

@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SkyPaint"
-            android:textColor="#E0E0FF"
+            android:textColor="#3949AB"
             android:textSize="15sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
@@ -54,7 +54,7 @@
             android:src="@drawable/ic_settings"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Settings"
-            app:tint="#C0C0E0"
+            app:tint="#616161"
             android:layout_marginEnd="4dp" />
 
         <!-- Export -->
@@ -65,7 +65,7 @@
             android:src="@drawable/ic_export"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Export"
-            app:tint="#C0C0E0" />
+            app:tint="#616161" />
     </LinearLayout>
 
     <!-- Stats overlay — TopCenter -->
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="V: 0 | T: 0"
-        android:textColor="#55667788"
+        android:textColor="#99757575"
         android:textSize="10sp"
         android:fontFamily="monospace"
         android:layout_margin="14dp"
@@ -106,7 +106,7 @@
             android:src="@drawable/ic_draw"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Draw"
-            app:tint="#E0E0FF"
+            app:tint="#424242"
             android:layout_margin="2dp" />
 
         <!-- Sculpt -->
@@ -117,7 +117,7 @@
             android:src="@drawable/ic_sculpt"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Sculpt"
-            app:tint="#E0E0FF"
+            app:tint="#424242"
             android:layout_margin="2dp" />
 
         <!-- Erase -->
@@ -128,7 +128,7 @@
             android:src="@drawable/ic_eraser"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Erase"
-            app:tint="#E0E0FF"
+            app:tint="#424242"
             android:layout_margin="2dp" />
 
         <!-- Liquify -->
@@ -139,7 +139,7 @@
             android:src="@drawable/ic_liquify"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Liquify"
-            app:tint="#E0E0FF"
+            app:tint="#424242"
             android:layout_margin="2dp" />
 
         <!-- Mirror -->
@@ -150,7 +150,7 @@
             android:src="@drawable/ic_mirror"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Mirror"
-            app:tint="#E0E0FF"
+            app:tint="#424242"
             android:layout_margin="2dp" />
     </LinearLayout>
 
@@ -178,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20"
-            android:textColor="#A0A0C8"
+            android:textColor="#757575"
             android:textSize="11sp"
             android:fontFamily="monospace"
             android:layout_marginBottom="4dp" />
@@ -191,8 +191,8 @@
             android:min="1"
             android:max="100"
             android:progress="20"
-            android:progressTint="#7C4DFF"
-            android:thumbTint="#B388FF"
+            android:progressTint="#5C6BC0"
+            android:thumbTint="#7C4DFF"
             android:rotation="270"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="80dp" />
@@ -205,7 +205,7 @@
             android:src="@drawable/ic_palette"
             android:background="@drawable/bg_color_swatch"
             android:contentDescription="Color"
-            app:tint="#FF80AB"
+            app:tint="#7C4DFF"
             android:layout_marginTop="8dp" />
     </LinearLayout>
 
@@ -273,7 +273,7 @@
             android:layout_height="36dp"
             android:text="Add"
             android:textSize="12sp"
-            android:textColor="#C0C0E0"
+            android:textColor="#616161"
             android:minWidth="0dp"
             android:paddingHorizontal="14dp"
             android:layout_marginEnd="4dp" />
@@ -285,7 +285,7 @@
             android:layout_height="36dp"
             android:text="Sub"
             android:textSize="12sp"
-            android:textColor="#C0C0E0"
+            android:textColor="#616161"
             android:minWidth="0dp"
             android:paddingHorizontal="14dp"
             android:layout_marginEnd="4dp" />
@@ -297,7 +297,7 @@
             android:layout_height="36dp"
             android:text="Smooth"
             android:textSize="12sp"
-            android:textColor="#C0C0E0"
+            android:textColor="#616161"
             android:minWidth="0dp"
             android:paddingHorizontal="14dp"
             android:layout_marginEnd="4dp" />
@@ -333,7 +333,7 @@
             android:src="@drawable/ic_clear"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Clear all"
-            app:tint="#FF5252"
+            app:tint="#E53935"
             android:layout_marginStart="12dp" />
     </LinearLayout>
 
