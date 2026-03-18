@@ -1,4 +1,5 @@
 #include "StrokeSystem.h"
+#include "SnapEngine.h"
 
 namespace feather {
 
@@ -7,19 +8,63 @@ void StrokeSystem::beginStroke() {
     m_isDrawing = true;
 }
 
+float StrokeSystem::getCurrentStrokeLength() const {
+    if (m_currentStroke.size() < 2) return 0.0f;
+    if (m_straightLineMode) {
+        return SnapEngine::getLineLength(m_currentStroke.front().position, m_currentStroke.back().position);
+    }
+    float length = 0.0f;
+    for (size_t i = 1; i < m_currentStroke.size(); ++i) {
+        length += glm::distance(m_currentStroke[i-1].position, m_currentStroke[i].position);
+    }
+    return length;
+}
+
 void StrokeSystem::addPoint(const StrokePoint& point) {
     if (!m_isDrawing) return;
 
     StrokePoint smoothed = smoothPoint(point);
-    smoothed.color = m_activeColor;  // Apply current color
+    smoothed.color = m_activeColor;
 
-    // Minimum distance filter to avoid over-sampling
-    if (!m_currentStroke.empty()) {
-        float dist = glm::distance(m_currentStroke.back().position, smoothed.position);
-        if (dist < 0.001f) return; // skip too-close points
+    if (m_currentStroke.empty()) {
+        if (m_gridSnap) {
+            smoothed.position = SnapEngine::snapToGrid(smoothed.position, m_gridSize);
+        }
+        m_currentStroke.push_back(smoothed);
+        return;
     }
 
-    m_currentStroke.push_back(smoothed);
+    if (m_straightLineMode) {
+        Vec3 targetPos = smoothed.position;
+        if (m_gridSnap) {
+            targetPos = SnapEngine::snapToGrid(targetPos, m_gridSize);
+        }
+        if (m_angleSnap) {
+            targetPos = SnapEngine::snapToAngle(m_currentStroke.front().position, targetPos, m_snapAngle);
+        }
+
+        if (m_currentStroke.size() == 1) {
+            smoothed.position = targetPos;
+            m_currentStroke.push_back(smoothed);
+        } else {
+            StrokePoint& last = m_currentStroke.back();
+            last.position = targetPos;
+            last.pressure = smoothed.pressure;
+            last.tilt = smoothed.tilt;
+            last.timestamp = smoothed.timestamp;
+            last.color = smoothed.color;
+        }
+    } else {
+        float dist = glm::distance(m_currentStroke.back().position, smoothed.position);
+        if (dist < 0.001f) return;
+
+        Vec3 targetPos = smoothed.position;
+        if (m_gridSnap) {
+            targetPos = SnapEngine::snapToGrid(targetPos, m_gridSize);
+        }
+        smoothed.position = targetPos;
+        m_currentStroke.push_back(smoothed);
+    }
 }
 
 int StrokeSystem::endStroke() {

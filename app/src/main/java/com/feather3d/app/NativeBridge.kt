@@ -46,6 +46,12 @@ object NativeBridge {
     // ── Stroke Color ────────────────────────────────────────────────────
     @JvmStatic external fun setStrokeColor(r: Float, g: Float, b: Float, a: Float)
 
+    // ── Drafting State ──────────────────────────────────────────────────
+    @JvmStatic external fun setStraightLineMode(enable: Boolean)
+    @JvmStatic external fun setGridSnap(enable: Boolean, size: Float)
+    @JvmStatic external fun setAngleSnap(enable: Boolean, degrees: Float)
+    @JvmStatic external fun getCurrentStrokeLength(): Float
+
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     @JvmStatic external fun initVoxelGrid(
         resolution: Int,

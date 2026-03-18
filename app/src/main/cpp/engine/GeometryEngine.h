@@ -60,6 +60,12 @@ public:
     // ── Stroke Color ────────────────────────────────────────────────────
     void setStrokeColor(float r, float g, float b, float a);
 
+    // ── Drafting State ──────────────────────────────────────────────────
+    void setStraightLineMode(bool enable);
+    void setGridSnap(bool enable, float size);
+    void setAngleSnap(bool enable, float degrees);
+    float getCurrentStrokeLength() const;
+
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     void initVoxelGrid(int resolution, const Vec3& boundsMin, const Vec3& boundsMax);
     void sculptAt(const Vec3& position, float radius, float strength = 1.0f);

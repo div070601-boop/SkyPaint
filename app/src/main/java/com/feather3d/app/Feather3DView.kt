@@ -24,6 +24,9 @@ class Feather3DView @JvmOverloads constructor(
     val cameraController = CameraController()
     val stylusInputHandler = StylusInputHandler(cameraController)
 
+    // Callback to update UI with straight-line dimension
+    var onDimensionUpdate: ((Float) -> Unit)? = null
+
     private var choreographer: Choreographer? = null
     private var isRunning = false
     private var currentDrawMode = NativeBridge.MODE_STROKE
@@ -60,6 +63,7 @@ class Feather3DView @JvmOverloads constructor(
                             if (verts != null && indices != null) {
                                 filamentRenderer.uploadCurrentStrokeMesh(verts, indices)
                             }
+                            onDimensionUpdate?.invoke(NativeBridge.getCurrentStrokeLength())
                         }
                     }
                 }
@@ -84,6 +88,7 @@ class Feather3DView @JvmOverloads constructor(
                             }
                             // Clear preview
                             filamentRenderer.uploadCurrentStrokeMesh(FloatArray(0), IntArray(0))
+                            onDimensionUpdate?.invoke(-1f) // trigger hide
                             updateStats()
                         }
                     }

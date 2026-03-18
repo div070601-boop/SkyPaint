@@ -13,6 +13,14 @@ public:
     void setActiveColor(const Vec4& color) { m_activeColor = color; }
     const Vec4& getActiveColor() const { return m_activeColor; }
 
+    /// Drafting mode toggles
+    void setStraightLineMode(bool enable) { m_straightLineMode = enable; }
+    void setGridSnap(bool enable, float size = 0.5f) { m_gridSnap = enable; m_gridSize = size; }
+    void setAngleSnap(bool enable, float degrees = 15.0f) { m_angleSnap = enable; m_snapAngle = degrees; }
+    
+    // Get live measurement
+    float getCurrentStrokeLength() const;
+
     /// Begin a new stroke
     void beginStroke();
 
@@ -45,6 +53,13 @@ private:
     std::vector<StrokePoint> m_currentStroke;
     bool m_isDrawing = false;
     Vec4 m_activeColor{1.0f, 1.0f, 1.0f, 1.0f};
+
+    // Drafting state
+    bool m_straightLineMode = false;
+    bool m_gridSnap = false;
+    bool m_angleSnap = false;
+    float m_gridSize = 0.5f;
+    float m_snapAngle = 15.0f;
 
     /// Smooth incoming points to reduce jitter
     StrokePoint smoothPoint(const StrokePoint& raw) const;

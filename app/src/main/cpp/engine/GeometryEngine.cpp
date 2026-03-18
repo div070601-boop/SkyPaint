@@ -107,6 +107,24 @@ void GeometryEngine::setStrokeColor(float r, float g, float b, float a) {
     m_strokeSystem.setActiveColor(Vec4(r, g, b, a));
 }
 
+// ── Drafting State ──────────────────────────────────────────────────────────
+
+void GeometryEngine::setStraightLineMode(bool enable) {
+    m_strokeSystem.setStraightLineMode(enable);
+}
+
+void GeometryEngine::setGridSnap(bool enable, float size) {
+    m_strokeSystem.setGridSnap(enable, size);
+}
+
+void GeometryEngine::setAngleSnap(bool enable, float degrees) {
+    m_strokeSystem.setAngleSnap(enable, degrees);
+}
+
+float GeometryEngine::getCurrentStrokeLength() const {
+    return m_strokeSystem.getCurrentStrokeLength();
+}
+
 // ── Voxel Sculpting ─────────────────────────────────────────────────────────
 
 void GeometryEngine::initVoxelGrid(int resolution, const Vec3& boundsMin,

@@ -71,10 +71,73 @@ class MainActivity : AppCompatActivity() {
         setupHistoryPanel()
         setupContextMenu()
         setupColorPalette()
+        setupDraftingMenu()
         setupStats()
 
         // Default: Draw mode active
         selectTool(TOOL_DRAW, binding.btnModeDraw)
+    }
+
+    // ── Panel G: Drafting Menu (Right) ───────────────────────────────────
+
+    private var isStraightLineMode = false
+    private var isGridSnap = false
+    private var isAngleSnap = false
+
+    private fun setupDraftingMenu() {
+        binding.btnStraight.setOnClickListener {
+            isStraightLineMode = !isStraightLineMode
+            NativeBridge.setStraightLineMode(isStraightLineMode)
+            updateDraftingButton(binding.btnStraight, isStraightLineMode)
+        }
+        binding.btnGridSnap.setOnClickListener {
+            isGridSnap = !isGridSnap
+            NativeBridge.setGridSnap(isGridSnap, 1.0f) // 1m grid
+            updateDraftingButton(binding.btnGridSnap, isGridSnap)
+        }
+        binding.btnAngleSnap.setOnClickListener {
+            isAngleSnap = !isAngleSnap
+            NativeBridge.setAngleSnap(isAngleSnap, 15.0f) // 15 degree angle
+            updateDraftingButton(binding.btnAngleSnap, isAngleSnap)
+        }
+
+        binding.btnSnapView.setOnClickListener {
+            featherView.cameraController.snapToNearestView()
+        }
+
+        binding.btnOrtho.setOnClickListener {
+            val isOrthoNow = !featherView.filamentRenderer.isOrthographic
+            featherView.filamentRenderer.isOrthographic = isOrthoNow
+            
+            if (isOrthoNow) {
+                binding.btnOrtho.text = "2D"
+                binding.btnOrtho.setTextColor(android.graphics.Color.parseColor("#7C4DFF"))
+                binding.btnOrtho.setBackgroundColor(android.graphics.Color.parseColor("#1A7C4DFF"))
+            } else {
+                binding.btnOrtho.text = "3D"
+                binding.btnOrtho.setTextColor(android.graphics.Color.parseColor("#616161"))
+                binding.btnOrtho.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+            }
+        }
+
+        featherView.onDimensionUpdate = { length ->
+            if (length < 0f) {
+                binding.textDimension.visibility = View.GONE
+            } else {
+                binding.textDimension.visibility = View.VISIBLE
+                binding.textDimension.text = String.format("%.2fm", length)
+            }
+        }
+    }
+
+    private fun updateDraftingButton(btn: com.google.android.material.button.MaterialButton, isActive: Boolean) {
+        if (isActive) {
+            btn.setTextColor(android.graphics.Color.parseColor("#7C4DFF"))
+            btn.setBackgroundColor(android.graphics.Color.parseColor("#1A7C4DFF"))
+        } else {
+            btn.setTextColor(android.graphics.Color.parseColor("#616161"))
+            btn.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        }
     }
 
     // ── Panel F: Color Palette (Bottom-Right) ────────────────────────────

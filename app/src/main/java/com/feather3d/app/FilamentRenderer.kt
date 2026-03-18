@@ -33,10 +33,17 @@ class FilamentRenderer(private val context: Context) {
     private var swapChain: SwapChain? = null
 
     // Default material
-    private lateinit var defaultMaterial: Material
-    private lateinit var defaultMaterialInstance: MaterialInstance
+    private var defaultMaterial: Material? = null
+    private var defaultMaterialInstance: MaterialInstance? = null
+    
+    // Grid resources
+    private var unlitMaterial: Material? = null
+    private var gridMaterialInstance: MaterialInstance? = null
+    private var gridEntity: Int = 0
+    private var gridVertexBuffer: VertexBuffer? = null
+    private var gridIndexBuffer: IndexBuffer? = null
 
-    // Entities for rendered meshes
+    // Track drawn strokes for rendered meshes
     private val strokeEntities = mutableListOf<Int>()
     private val entityBuffers = mutableMapOf<Int, Pair<VertexBuffer, IndexBuffer>>()
 
@@ -75,6 +82,7 @@ class FilamentRenderer(private val context: Context) {
 
         // View settings
         view.isPostProcessingEnabled = true
+        view.blendMode = View.BlendMode.OPAQUE
 
         // Ambient occlusion
         view.ambientOcclusionOptions = view.ambientOcclusionOptions.apply {
@@ -102,9 +110,7 @@ class FilamentRenderer(private val context: Context) {
 
                 override fun onResized(width: Int, height: Int) {
                     view.viewport = Viewport(0, 0, width, height)
-                    val aspect = width.toFloat() / height.toFloat()
-                    camera.setProjection(45.0, aspect.toDouble(), 0.01, 100.0,
-                        Camera.Fov.VERTICAL)
+                    updateProjection()
                 }
             }
             attachTo(surfaceView)
@@ -115,6 +121,27 @@ class FilamentRenderer(private val context: Context) {
         // Setup skybox / environment
         setupLighting()
         setupGrid()
+    }
+
+    var isOrthographic = false
+        set(value) {
+            field = value
+            updateProjection()
+        }
+    var cameraDistance = 3.0f
+
+    fun updateProjection() {
+        if (view.viewport.width == 0 || view.viewport.height == 0) return
+        val aspect = view.viewport.width.toDouble() / view.viewport.height.toDouble()
+        
+        if (isOrthographic) {
+            val zoom = cameraDistance.toDouble() * 0.4
+            val w = zoom * aspect
+            val h = zoom
+            camera.setProjection(Camera.Projection.ORTHO, -w, w, -h, h, 0.01, 100.0)
+        } else {
+            camera.setProjection(45.0, aspect, 0.01, 100.0, Camera.Fov.VERTICAL)
+        }
     }
 
     private fun createDefaultMaterial() {
@@ -205,8 +232,85 @@ class FilamentRenderer(private val context: Context) {
     }
 
     private fun setupGrid() {
-        // Create a simple ground plane grid (optional visual aid)
-        // Skip for now — can be added later as a visual helper
+        val buffer = readAssetOrFallback("materials/unlit.filamat")
+        if (buffer != null) {
+            unlitMaterial = Material.Builder().payload(buffer, buffer.remaining()).build(engine)
+            gridMaterialInstance = unlitMaterial?.createInstance()
+            
+            // Faint grid lines with a subtle blueish tint
+            gridMaterialInstance?.setParameter("baseColor", Colors.RgbaType.SRGB, 0.88f, 0.88f, 0.90f, 1.0f)
+            
+            // Generate grid geometry (X and Z axis lines from -10 to +10)
+            val gridSize = 10
+            val lines = gridSize * 2 + 1
+            val vertexCount = lines * 2 * 2 // Horizontal and Vertical lines
+            
+            val vertexData = FloatArray(vertexCount * FLOATS_PER_VERTEX)
+            val indexData = IntArray(vertexCount)
+            
+            var vIdx = 0
+            var iIdx = 0
+            
+            fun addVertex(x: Float, y: Float, z: Float) {
+                val base = vIdx * FLOATS_PER_VERTEX
+                vertexData[base + 0] = x
+                vertexData[base + 1] = y
+                vertexData[base + 2] = z
+                
+                vertexData[base + 3] = 0f; vertexData[base + 4] = 1f; vertexData[base + 5] = 0f
+                vertexData[base + 6] = 0f; vertexData[base + 7] = 0f
+                
+                vertexData[base + 8] = 1f; vertexData[base + 9] = 1f
+                vertexData[base + 10] = 1f; vertexData[base + 11] = 1f
+                
+                indexData[iIdx] = vIdx
+                vIdx++
+                iIdx++
+            }
+            
+            for (i in -gridSize..gridSize) {
+                // Parallel to Z axis
+                addVertex(i.toFloat(), 0f, -gridSize.toFloat())
+                addVertex(i.toFloat(), 0f, gridSize.toFloat())
+                
+                // Parallel to X axis
+                addVertex(-gridSize.toFloat(), 0f, i.toFloat())
+                addVertex(gridSize.toFloat(), 0f, i.toFloat())
+            }
+            
+            gridVertexBuffer = VertexBuffer.Builder()
+                .vertexCount(vertexCount)
+                .bufferCount(1)
+                .attribute(VertexBuffer.VertexAttribute.POSITION, 0, VertexBuffer.AttributeType.FLOAT3, 0, VERTEX_STRIDE)
+                .attribute(VertexBuffer.VertexAttribute.TANGENTS, 0, VertexBuffer.AttributeType.FLOAT3, 12, VERTEX_STRIDE)
+                .attribute(VertexBuffer.VertexAttribute.UV0, 0, VertexBuffer.AttributeType.FLOAT2, 24, VERTEX_STRIDE)
+                .attribute(VertexBuffer.VertexAttribute.COLOR, 0, VertexBuffer.AttributeType.FLOAT4, 32, VERTEX_STRIDE)
+                .build(engine)
+                
+            val vbData = ByteBuffer.allocateDirect(vertexData.size * 4).order(ByteOrder.nativeOrder())
+            vbData.asFloatBuffer().put(vertexData)
+            gridVertexBuffer?.setBufferAt(engine, 0, vbData)
+            
+            gridIndexBuffer = IndexBuffer.Builder()
+                .indexCount(vertexCount)
+                .bufferType(IndexBuffer.Builder.IndexType.UINT)
+                .build(engine)
+                
+            val ibData = ByteBuffer.allocateDirect(indexData.size * 4).order(ByteOrder.nativeOrder())
+            ibData.asIntBuffer().put(indexData)
+            gridIndexBuffer?.setBuffer(engine, ibData)
+            
+            gridEntity = EntityManager.get().create()
+            RenderableManager.Builder(1)
+                .geometry(0, RenderableManager.PrimitiveType.LINES, gridVertexBuffer!!, gridIndexBuffer!!)
+                .material(0, gridMaterialInstance!!)
+                .castShadows(false)
+                .receiveShadows(false)
+                .culling(false) 
+                .build(engine, gridEntity)
+                
+            scene.addEntity(gridEntity)
+        }
     }
 
     /**

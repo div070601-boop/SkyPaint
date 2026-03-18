@@ -102,6 +102,32 @@ Java_com_feather3d_app_NativeBridge_setStrokeColor(JNIEnv* env, jclass,
     g_engine->setStrokeColor(r, g, b, a);
 }
 
+// ── Drafting State ──────────────────────────────────────────────────────────
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setStraightLineMode(JNIEnv* env, jclass, jboolean enable) {
+    if (!g_engine) return;
+    g_engine->setStraightLineMode(enable == JNI_TRUE);
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setGridSnap(JNIEnv* env, jclass, jboolean enable, jfloat size) {
+    if (!g_engine) return;
+    g_engine->setGridSnap(enable == JNI_TRUE, size);
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setAngleSnap(JNIEnv* env, jclass, jboolean enable, jfloat degrees) {
+    if (!g_engine) return;
+    g_engine->setAngleSnap(enable == JNI_TRUE, degrees);
+}
+
+JNIEXPORT jfloat JNICALL
+Java_com_feather3d_app_NativeBridge_getCurrentStrokeLength(JNIEnv* env, jclass) {
+    if (!g_engine) return 0.0f;
+    return g_engine->getCurrentStrokeLength();
+}
+
 // ── Voxel Sculpting ─────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL

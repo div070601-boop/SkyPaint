@@ -164,6 +164,18 @@ class CameraController {
         updateEyePosition()
     }
 
+    /** Snap camera to the nearest axis-aligned view (Front, Top, Right, etc) */
+    fun snapToNearestView() {
+        val snapElev = (PI / 2.0).toFloat()
+        elevation = round(elevation / snapElev) * snapElev
+        elevation = elevation.coerceIn(minElevation, maxElevation)
+        
+        val snapAzim = (PI / 2.0).toFloat()
+        azimuth = round(azimuth / snapAzim) * snapAzim
+        
+        updateEyePosition()
+    }
+
     /** Get the view matrix as a column-major 4x4 float array */
     fun getViewMatrix(): FloatArray {
         return lookAt(eyePosition, targetPosition, upVector)
