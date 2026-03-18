@@ -93,6 +93,15 @@ Java_com_feather3d_app_NativeBridge_setTubeSegments(JNIEnv* env, jclass, jint se
     g_engine->setTubeSegments(segments);
 }
 
+// ── Stroke Color ────────────────────────────────────────────────────────────
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setStrokeColor(JNIEnv* env, jclass,
+    jfloat r, jfloat g, jfloat b, jfloat a) {
+    if (!g_engine) return;
+    g_engine->setStrokeColor(r, g, b, a);
+}
+
 // ── Voxel Sculpting ─────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
@@ -144,9 +153,9 @@ Java_com_feather3d_app_NativeBridge_decimateVoxelMesh(JNIEnv* env, jclass, jfloa
 
 // ── Mesh Data Retrieval (for renderer) ──────────────────────────────────────
 
-// Returns interleaved vertex data: [pos.x, pos.y, pos.z, norm.x, norm.y, norm.z, u, v, ...]
+// Returns interleaved vertex data: [pos.x, pos.y, pos.z, norm.x, norm.y, norm.z, u, v, r, g, b, a, ...]
 static jfloatArray meshVerticesToFloatArray(JNIEnv* env, const feather::Mesh& mesh) {
-    int floatsPerVertex = 8; // 3 pos + 3 normal + 2 uv
+    int floatsPerVertex = 12; // 3 pos + 3 normal + 2 uv + 4 color
     int totalFloats = static_cast<int>(mesh.vertices.size()) * floatsPerVertex;
 
     jfloatArray result = env->NewFloatArray(totalFloats);
@@ -164,6 +173,10 @@ static jfloatArray meshVerticesToFloatArray(JNIEnv* env, const feather::Mesh& me
         data[base + 5] = v.normal.z;
         data[base + 6] = v.uv.x;
         data[base + 7] = v.uv.y;
+        data[base + 8] = v.color.r;
+        data[base + 9] = v.color.g;
+        data[base + 10] = v.color.b;
+        data[base + 11] = v.color.a;
     }
 
     env->SetFloatArrayRegion(result, 0, totalFloats, data.data());

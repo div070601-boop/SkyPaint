@@ -43,6 +43,9 @@ object NativeBridge {
     @JvmStatic external fun setTubeRadius(radius: Float)
     @JvmStatic external fun setTubeSegments(segments: Int)
 
+    // ── Stroke Color ────────────────────────────────────────────────────
+    @JvmStatic external fun setStrokeColor(r: Float, g: Float, b: Float, a: Float)
+
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     @JvmStatic external fun initVoxelGrid(
         resolution: Int,

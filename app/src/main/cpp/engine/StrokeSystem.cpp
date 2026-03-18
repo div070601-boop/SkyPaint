@@ -11,6 +11,7 @@ void StrokeSystem::addPoint(const StrokePoint& point) {
     if (!m_isDrawing) return;
 
     StrokePoint smoothed = smoothPoint(point);
+    smoothed.color = m_activeColor;  // Apply current color
 
     // Minimum distance filter to avoid over-sampling
     if (!m_currentStroke.empty()) {

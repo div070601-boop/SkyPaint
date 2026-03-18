@@ -70,10 +70,51 @@ class MainActivity : AppCompatActivity() {
         setupBrushSidebar()
         setupHistoryPanel()
         setupContextMenu()
+        setupColorPalette()
         setupStats()
 
         // Default: Draw mode active
         selectTool(TOOL_DRAW, binding.btnModeDraw)
+    }
+
+    // ── Panel F: Color Palette (Bottom-Right) ────────────────────────────
+
+    private var activeColorView: View? = null
+
+    private fun setupColorPalette() {
+        data class ColorEntry(val viewId: Int, val r: Float, val g: Float, val b: Float)
+
+        val colors = listOf(
+            ColorEntry(R.id.colorWhite,  1.00f, 1.00f, 1.00f),
+            ColorEntry(R.id.colorBlack,  0.20f, 0.20f, 0.20f),
+            ColorEntry(R.id.colorRed,    0.90f, 0.22f, 0.21f),
+            ColorEntry(R.id.colorOrange, 0.98f, 0.55f, 0.00f),
+            ColorEntry(R.id.colorYellow, 0.99f, 0.85f, 0.21f),
+            ColorEntry(R.id.colorGreen,  0.26f, 0.63f, 0.28f),
+            ColorEntry(R.id.colorCyan,   0.00f, 0.74f, 0.83f),
+            ColorEntry(R.id.colorBlue,   0.12f, 0.53f, 0.90f),
+            ColorEntry(R.id.colorPurple, 0.49f, 0.30f, 1.00f),
+            ColorEntry(R.id.colorPink,   0.93f, 0.25f, 0.48f)
+        )
+
+        for (entry in colors) {
+            val view = findViewById<View>(entry.viewId)
+            view.setOnClickListener {
+                NativeBridge.setStrokeColor(entry.r, entry.g, entry.b, 1.0f)
+
+                // Visual feedback: scale up active, scale down previous
+                activeColorView?.animate()?.scaleX(1.0f)?.scaleY(1.0f)?.setDuration(100)?.start()
+                it.animate()?.scaleX(1.3f)?.scaleY(1.3f)?.setDuration(100)?.start()
+                activeColorView = it
+            }
+        }
+
+        // Default: start with black stroke on white canvas
+        NativeBridge.setStrokeColor(0.20f, 0.20f, 0.20f, 1.0f)
+        val defaultSwatch = findViewById<View>(R.id.colorBlack)
+        defaultSwatch.scaleX = 1.3f
+        defaultSwatch.scaleY = 1.3f
+        activeColorView = defaultSwatch
     }
 
     // ── Panel A: System Menu (Top-Left) ──────────────────────────────────

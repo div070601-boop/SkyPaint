@@ -10,6 +10,7 @@ struct SplineSample {
     Vec3 tangent;
     float pressure;
     float t; // parameter [0, 1]
+    Vec4 color{1.0f, 1.0f, 1.0f, 1.0f};
 };
 
 class SplineGenerator {

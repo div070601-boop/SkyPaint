@@ -9,6 +9,10 @@ class StrokeSystem {
 public:
     StrokeSystem() = default;
 
+    /// Set the active stroke color (applied to all new points)
+    void setActiveColor(const Vec4& color) { m_activeColor = color; }
+    const Vec4& getActiveColor() const { return m_activeColor; }
+
     /// Begin a new stroke
     void beginStroke();
 
@@ -40,6 +44,7 @@ private:
     std::vector<std::vector<StrokePoint>> m_strokes;
     std::vector<StrokePoint> m_currentStroke;
     bool m_isDrawing = false;
+    Vec4 m_activeColor{1.0f, 1.0f, 1.0f, 1.0f};
 
     /// Smooth incoming points to reduce jitter
     StrokePoint smoothPoint(const StrokePoint& raw) const;

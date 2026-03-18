@@ -56,8 +56,9 @@ class FilamentRenderer(private val context: Context) {
         MATCAP, CLAY, UNLIT
     }
 
-    // Vertex buffer layout: position(3) + normal(3) + uv(2) = stride 8 floats
-    private val VERTEX_STRIDE = 8 * 4 // bytes
+    // Vertex buffer layout: position(3) + normal(3) + uv(2) + color(4) = stride 12 floats
+    private val FLOATS_PER_VERTEX = 12
+    private val VERTEX_STRIDE = FLOATS_PER_VERTEX * 4 // bytes
 
     fun init(surfaceView: SurfaceView) {
         Filament.init()
@@ -133,7 +134,8 @@ class FilamentRenderer(private val context: Context) {
         }
 
         defaultMaterialInstance = defaultMaterial.createInstance().apply {
-            setParameter("baseColor", Colors.RgbaType.SRGB, 0.7f, 0.75f, 0.8f, 1.0f)
+            // White tint — vertex color provides the actual color
+            setParameter("baseColor", Colors.RgbaType.SRGB, 1.0f, 1.0f, 1.0f, 1.0f)
             setParameter("roughness", 0.6f)
             setParameter("metallic", 0.0f)
         }
@@ -226,7 +228,7 @@ class FilamentRenderer(private val context: Context) {
     fun uploadStrokeMesh(strokeIndex: Int, vertexData: FloatArray, indexData: IntArray) {
         if (vertexData.isEmpty() || indexData.isEmpty()) return
 
-        val vertexCount = vertexData.size / 8
+        val vertexCount = vertexData.size / FLOATS_PER_VERTEX
         val indexCount = indexData.size
 
         // Create vertex buffer
@@ -239,6 +241,8 @@ class FilamentRenderer(private val context: Context) {
                 VertexBuffer.AttributeType.FLOAT3, 12, VERTEX_STRIDE)
             .attribute(VertexBuffer.VertexAttribute.UV0, 0,
                 VertexBuffer.AttributeType.FLOAT2, 24, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.COLOR, 0,
+                VertexBuffer.AttributeType.FLOAT4, 32, VERTEX_STRIDE)
             .build(engine)
 
         val vbData = ByteBuffer.allocateDirect(vertexData.size * 4)
@@ -294,7 +298,7 @@ class FilamentRenderer(private val context: Context) {
             return
         }
 
-        val vertexCount = vertexData.size / 8
+        val vertexCount = vertexData.size / FLOATS_PER_VERTEX
         val indexCount = indexData.size
 
         val vertexBuffer = VertexBuffer.Builder()
@@ -306,6 +310,8 @@ class FilamentRenderer(private val context: Context) {
                 VertexBuffer.AttributeType.FLOAT3, 12, VERTEX_STRIDE)
             .attribute(VertexBuffer.VertexAttribute.UV0, 0,
                 VertexBuffer.AttributeType.FLOAT2, 24, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.COLOR, 0,
+                VertexBuffer.AttributeType.FLOAT4, 32, VERTEX_STRIDE)
             .build(engine)
 
         val vbData = ByteBuffer.allocateDirect(vertexData.size * 4)
@@ -343,7 +349,7 @@ class FilamentRenderer(private val context: Context) {
             return
         }
 
-        val vertexCount = vertexData.size / 8
+        val vertexCount = vertexData.size / FLOATS_PER_VERTEX
         val indexCount = indexData.size
 
         val vertexBuffer = VertexBuffer.Builder()
@@ -355,6 +361,8 @@ class FilamentRenderer(private val context: Context) {
                 VertexBuffer.AttributeType.FLOAT3, 12, VERTEX_STRIDE)
             .attribute(VertexBuffer.VertexAttribute.UV0, 0,
                 VertexBuffer.AttributeType.FLOAT2, 24, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.COLOR, 0,
+                VertexBuffer.AttributeType.FLOAT4, 32, VERTEX_STRIDE)
             .build(engine)
 
         val vbData = ByteBuffer.allocateDirect(vertexData.size * 4)

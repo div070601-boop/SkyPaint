@@ -337,4 +337,92 @@
             android:layout_marginStart="12dp" />
     </LinearLayout>
 
+    <!-- ═══════════════════════════════════════════════════════════════════
+         PANEL F: Color Palette — Bottom-Right
+         Quick color swatches for stroke color
+         ═══════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelColorPalette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_floating_panel"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- White -->
+        <View android:id="@+id/colorWhite"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#FFFFFF"
+            android:layout_margin="3dp" />
+
+        <!-- Black -->
+        <View android:id="@+id/colorBlack"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#333333"
+            android:layout_margin="3dp" />
+
+        <!-- Red -->
+        <View android:id="@+id/colorRed"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#E53935"
+            android:layout_margin="3dp" />
+
+        <!-- Orange -->
+        <View android:id="@+id/colorOrange"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#FB8C00"
+            android:layout_margin="3dp" />
+
+        <!-- Yellow -->
+        <View android:id="@+id/colorYellow"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#FDD835"
+            android:layout_margin="3dp" />
+
+        <!-- Green -->
+        <View android:id="@+id/colorGreen"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#43A047"
+            android:layout_margin="3dp" />
+
+        <!-- Cyan -->
+        <View android:id="@+id/colorCyan"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#00BCD4"
+            android:layout_margin="3dp" />
+
+        <!-- Blue -->
+        <View android:id="@+id/colorBlue"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#1E88E5"
+            android:layout_margin="3dp" />
+
+        <!-- Purple -->
+        <View android:id="@+id/colorPurple"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#7C4DFF"
+            android:layout_margin="3dp" />
+
+        <!-- Pink -->
+        <View android:id="@+id/colorPink"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:background="@drawable/bg_color_swatch"
+            android:backgroundTint="#EC407A"
+            android:layout_margin="3dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

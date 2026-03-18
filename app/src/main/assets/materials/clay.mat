@@ -1,6 +1,7 @@
 material {
     name : "clay",
     shadingModel : lit,
+    requires : [color],
     parameters : [
         { type : float4, name : baseColor },
         { type : float,  name : roughness },
@@ -11,7 +12,8 @@ material {
 fragment {
     void material(inout MaterialInputs material) {
         prepareMaterial(material);
-        material.baseColor = materialParams.baseColor;
+        // Use per-vertex color with clay tint
+        material.baseColor = getColor() * materialParams.baseColor;
         // Clay is rough and non-metallic
         material.roughness = 0.8;
         material.metallic = 0.0;

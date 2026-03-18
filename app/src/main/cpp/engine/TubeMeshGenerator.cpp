@@ -62,6 +62,7 @@ Mesh TubeMeshGenerator::generate(const std::vector<SplineSample>& samples) const
                 static_cast<float>(j) / static_cast<float>(segs),
                 s.t
             );
+            vert.color = s.color;
 
             mesh.vertices.push_back(vert);
         }
@@ -95,6 +96,7 @@ Mesh TubeMeshGenerator::generate(const std::vector<SplineSample>& samples) const
         center.position = samples.front().position;
         center.normal = -samples.front().tangent;
         center.uv = Vec2(0.5f, 0.0f);
+        center.color = samples.front().color;
         mesh.vertices.push_back(center);
 
         for (int j = 0; j < segs; ++j) {
@@ -112,6 +114,7 @@ Mesh TubeMeshGenerator::generate(const std::vector<SplineSample>& samples) const
         center.position = samples.back().position;
         center.normal = samples.back().tangent;
         center.uv = Vec2(0.5f, 1.0f);
+        center.color = samples.back().color;
         mesh.vertices.push_back(center);
 
         int lastRingStart = (rings - 1) * segs;

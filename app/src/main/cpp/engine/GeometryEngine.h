@@ -57,6 +57,9 @@ public:
     void setTubeSegments(int segments);
     void setSplineTension(float tension);
 
+    // ── Stroke Color ────────────────────────────────────────────────────
+    void setStrokeColor(float r, float g, float b, float a);
+
     // ── Voxel Sculpting ─────────────────────────────────────────────────
     void initVoxelGrid(int resolution, const Vec3& boundsMin, const Vec3& boundsMax);
     void sculptAt(const Vec3& position, float radius, float strength = 1.0f);

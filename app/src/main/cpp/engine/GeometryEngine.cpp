@@ -103,6 +103,10 @@ void GeometryEngine::setSplineTension(float tension) {
     m_splineGenerator.setTension(tension);
 }
 
+void GeometryEngine::setStrokeColor(float r, float g, float b, float a) {
+    m_strokeSystem.setActiveColor(Vec4(r, g, b, a));
+}
+
 // ── Voxel Sculpting ─────────────────────────────────────────────────────────
 
 void GeometryEngine::initVoxelGrid(int resolution, const Vec3& boundsMin,

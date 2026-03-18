@@ -69,6 +69,9 @@ std::vector<SplineSample> SplineGenerator::generate(
             // Interpolate pressure
             sample.pressure = glm::mix(press1, press2, t);
 
+            // Interpolate color
+            sample.color = glm::mix(points[i1].color, points[i2].color, t);
+
             // Global parameter
             sample.t = (static_cast<float>(i) + t) / static_cast<float>(n - 1);
 
@@ -81,6 +84,7 @@ std::vector<SplineSample> SplineGenerator::generate(
     last.position = points.back().position;
     last.tangent = samples.empty() ? Vec3(0.0f, 1.0f, 0.0f) : samples.back().tangent;
     last.pressure = points.back().pressure;
+    last.color = points.back().color;
     last.t = 1.0f;
     samples.push_back(last);
 

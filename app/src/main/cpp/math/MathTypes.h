@@ -26,12 +26,14 @@ struct StrokePoint {
     float pressure = 1.0f;
     float tilt = 0.0f;
     float timestamp = 0.0f;
+    Vec4 color{1.0f, 1.0f, 1.0f, 1.0f};
 };
 
 struct Vertex {
     Vec3 position{0.0f};
     Vec3 normal{0.0f};
     Vec2 uv{0.0f};
+    Vec4 color{1.0f, 1.0f, 1.0f, 1.0f};
 };
 
 struct Mesh {
