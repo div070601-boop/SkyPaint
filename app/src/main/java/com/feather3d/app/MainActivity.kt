@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         private const val TOOL_ERASE = 2
         private const val TOOL_LIQUIFY = 3
         private const val TOOL_PRIMITIVES = 4
+        private const val TOOL_SELECT = 5
     }
     private var activeToolCategory = TOOL_DRAW
 
@@ -215,6 +216,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnModePrimitives.setOnClickListener {
             selectTool(TOOL_PRIMITIVES, it as ImageButton)
         }
+        binding.btnModeSelect.setOnClickListener {
+            selectTool(TOOL_SELECT, it as ImageButton)
+        }
         binding.btnMirror.setOnClickListener {
             Toast.makeText(this, "Mirror (coming soon)", Toast.LENGTH_SHORT).show()
         }
@@ -254,6 +258,10 @@ class MainActivity : AppCompatActivity() {
             TOOL_PRIMITIVES -> {
                 setActiveMode(-1)
                 showContextForTool(TOOL_PRIMITIVES)
+            }
+            TOOL_SELECT -> {
+                setActiveMode(-2) // Special select mode
+                showContextForTool(TOOL_SELECT)
             }
         }
     }
@@ -468,6 +476,18 @@ class MainActivity : AppCompatActivity() {
                 pSphere.visibility = View.VISIBLE
                 pCyl.visibility = View.VISIBLE
                 pCone.visibility = View.VISIBLE
+            }
+            TOOL_SELECT -> {
+                binding.panelContextMenu.visibility = View.GONE
+                add.visibility = View.GONE
+                sub.visibility = View.GONE
+                smooth.visibility = View.GONE
+                inflate.visibility = View.GONE
+                pinch.visibility = View.GONE
+                pCube.visibility = View.GONE
+                pSphere.visibility = View.GONE
+                pCyl.visibility = View.GONE
+                pCone.visibility = View.GONE
             }
         }
     }

@@ -158,12 +158,89 @@ class Feather3DView @JvmOverloads constructor(
 
     fun setDrawMode(mode: Int) {
         currentDrawMode = mode
-        NativeBridge.setDrawMode(mode)
+        if (mode >= 0) {
+            NativeBridge.setDrawMode(mode)
+        }
         stylusInputHandler.setDrawMode(mode)
     }
 
+    // Selection state
+    private var selectDragStartX = 0f
+    private var selectDragStartY = 0f
+    private var isDraggingSelected = false
+    var onSelectionChanged: ((Int) -> Unit)? = null
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        // Select mode: mode == -2
+        if (currentDrawMode == -2 && event.pointerCount == 1) {
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    selectDragStartX = event.x
+                    selectDragStartY = event.y
+                    isDraggingSelected = false
+
+                    // Fire a pick ray
+                    val viewMatrix = cameraController.getViewMatrix()
+                    val projMatrix = cameraController.getProjectionMatrix(
+                        cameraController.viewWidth / cameraController.viewHeight
+                    )
+                    val ray = cameraController.screenToWorldRay(event.x, event.y, viewMatrix, projMatrix)
+                    val hitId = NativeBridge.pickObjectAt(
+                        ray[0], ray[1], ray[2],  // origin
+                        ray[3], ray[4], ray[5]   // direction
+                    )
+                    onSelectionChanged?.invoke(hitId)
+                    return true
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    val selectedId = NativeBridge.getSelectedObjectId()
+                    if (selectedId >= 0) { // Only primitives can be moved (positive IDs)
+                        val dx = event.x - selectDragStartX
+                        val dy = event.y - selectDragStartY
+                        if (!isDraggingSelected && (dx * dx + dy * dy) > 100f) {
+                            isDraggingSelected = true
+                        }
+                        if (isDraggingSelected) {
+                            // Convert screen delta to world delta
+                            val scale = stylusInputHandler.drawDistance / cameraController.viewHeight * 2f
+                            val worldDx = dx * scale
+                            val worldDy = -dy * scale // Y is inverted
+
+                            // Find the primitive index by searching for matching ID
+                            val count = NativeBridge.getPrimitiveCount()
+                            for (i in 0 until count) {
+                                val transform = NativeBridge.getPrimitiveTransform(i)
+                                if (transform != null) {
+                                    // Apply translation delta to current transform
+                                    val newTransform = transform.copyOf()
+                                    newTransform[12] += worldDx  // translate X
+                                    newTransform[13] += worldDy  // translate Y
+                                    NativeBridge.transformPrimitive(i, newTransform)
+
+                                    // Re-upload mesh with new transform
+                                    val verts = NativeBridge.getPrimitiveMeshVertices(i)
+                                    val indices = NativeBridge.getPrimitiveMeshIndices(i)
+                                    val color = NativeBridge.getPrimitiveColor(i)
+                                    if (verts != null && indices != null && color != null) {
+                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, newTransform, color)
+                                    }
+                                    break
+                                }
+                            }
+                            selectDragStartX = event.x
+                            selectDragStartY = event.y
+                        }
+                    }
+                    return true
+                }
+                MotionEvent.ACTION_UP -> {
+                    isDraggingSelected = false
+                    return true
+                }
+            }
+        }
+
         // Try camera first (multi-touch always goes to camera)
         if (cameraController.onTouchEvent(event, isDrawingMode())) {
             return true
@@ -223,7 +300,7 @@ class Feather3DView @JvmOverloads constructor(
     }
 
     private fun isDrawingMode(): Boolean {
-        return currentDrawMode != -1 // Always in some draw mode
+        return currentDrawMode >= 0 // Navigate (-1) and Select (-2) are not drawing modes
     }
 
     private fun updateStats() {

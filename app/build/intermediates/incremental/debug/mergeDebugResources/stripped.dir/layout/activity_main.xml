@@ -142,6 +142,17 @@
             app:tint="#424242"
             android:layout_margin="2dp" />
 
+        <!-- Select -->
+        <ImageButton
+            android:id="@+id/btnModeSelect"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_select"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Select"
+            app:tint="#424242"
+            android:layout_margin="2dp" />
+
         <!-- Erase -->
         <ImageButton
             android:id="@+id/btnModeErase"

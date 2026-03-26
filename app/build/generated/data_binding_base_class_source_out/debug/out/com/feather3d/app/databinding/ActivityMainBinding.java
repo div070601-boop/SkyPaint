@@ -67,6 +67,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnModeSculpt;
 
   @NonNull
+  public final ImageButton btnModeSelect;
+
+  @NonNull
   public final MaterialButton btnOrtho;
 
   @NonNull
@@ -178,22 +181,23 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
       @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
       @NonNull ImageButton btnModeNavigate, @NonNull ImageButton btnModePrimitives,
-      @NonNull ImageButton btnModeSculpt, @NonNull MaterialButton btnOrtho,
-      @NonNull ImageButton btnRedo, @NonNull ImageButton btnSettings,
-      @NonNull MaterialButton btnSnapView, @NonNull MaterialButton btnStraight,
-      @NonNull MaterialButton btnSubAdd, @NonNull MaterialButton btnSubInflate,
-      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubPrimCone,
-      @NonNull MaterialButton btnSubPrimCube, @NonNull MaterialButton btnSubPrimCylinder,
-      @NonNull MaterialButton btnSubPrimSphere, @NonNull MaterialButton btnSubSmooth,
-      @NonNull MaterialButton btnSubSub, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
-      @NonNull View colorBlue, @NonNull View colorCyan, @NonNull View colorGreen,
-      @NonNull View colorOrange, @NonNull View colorPink, @NonNull View colorPurple,
-      @NonNull View colorRed, @NonNull View colorWhite, @NonNull View colorYellow,
-      @NonNull Feather3DView feather3dView, @NonNull LinearLayout panelBrushSidebar,
-      @NonNull LinearLayout panelColorPalette, @NonNull LinearLayout panelContextMenu,
-      @NonNull LinearLayout panelDrafting, @NonNull LinearLayout panelHistory,
-      @NonNull LinearLayout panelSystemMenu, @NonNull LinearLayout panelToolMenu,
-      @NonNull TextView statsText, @NonNull TextView textDimension) {
+      @NonNull ImageButton btnModeSculpt, @NonNull ImageButton btnModeSelect,
+      @NonNull MaterialButton btnOrtho, @NonNull ImageButton btnRedo,
+      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSnapView,
+      @NonNull MaterialButton btnStraight, @NonNull MaterialButton btnSubAdd,
+      @NonNull MaterialButton btnSubInflate, @NonNull MaterialButton btnSubPinch,
+      @NonNull MaterialButton btnSubPrimCone, @NonNull MaterialButton btnSubPrimCube,
+      @NonNull MaterialButton btnSubPrimCylinder, @NonNull MaterialButton btnSubPrimSphere,
+      @NonNull MaterialButton btnSubSmooth, @NonNull MaterialButton btnSubSub,
+      @NonNull ImageButton btnUndo, @NonNull View colorBlack, @NonNull View colorBlue,
+      @NonNull View colorCyan, @NonNull View colorGreen, @NonNull View colorOrange,
+      @NonNull View colorPink, @NonNull View colorPurple, @NonNull View colorRed,
+      @NonNull View colorWhite, @NonNull View colorYellow, @NonNull Feather3DView feather3dView,
+      @NonNull LinearLayout panelBrushSidebar, @NonNull LinearLayout panelColorPalette,
+      @NonNull LinearLayout panelContextMenu, @NonNull LinearLayout panelDrafting,
+      @NonNull LinearLayout panelHistory, @NonNull LinearLayout panelSystemMenu,
+      @NonNull LinearLayout panelToolMenu, @NonNull TextView statsText,
+      @NonNull TextView textDimension) {
     this.rootView = rootView;
     this.brushSizeLabel = brushSizeLabel;
     this.brushSizeSlider = brushSizeSlider;
@@ -209,6 +213,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnModeNavigate = btnModeNavigate;
     this.btnModePrimitives = btnModePrimitives;
     this.btnModeSculpt = btnModeSculpt;
+    this.btnModeSelect = btnModeSelect;
     this.btnOrtho = btnOrtho;
     this.btnRedo = btnRedo;
     this.btnSettings = btnSettings;
@@ -354,6 +359,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnModeSculpt;
       ImageButton btnModeSculpt = ViewBindings.findChildViewById(rootView, id);
       if (btnModeSculpt == null) {
+        break missingId;
+      }
+
+      id = R.id.btnModeSelect;
+      ImageButton btnModeSelect = ViewBindings.findChildViewById(rootView, id);
+      if (btnModeSelect == null) {
         break missingId;
       }
 
@@ -569,13 +580,13 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
           btnAngleSnap, btnClear, btnColorPicker, btnExport, btnGridSnap, btnMirror, btnModeDraw,
-          btnModeErase, btnModeLiquify, btnModeNavigate, btnModePrimitives, btnModeSculpt, btnOrtho,
-          btnRedo, btnSettings, btnSnapView, btnStraight, btnSubAdd, btnSubInflate, btnSubPinch,
-          btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder, btnSubPrimSphere, btnSubSmooth,
-          btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan, colorGreen, colorOrange, colorPink,
-          colorPurple, colorRed, colorWhite, colorYellow, feather3dView, panelBrushSidebar,
-          panelColorPalette, panelContextMenu, panelDrafting, panelHistory, panelSystemMenu,
-          panelToolMenu, statsText, textDimension);
+          btnModeErase, btnModeLiquify, btnModeNavigate, btnModePrimitives, btnModeSculpt,
+          btnModeSelect, btnOrtho, btnRedo, btnSettings, btnSnapView, btnStraight, btnSubAdd,
+          btnSubInflate, btnSubPinch, btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder,
+          btnSubPrimSphere, btnSubSmooth, btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan,
+          colorGreen, colorOrange, colorPink, colorPurple, colorRed, colorWhite, colorYellow,
+          feather3dView, panelBrushSidebar, panelColorPalette, panelContextMenu, panelDrafting,
+          panelHistory, panelSystemMenu, panelToolMenu, statsText, textDimension);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

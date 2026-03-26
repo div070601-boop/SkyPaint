@@ -48,6 +48,10 @@
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_shapes.xml"
     },
     {
+        "merged": "com.feather3d.app-debug-36:/drawable_ic_select.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/ic_select.xml"
+    },
+    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_launcher.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_launcher.xml"
     },

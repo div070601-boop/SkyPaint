@@ -1,5 +1,2 @@
 ninja: Entering directory `C:\Users\div07\Desktop\Feather 3d\app\.cxx\Debug\6v465442\arm64-v8a'
-[1/4] Building CXX object CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o
-[2/4] Building CXX object CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o
-[3/4] Building CXX object CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o
-[4/4] Linking CXX shared library "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.so"
+ninja: no work to do.

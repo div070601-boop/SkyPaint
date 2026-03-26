@@ -26,6 +26,7 @@ drawable ic_move
 drawable ic_palette
 drawable ic_redo
 drawable ic_sculpt
+drawable ic_select
 drawable ic_settings
 drawable ic_shapes
 drawable ic_smooth
@@ -44,6 +45,7 @@ id btnModeLiquify
 id btnModeNavigate
 id btnModePrimitives
 id btnModeSculpt
+id btnModeSelect
 id btnOrtho
 id btnRedo
 id btnSettings
