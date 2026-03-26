@@ -22,10 +22,12 @@ drawable ic_export
 drawable ic_launcher
 drawable ic_liquify
 drawable ic_mirror
+drawable ic_move
 drawable ic_palette
 drawable ic_redo
 drawable ic_sculpt
 drawable ic_settings
+drawable ic_shapes
 drawable ic_smooth
 drawable ic_undo
 id brushSizeLabel
@@ -39,6 +41,8 @@ id btnMirror
 id btnModeDraw
 id btnModeErase
 id btnModeLiquify
+id btnModeNavigate
+id btnModePrimitives
 id btnModeSculpt
 id btnOrtho
 id btnRedo
@@ -48,6 +52,10 @@ id btnStraight
 id btnSubAdd
 id btnSubInflate
 id btnSubPinch
+id btnSubPrimCone
+id btnSubPrimCube
+id btnSubPrimCylinder
+id btnSubPrimSphere
 id btnSubSmooth
 id btnSubSub
 id btnUndo

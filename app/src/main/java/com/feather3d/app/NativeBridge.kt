@@ -91,6 +91,13 @@ object NativeBridge {
     @JvmStatic external fun getPrimitiveTransform(index: Int): FloatArray?
     @JvmStatic external fun getPrimitiveColor(index: Int): FloatArray?
 
+    // -- Selection & Transform -----------------------------------------------
+    @JvmStatic external fun pickObjectAt(rayOx: Float, rayOy: Float, rayOz: Float,
+                                          rayDx: Float, rayDy: Float, rayDz: Float): Int
+    @JvmStatic external fun getSelectedObjectId(): Int
+    @JvmStatic external fun deselectAll()
+    @JvmStatic external fun transformPrimitive(index: Int, transform: FloatArray)
+
     // ── Export ───────────────────────────────────────────────────────────
     @JvmStatic external fun exportOBJ(): String
     @JvmStatic external fun exportGLB(): ByteArray?

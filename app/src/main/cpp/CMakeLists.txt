@@ -18,6 +18,7 @@ set(ENGINE_SOURCES
     engine/TubeMeshGenerator.cpp
     engine/VoxelGrid.cpp
     engine/PrimitiveGenerator.cpp
+    engine/RaycastEngine.cpp
     engine/MarchingCubes.cpp
     engine/LiquifyBrush.cpp
     engine/MeshDecimation.cpp

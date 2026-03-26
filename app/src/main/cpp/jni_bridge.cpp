@@ -422,5 +422,36 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint 
     return result;
 }
 
+// -- Selection & Transform ---------------------------------------------------
+
+JNIEXPORT jint JNICALL
+Java_com_feather3d_app_NativeBridge_pickObjectAt(JNIEnv* env, jclass,
+    jfloat rayOx, jfloat rayOy, jfloat rayOz,
+    jfloat rayDx, jfloat rayDy, jfloat rayDz) {
+    if (!g_engine) return -1;
+    return g_engine->pickObjectAt(rayOx, rayOy, rayOz, rayDx, rayDy, rayDz);
+}
+
+JNIEXPORT jint JNICALL
+Java_com_feather3d_app_NativeBridge_getSelectedObjectId(JNIEnv* env, jclass) {
+    if (!g_engine) return -1;
+    return g_engine->getSelectedObjectId();
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_deselectAll(JNIEnv* env, jclass) {
+    if (!g_engine) return;
+    g_engine->deselectAll();
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_transformPrimitive(JNIEnv* env, jclass, jint index, jfloatArray transform) {
+    if (!g_engine) return;
+    jfloat* tElements = env->GetFloatArrayElements(transform, nullptr);
+    feather::Mat4 mat = glm::make_mat4(tElements);
+    env->ReleaseFloatArrayElements(transform, tElements, JNI_ABORT);
+    g_engine->transformPrimitive(index, mat);
+}
+
 } // extern "C"
 

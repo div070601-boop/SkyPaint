@@ -98,6 +98,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Navigate -->
+        <ImageButton
+            android:id="@+id/btnModeNavigate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_move"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Navigate"
+            app:tint="#424242"
+            android:layout_margin="2dp" />
+
         <!-- Draw -->
         <ImageButton
             android:id="@+id/btnModeDraw"
@@ -117,6 +128,17 @@
             android:src="@drawable/ic_sculpt"
             android:background="@drawable/bg_tool_btn"
             android:contentDescription="Sculpt"
+            app:tint="#424242"
+            android:layout_margin="2dp" />
+
+        <!-- Primitives -->
+        <ImageButton
+            android:id="@+id/btnModePrimitives"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_shapes"
+            android:background="@drawable/bg_tool_btn"
+            android:contentDescription="Primitives"
             app:tint="#424242"
             android:layout_margin="2dp" />
 
@@ -547,6 +569,58 @@
             android:background="@drawable/bg_color_swatch"
             android:backgroundTint="#EC407A"
             android:layout_margin="3dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimCube"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Cube"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimSphere"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Sphere"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimCylinder"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Cyl"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimCone"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Cone"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

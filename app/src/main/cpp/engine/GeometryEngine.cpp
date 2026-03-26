@@ -374,4 +374,37 @@ void GeometryEngine::clearPrimitives() {
     m_primitiveObjects.clear();
 }
 
+// ── Selection & Transform ───────────────────────────────────────────────────
+
+int GeometryEngine::pickObjectAt(float rayOx, float rayOy, float rayOz,
+                                  float rayDx, float rayDy, float rayDz) {
+    Ray ray;
+    ray.origin = Vec3(rayOx, rayOy, rayOz);
+    ray.direction = glm::normalize(Vec3(rayDx, rayDy, rayDz));
+
+    // First try primitives
+    RayHit hit = RaycastEngine::pickObject(ray, m_primitiveObjects);
+    if (hit.objectId >= 0) {
+        m_selectedObjectId = hit.objectId;
+        return hit.objectId;
+    }
+
+    // Then try strokes
+    int strokeIdx = RaycastEngine::pickStroke(ray, m_strokeMeshes);
+    if (strokeIdx >= 0) {
+        // Use negative IDs for strokes: -(strokeIndex + 1)
+        m_selectedObjectId = -(strokeIdx + 1);
+        return m_selectedObjectId;
+    }
+
+    m_selectedObjectId = -1;
+    return -1;
+}
+
+void GeometryEngine::transformPrimitive(int index, const Mat4& transform) {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        m_primitiveObjects[index].transform = transform;
+    }
+}
+
 } // namespace feather

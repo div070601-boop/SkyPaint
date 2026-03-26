@@ -58,6 +58,12 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnModeLiquify;
 
   @NonNull
+  public final ImageButton btnModeNavigate;
+
+  @NonNull
+  public final ImageButton btnModePrimitives;
+
+  @NonNull
   public final ImageButton btnModeSculpt;
 
   @NonNull
@@ -83,6 +89,18 @@ public final class ActivityMainBinding implements ViewBinding {
 
   @NonNull
   public final MaterialButton btnSubPinch;
+
+  @NonNull
+  public final MaterialButton btnSubPrimCone;
+
+  @NonNull
+  public final MaterialButton btnSubPrimCube;
+
+  @NonNull
+  public final MaterialButton btnSubPrimCylinder;
+
+  @NonNull
+  public final MaterialButton btnSubPrimSphere;
 
   @NonNull
   public final MaterialButton btnSubSmooth;
@@ -159,11 +177,14 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull ImageButton btnExport, @NonNull MaterialButton btnGridSnap,
       @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
       @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
+      @NonNull ImageButton btnModeNavigate, @NonNull ImageButton btnModePrimitives,
       @NonNull ImageButton btnModeSculpt, @NonNull MaterialButton btnOrtho,
       @NonNull ImageButton btnRedo, @NonNull ImageButton btnSettings,
       @NonNull MaterialButton btnSnapView, @NonNull MaterialButton btnStraight,
       @NonNull MaterialButton btnSubAdd, @NonNull MaterialButton btnSubInflate,
-      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubSmooth,
+      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubPrimCone,
+      @NonNull MaterialButton btnSubPrimCube, @NonNull MaterialButton btnSubPrimCylinder,
+      @NonNull MaterialButton btnSubPrimSphere, @NonNull MaterialButton btnSubSmooth,
       @NonNull MaterialButton btnSubSub, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
       @NonNull View colorBlue, @NonNull View colorCyan, @NonNull View colorGreen,
       @NonNull View colorOrange, @NonNull View colorPink, @NonNull View colorPurple,
@@ -185,6 +206,8 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnModeDraw = btnModeDraw;
     this.btnModeErase = btnModeErase;
     this.btnModeLiquify = btnModeLiquify;
+    this.btnModeNavigate = btnModeNavigate;
+    this.btnModePrimitives = btnModePrimitives;
     this.btnModeSculpt = btnModeSculpt;
     this.btnOrtho = btnOrtho;
     this.btnRedo = btnRedo;
@@ -194,6 +217,10 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnSubAdd = btnSubAdd;
     this.btnSubInflate = btnSubInflate;
     this.btnSubPinch = btnSubPinch;
+    this.btnSubPrimCone = btnSubPrimCone;
+    this.btnSubPrimCube = btnSubPrimCube;
+    this.btnSubPrimCylinder = btnSubPrimCylinder;
+    this.btnSubPrimSphere = btnSubPrimSphere;
     this.btnSubSmooth = btnSubSmooth;
     this.btnSubSub = btnSubSub;
     this.btnUndo = btnUndo;
@@ -312,6 +339,18 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnModeNavigate;
+      ImageButton btnModeNavigate = ViewBindings.findChildViewById(rootView, id);
+      if (btnModeNavigate == null) {
+        break missingId;
+      }
+
+      id = R.id.btnModePrimitives;
+      ImageButton btnModePrimitives = ViewBindings.findChildViewById(rootView, id);
+      if (btnModePrimitives == null) {
+        break missingId;
+      }
+
       id = R.id.btnModeSculpt;
       ImageButton btnModeSculpt = ViewBindings.findChildViewById(rootView, id);
       if (btnModeSculpt == null) {
@@ -363,6 +402,30 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnSubPinch;
       MaterialButton btnSubPinch = ViewBindings.findChildViewById(rootView, id);
       if (btnSubPinch == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubPrimCone;
+      MaterialButton btnSubPrimCone = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubPrimCone == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubPrimCube;
+      MaterialButton btnSubPrimCube = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubPrimCube == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubPrimCylinder;
+      MaterialButton btnSubPrimCylinder = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubPrimCylinder == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSubPrimSphere;
+      MaterialButton btnSubPrimSphere = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubPrimSphere == null) {
         break missingId;
       }
 
@@ -506,12 +569,13 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
           btnAngleSnap, btnClear, btnColorPicker, btnExport, btnGridSnap, btnMirror, btnModeDraw,
-          btnModeErase, btnModeLiquify, btnModeSculpt, btnOrtho, btnRedo, btnSettings, btnSnapView,
-          btnStraight, btnSubAdd, btnSubInflate, btnSubPinch, btnSubSmooth, btnSubSub, btnUndo,
-          colorBlack, colorBlue, colorCyan, colorGreen, colorOrange, colorPink, colorPurple,
-          colorRed, colorWhite, colorYellow, feather3dView, panelBrushSidebar, panelColorPalette,
-          panelContextMenu, panelDrafting, panelHistory, panelSystemMenu, panelToolMenu, statsText,
-          textDimension);
+          btnModeErase, btnModeLiquify, btnModeNavigate, btnModePrimitives, btnModeSculpt, btnOrtho,
+          btnRedo, btnSettings, btnSnapView, btnStraight, btnSubAdd, btnSubInflate, btnSubPinch,
+          btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder, btnSubPrimSphere, btnSubSmooth,
+          btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan, colorGreen, colorOrange, colorPink,
+          colorPurple, colorRed, colorWhite, colorYellow, feather3dView, panelBrushSidebar,
+          panelColorPalette, panelContextMenu, panelDrafting, panelHistory, panelSystemMenu,
+          panelToolMenu, statsText, textDimension);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

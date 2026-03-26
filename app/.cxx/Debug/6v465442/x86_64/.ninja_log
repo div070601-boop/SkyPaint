@@ -1,12 +1,19 @@
 # ninja log v5
-17	3336	7955680476638434	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	6fafcf4780b2f221
-1	3378	7955680476920115	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	4c9ff0bd78b145d8
-53	3402	7955680477343875	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	7b4a30e388c40df6
-35	3450	7955680477802582	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	867f8f87bcb815a1
-26	3788	7955680481141220	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	5299b7b39205dad8
-74	3810	7955680481345991	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	455af9e32e4b8514
-62	3881	7955680481991772	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	34c38058e6f00591
-9	4269	7955680486036954	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	2a30d1111af7ecf5
-44	4782	7955680491111466	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	42f88228101cfe63
-86	4890	7955680492122418	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	8dcb30a8efc6ef0c
-4891	5044	7955680493780057	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/x86_64/libfeather3d_engine.so	552f9e9f2492c9b4
+44	4424	7962566609510161	CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o	6fafcf4780b2f221
+13	4733	7962566612226870	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	4c9ff0bd78b145d8
+99	5121	7962566614329587	CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o	7b4a30e388c40df6
+23	8077	7962566645897085	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	2a30d1111af7ecf5
+32	5093	7962566613076903	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	867f8f87bcb815a1
+54	5828	7962566623414938	CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o	5299b7b39205dad8
+140	6132	7962566626670460	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	455af9e32e4b8514
+86	6063	7962566625849681	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	34c38058e6f00591
+75	7377	7962566639025171	CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o	42f88228101cfe63
+113	7643	7962566641489697	CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o	8dcb30a8efc6ef0c
+8077	8294	7962566648412552	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/x86_64/libfeather3d_engine.so	37bb68e69f9ee6bc
+153	3769	7962566602953048	CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o	f17be6ee8958f54c
+126	4283	7962566608168593	CMakeFiles/feather3d_engine.dir/engine/SnapEngine.cpp.o	ba76759af0c3c601
+64	7325	7962566638479958	CMakeFiles/feather3d_engine.dir/engine/PrimitiveGenerator.cpp.o	ceb33f3da9337489
+20	1264	7962575636140323	CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o	98f7bda6dce22094
+30	1613	7962575639618842	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	455af9e32e4b8514
+7	2199	7962575645450126	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	2a30d1111af7ecf5
+2200	2295	7962575646428576	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/x86_64/libfeather3d_engine.so	bc58bb7c89b90d5e

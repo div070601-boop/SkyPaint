@@ -36,8 +36,16 @@
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_export.xml"
     },
     {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_move.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_move.xml"
+    },
+    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_bg_floating_panel.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_floating_panel.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_shapes.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_shapes.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_launcher.xml.flat",

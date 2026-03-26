@@ -3577,6 +3577,7 @@ drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
 drawable ic_mirror
+drawable ic_move
 drawable ic_mtrl_arrow_circle
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
@@ -3587,6 +3588,7 @@ drawable ic_redo
 drawable ic_sculpt
 drawable ic_search_black_24
 drawable ic_settings
+drawable ic_shapes
 drawable ic_smooth
 drawable ic_undo
 drawable m3_avd_hide_password
@@ -3778,6 +3780,8 @@ id btnMirror
 id btnModeDraw
 id btnModeErase
 id btnModeLiquify
+id btnModeNavigate
+id btnModePrimitives
 id btnModeSculpt
 id btnOrtho
 id btnRedo
@@ -3787,6 +3791,10 @@ id btnStraight
 id btnSubAdd
 id btnSubInflate
 id btnSubPinch
+id btnSubPrimCone
+id btnSubPrimCube
+id btnSubPrimCylinder
+id btnSubPrimSphere
 id btnSubSmooth
 id btnSubSub
 id btnUndo

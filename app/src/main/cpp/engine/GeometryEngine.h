@@ -12,6 +12,7 @@
 #include "Actions.h"
 #include "PrimitiveGenerator.h"
 #include "SceneObject.h"
+#include "RaycastEngine.h"
 
 namespace feather {
 
@@ -107,6 +108,18 @@ public:
     int getTotalVertexCount() const;
     int getTotalTriangleCount() const;
 
+    // ── Selection & Transform ───────────────────────────────────────────
+    int pickObjectAt(float rayOx, float rayOy, float rayOz,
+                     float rayDx, float rayDy, float rayDz);
+    int getSelectedObjectId() const { return m_selectedObjectId; }
+    void setSelectedObjectId(int id) { m_selectedObjectId = id; }
+    void deselectAll() { m_selectedObjectId = -1; }
+    void transformPrimitive(int index, const Mat4& transform);
+
+    // Access stroke meshes for picking
+    const std::vector<Mesh>& getStrokeMeshes() const { return m_strokeMeshes; }
+    const std::vector<SceneObject>& getPrimitiveObjects() const { return m_primitiveObjects; }
+
 private:
     DrawMode m_drawMode = DrawMode::STROKE;
 
@@ -131,6 +144,7 @@ private:
 
     std::vector<SceneObject> m_primitiveObjects;
     int m_nextObjectId = 1;
+    int m_selectedObjectId = -1;
 
     /// Generate tube mesh from stroke
     Mesh generateMeshFromStroke(const std::vector<StrokePoint>& points);
