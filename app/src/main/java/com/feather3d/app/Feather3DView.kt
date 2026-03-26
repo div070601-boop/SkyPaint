@@ -136,6 +136,26 @@ class Feather3DView @JvmOverloads constructor(
         }
     }
 
+
+    fun addPrimitive(type: Int) {
+        val identity = floatArrayOf(
+            1f, 0f, 0f, 0f,
+            0f, 1f, 0f, 0f,
+            0f, 0f, 1f, 0f,
+            0f, 0f, 0f, 1f
+        )
+        val id = NativeBridge.addPrimitive(type, identity, 0.5f, 0.5f, 0.5f, 1.0f)
+        if (id >= 0) {
+            val verts = NativeBridge.getPrimitiveMeshVertices(id)
+            val indices = NativeBridge.getPrimitiveMeshIndices(id)
+            val transform = NativeBridge.getPrimitiveTransform(id)
+            val color = NativeBridge.getPrimitiveColor(id)
+            if (verts != null && indices != null && transform != null && color != null) {
+                filamentRenderer.uploadPrimitiveMesh(id, verts, indices, transform, color)
+            }
+        }
+    }
+
     fun setDrawMode(mode: Int) {
         currentDrawMode = mode
         NativeBridge.setDrawMode(mode)

@@ -45,6 +45,7 @@ class FilamentRenderer(private val context: Context) {
 
     // Track drawn strokes for rendered meshes
     private val strokeEntities = mutableListOf<Int>()
+    private val primitiveEntities = mutableListOf<Int>()
     private val entityBuffers = mutableMapOf<Int, Pair<VertexBuffer, IndexBuffer>>()
 
     private var voxelEntity: Int = 0
@@ -437,10 +438,73 @@ class FilamentRenderer(private val context: Context) {
         buildRenderable(currentStrokeEntity, vertexBuffer, indexBuffer, indexCount)
     }
 
+
+    fun uploadPrimitiveMesh(primitiveIndex: Int, vertexData: FloatArray, indexData: IntArray, transform: FloatArray, color: FloatArray) {
+        if (vertexData.isEmpty() || indexData.isEmpty()) return
+
+        val vertexCount = vertexData.size / FLOATS_PER_VERTEX
+        val indexCount = indexData.size
+
+        val vertexBuffer = VertexBuffer.Builder()
+            .vertexCount(vertexCount)
+            .bufferCount(1)
+            .attribute(VertexBuffer.VertexAttribute.POSITION, 0, VertexBuffer.AttributeType.FLOAT3, 0, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.TANGENTS, 0, VertexBuffer.AttributeType.FLOAT3, 12, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.UV0, 0, VertexBuffer.AttributeType.FLOAT2, 24, VERTEX_STRIDE)
+            .attribute(VertexBuffer.VertexAttribute.COLOR, 0, VertexBuffer.AttributeType.FLOAT4, 32, VERTEX_STRIDE)
+            .build(engine)
+
+        val vbData = java.nio.ByteBuffer.allocateDirect(vertexData.size * 4).order(java.nio.ByteOrder.nativeOrder())
+        vbData.asFloatBuffer().put(vertexData)
+        vertexBuffer.setBufferAt(engine, 0, vbData)
+
+        val indexBuffer = IndexBuffer.Builder()
+            .indexCount(indexCount)
+            .bufferType(IndexBuffer.Builder.IndexType.UINT)
+            .build(engine)
+
+        val ibData = java.nio.ByteBuffer.allocateDirect(indexData.size * 4).order(java.nio.ByteOrder.nativeOrder())
+        ibData.asIntBuffer().put(indexData)
+        indexBuffer.setBuffer(engine, ibData)
+
+        val entity: Int
+        if (primitiveIndex < primitiveEntities.size) {
+            entity = primitiveEntities[primitiveIndex]
+            destroyEntityBuffers(entity)
+            scene.removeEntity(entity)
+            engine.destroyEntity(entity)
+            val newEntity = EntityManager.get().create()
+            primitiveEntities[primitiveIndex] = newEntity
+            entityBuffers[newEntity] = Pair(vertexBuffer, indexBuffer)
+            buildRenderable(newEntity, vertexBuffer, indexBuffer, indexCount)
+            applyTransform(newEntity, transform)
+        } else {
+            entity = EntityManager.get().create()
+            primitiveEntities.add(entity)
+            entityBuffers[entity] = Pair(vertexBuffer, indexBuffer)
+            buildRenderable(entity, vertexBuffer, indexBuffer, indexCount)
+            applyTransform(entity, transform)
+        }
+    }
+
+    private fun applyTransform(entity: Int, transform: FloatArray) {
+        val tm = engine.transformManager
+        tm.create(entity)
+        val instance = tm.getInstance(entity)
+        tm.setTransform(instance, transform)
+    }
+
     /**
      * Upload voxel sculpt mesh
      */
     fun uploadVoxelMesh(vertexData: FloatArray, indexData: IntArray) {
+        primitiveEntities.forEach { 
+            scene.removeEntity(it)
+            destroyEntityBuffers(it)
+            engine.destroyEntity(it)
+        }
+        primitiveEntities.clear()
+
         if (voxelEntity != 0) {
             scene.removeEntity(voxelEntity)
             destroyEntityBuffers(voxelEntity)
@@ -525,6 +589,13 @@ class FilamentRenderer(private val context: Context) {
             engine.destroyEntity(entity)
         }
         strokeEntities.clear()
+
+        primitiveEntities.forEach { 
+            scene.removeEntity(it)
+            destroyEntityBuffers(it)
+            engine.destroyEntity(it)
+        }
+        primitiveEntities.clear()
 
         if (voxelEntity != 0) {
             scene.removeEntity(voxelEntity)

@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include "engine/GeometryEngine.h"
+#include <glm/gtc/type_ptr.hpp>
 
 #define LOG_TAG "Feather3D-JNI"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -350,4 +351,76 @@ Java_com_feather3d_app_NativeBridge_canRedo(JNIEnv* env, jclass) {
     return g_engine ? (g_engine->canRedo() ? JNI_TRUE : JNI_FALSE) : JNI_FALSE;
 }
 
+// -- Primitives --------------------------------------------------------------
+
+JNIEXPORT jint JNICALL
+Java_com_feather3d_app_NativeBridge_addPrimitive(JNIEnv* env, jclass, jint type, jfloatArray transform, jfloat r, jfloat g, jfloat b, jfloat a) {
+    if (!g_engine) return -1;
+    
+    jfloat* tElements = env->GetFloatArrayElements(transform, nullptr);
+    feather::Mat4 mat = glm::make_mat4(tElements);
+    env->ReleaseFloatArrayElements(transform, tElements, JNI_ABORT);
+    
+    return g_engine->addPrimitive(static_cast<feather::PrimitiveType>(type), mat, feather::Vec4(r, g, b, a));
+}
+
+JNIEXPORT jint JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveCount(JNIEnv* env, jclass) {
+    if (!g_engine) return 0;
+    return g_engine->getPrimitiveCount();
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_removePrimitive(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return;
+    g_engine->removePrimitive(index);
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_clearPrimitives(JNIEnv* env, jclass) {
+    if (!g_engine) return;
+    g_engine->clearPrimitives();
+}
+
+JNIEXPORT jfloatArray JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveMeshVertices(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return nullptr;
+    const auto* prim = g_engine->getPrimitive(index);
+    if (!prim) return nullptr;
+    return meshVerticesToFloatArray(env, prim->mesh);
+}
+
+JNIEXPORT jintArray JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveMeshIndices(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return nullptr;
+    const auto* prim = g_engine->getPrimitive(index);
+    if (!prim) return nullptr;
+    return meshIndicesToIntArray(env, prim->mesh);
+}
+
+JNIEXPORT jfloatArray JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveTransform(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return nullptr;
+    const auto* prim = g_engine->getPrimitive(index);
+    if (!prim) return nullptr;
+    
+    jfloatArray result = env->NewFloatArray(16);
+    if (!result) return nullptr;
+    env->SetFloatArrayRegion(result, 0, 16, glm::value_ptr(prim->transform));
+    return result;
+}
+
+JNIEXPORT jfloatArray JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return nullptr;
+    const auto* prim = g_engine->getPrimitive(index);
+    if (!prim) return nullptr;
+    
+    jfloatArray result = env->NewFloatArray(4);
+    if (!result) return nullptr;
+    env->SetFloatArrayRegion(result, 0, 4, glm::value_ptr(prim->color));
+    return result;
+}
+
 } // extern "C"
+

@@ -81,6 +81,16 @@ object NativeBridge {
     @JvmStatic external fun getVoxelMeshVertices(): FloatArray?
     @JvmStatic external fun getVoxelMeshIndices(): IntArray?
 
+    // -- Primitives ------------------------------------------------------
+    @JvmStatic external fun addPrimitive(type: Int, transform: FloatArray, r: Float, g: Float, b: Float, a: Float): Int
+    @JvmStatic external fun getPrimitiveCount(): Int
+    @JvmStatic external fun removePrimitive(index: Int)
+    @JvmStatic external fun clearPrimitives()
+    @JvmStatic external fun getPrimitiveMeshVertices(index: Int): FloatArray?
+    @JvmStatic external fun getPrimitiveMeshIndices(index: Int): IntArray?
+    @JvmStatic external fun getPrimitiveTransform(index: Int): FloatArray?
+    @JvmStatic external fun getPrimitiveColor(index: Int): FloatArray?
+
     // ── Export ───────────────────────────────────────────────────────────
     @JvmStatic external fun exportOBJ(): String
     @JvmStatic external fun exportGLB(): ByteArray?

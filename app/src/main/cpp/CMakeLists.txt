@@ -17,6 +17,7 @@ set(ENGINE_SOURCES
     engine/SplineGenerator.cpp
     engine/TubeMeshGenerator.cpp
     engine/VoxelGrid.cpp
+    engine/PrimitiveGenerator.cpp
     engine/MarchingCubes.cpp
     engine/LiquifyBrush.cpp
     engine/MeshDecimation.cpp

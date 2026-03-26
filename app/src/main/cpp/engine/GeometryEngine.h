@@ -10,6 +10,8 @@
 #include "MeshDecimation.h"
 #include "MeshExporter.h"
 #include "Actions.h"
+#include "PrimitiveGenerator.h"
+#include "SceneObject.h"
 
 namespace feather {
 
@@ -90,6 +92,12 @@ public:
     void decimateVoxelMesh(float ratio);
 
     // ── Export ───────────────────────────────────────────────────────────
+    int addPrimitive(PrimitiveType type, const Mat4& transform, const Vec4& color = Vec4(1.0f));
+    const SceneObject* getPrimitive(int index) const;
+    int getPrimitiveCount() const;
+    void removePrimitive(int index);
+    void clearPrimitives();
+
     std::string exportOBJ() const;
     std::vector<uint8_t> exportGLB() const;
     bool exportOBJToFile(const std::string& path) const;
@@ -120,6 +128,9 @@ private:
     // Cached voxel mesh
     Mesh m_voxelMesh;
     bool m_voxelMeshDirty = true;
+
+    std::vector<SceneObject> m_primitiveObjects;
+    int m_nextObjectId = 1;
 
     /// Generate tube mesh from stroke
     Mesh generateMeshFromStroke(const std::vector<StrokePoint>& points);

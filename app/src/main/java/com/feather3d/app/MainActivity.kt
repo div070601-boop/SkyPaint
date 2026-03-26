@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         private const val TOOL_SCULPT = 1
         private const val TOOL_ERASE = 2
         private const val TOOL_LIQUIFY = 3
+        private const val TOOL_PRIMITIVES = 4
     }
     private var activeToolCategory = TOOL_DRAW
 
@@ -211,6 +212,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnModeLiquify.setOnClickListener {
             selectTool(TOOL_LIQUIFY, it as ImageButton)
         }
+        binding.btnModePrimitives.setOnClickListener {
+            selectTool(TOOL_PRIMITIVES, it as ImageButton)
+        }
         binding.btnMirror.setOnClickListener {
             Toast.makeText(this, "Mirror (coming soon)", Toast.LENGTH_SHORT).show()
         }
@@ -246,6 +250,10 @@ class MainActivity : AppCompatActivity() {
             TOOL_LIQUIFY -> {
                 setActiveMode(NativeBridge.MODE_LIQUIFY)
                 showContextForTool(TOOL_LIQUIFY)
+            }
+            TOOL_PRIMITIVES -> {
+                setActiveMode(-1)
+                showContextForTool(TOOL_PRIMITIVES)
             }
         }
     }
@@ -324,6 +332,12 @@ class MainActivity : AppCompatActivity() {
             setSubMode(NativeBridge.MODE_LIQUIFY_PINCH, it)
         }
 
+        binding.btnSubPrimCube.setOnClickListener { featherView.addPrimitive(0) }
+        binding.btnSubPrimSphere.setOnClickListener { featherView.addPrimitive(1) }
+        binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2) }
+        binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3) }
+
+
         // Clear
         binding.btnClear.setOnClickListener {
             AlertDialog.Builder(this, com.google.android.material.R.style.ThemeOverlay_MaterialComponents_Dialog_Alert)
@@ -370,8 +384,13 @@ class MainActivity : AppCompatActivity() {
         val inflate = binding.btnSubInflate
         val pinch = binding.btnSubPinch
 
+        val pCube = binding.btnSubPrimCube
+        val pSphere = binding.btnSubPrimSphere
+        val pCyl = binding.btnSubPrimCylinder
+        val pCone = binding.btnSubPrimCone
+
         // Reset all text colors
-        listOf(add, sub, smooth, inflate, pinch).forEach {
+        listOf(add, sub, smooth, inflate, pinch, pCube, pSphere, pCyl, pCone).forEach {
             it.setTextColor(0xFF616161.toInt())
             it.setBackgroundColor(0x00000000)
         }
@@ -424,6 +443,11 @@ class MainActivity : AppCompatActivity() {
                 smooth.visibility = View.VISIBLE
                 inflate.visibility = View.VISIBLE
                 pinch.visibility = View.VISIBLE
+                
+                pCube.visibility = View.GONE
+                pSphere.visibility = View.GONE
+                pCyl.visibility = View.GONE
+                pCone.visibility = View.GONE
 
                 smooth.text = "Smooth"
                 inflate.text = "Inflate"
@@ -431,6 +455,19 @@ class MainActivity : AppCompatActivity() {
 
                 // Default highlight: Inflate
                 setSubMode(NativeBridge.MODE_LIQUIFY, smooth)
+            }
+            TOOL_PRIMITIVES -> {
+                binding.panelContextMenu.visibility = View.VISIBLE
+                add.visibility = View.GONE
+                sub.visibility = View.GONE
+                smooth.visibility = View.GONE
+                inflate.visibility = View.GONE
+                pinch.visibility = View.GONE
+                
+                pCube.visibility = View.VISIBLE
+                pSphere.visibility = View.VISIBLE
+                pCyl.visibility = View.VISIBLE
+                pCone.visibility = View.VISIBLE
             }
         }
     }
@@ -473,6 +510,17 @@ class MainActivity : AppCompatActivity() {
             val indices = NativeBridge.getStrokeMeshIndices(i)
             if (verts != null && indices != null) {
                 featherView.filamentRenderer.uploadStrokeMesh(i, verts, indices)
+            }
+        }
+
+        val primCount = NativeBridge.getPrimitiveCount()
+        for (i in 0 until primCount) {
+            val verts = NativeBridge.getPrimitiveMeshVertices(i)
+            val indices = NativeBridge.getPrimitiveMeshIndices(i)
+            val transform = NativeBridge.getPrimitiveTransform(i)
+            val color = NativeBridge.getPrimitiveColor(i)
+            if (verts != null && indices != null && transform != null && color != null) {
+                featherView.filamentRenderer.uploadPrimitiveMesh(i, verts, indices, transform, color)
             }
         }
 
