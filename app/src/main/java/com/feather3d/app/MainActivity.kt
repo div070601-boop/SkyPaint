@@ -352,6 +352,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3, activeColorR, activeColorG, activeColorB) }
 
         binding.btnDeleteSelected.setOnClickListener { featherView.deleteSelected() }
+        binding.btnDuplicateSelected.setOnClickListener { featherView.duplicateSelected() }
 
 
         // Clear
@@ -405,6 +406,7 @@ class MainActivity : AppCompatActivity() {
         val pCyl = binding.btnSubPrimCylinder
         val pCone = binding.btnSubPrimCone
         val deleteBtn = binding.btnDeleteSelected
+        val dupeBtn = binding.btnDuplicateSelected
 
         // Reset all text colors
         listOf(add, sub, smooth, inflate, pinch, pCube, pSphere, pCyl, pCone).forEach {
@@ -412,6 +414,7 @@ class MainActivity : AppCompatActivity() {
             it.setBackgroundColor(0x00000000)
         }
         deleteBtn.visibility = View.GONE
+        dupeBtn.visibility = View.GONE
 
         when (toolCategory) {
             TOOL_NAVIGATE -> {
@@ -499,6 +502,7 @@ class MainActivity : AppCompatActivity() {
                 pCyl.visibility = View.GONE
                 pCone.visibility = View.GONE
                 deleteBtn.visibility = View.VISIBLE
+                dupeBtn.visibility = View.VISIBLE
             }
         }
     }

@@ -177,6 +177,37 @@ class Feather3DView @JvmOverloads constructor(
         }
     }
 
+    fun duplicateSelected() {
+        val selectedId = NativeBridge.getSelectedObjectId()
+        if (selectedId >= 0) {
+            val count = NativeBridge.getPrimitiveCount()
+            for (i in 0 until count) {
+                val transform = NativeBridge.getPrimitiveTransform(i)
+                val color = NativeBridge.getPrimitiveColor(i)
+                if (transform != null && color != null) {
+                    // Offset the duplicate slightly
+                    val newTransform = transform.copyOf()
+                    newTransform[12] += 0.3f // offset X
+
+                    // Re-add as a new primitive (type 0=cube is a placeholder;
+                    // the mesh is what matters, and it will be the same type)
+                    val newId = NativeBridge.addPrimitive(0, newTransform,
+                        color[0], color[1], color[2], color[3])
+                    if (newId >= 0) {
+                        val verts = NativeBridge.getPrimitiveMeshVertices(newId)
+                        val indices = NativeBridge.getPrimitiveMeshIndices(newId)
+                        val t = NativeBridge.getPrimitiveTransform(newId)
+                        val c = NativeBridge.getPrimitiveColor(newId)
+                        if (verts != null && indices != null && t != null && c != null) {
+                            filamentRenderer.uploadPrimitiveMesh(newId, verts, indices, t, c)
+                        }
+                    }
+                    break
+                }
+            }
+        }
+    }
+
     private fun refreshAllPrimitives() {
         val count = NativeBridge.getPrimitiveCount()
         for (i in 0 until count) {
@@ -221,6 +252,7 @@ class Feather3DView @JvmOverloads constructor(
     private var selectDragStartY = 0f
     private var isDraggingSelected = false
     private var lastPinchDist = 0f
+    private var lastPinchAngle = 0f
     var onSelectionChanged: ((Int) -> Unit)? = null
 
     @SuppressLint("ClickableViewAccessibility")
@@ -294,7 +326,7 @@ class Feather3DView @JvmOverloads constructor(
             }
         }
 
-        // Pinch-to-scale in Select mode (2 fingers)
+        // Pinch-to-scale and rotate in Select mode (2 fingers)
         if (currentDrawMode == -2 && event.pointerCount == 2) {
             val selectedId = NativeBridge.getSelectedObjectId()
             if (selectedId >= 0) {
@@ -303,26 +335,47 @@ class Feather3DView @JvmOverloads constructor(
                         val dx = event.getX(0) - event.getX(1)
                         val dy = event.getY(0) - event.getY(1)
                         lastPinchDist = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+                        lastPinchAngle = Math.atan2(dy.toDouble(), dx.toDouble()).toFloat()
                         return true
                     }
                     MotionEvent.ACTION_MOVE -> {
                         val dx = event.getX(0) - event.getX(1)
                         val dy = event.getY(0) - event.getY(1)
                         val dist = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+                        val angle = Math.atan2(dy.toDouble(), dx.toDouble()).toFloat()
+
                         if (lastPinchDist > 0f) {
                             val scaleFactor = dist / lastPinchDist
-                            // Apply uniform scale to the first primitive
+                            val rotDelta = angle - lastPinchAngle
+
                             val count = NativeBridge.getPrimitiveCount()
                             for (i in 0 until count) {
                                 val transform = NativeBridge.getPrimitiveTransform(i)
                                 if (transform != null) {
                                     val t = transform.copyOf()
-                                    // Scale columns 0,1,2 (the 3x3 rotation/scale submatrix)
+
+                                    // Apply uniform scale
                                     for (col in 0..2) {
                                         t[col * 4 + 0] *= scaleFactor
                                         t[col * 4 + 1] *= scaleFactor
                                         t[col * 4 + 2] *= scaleFactor
                                     }
+
+                                    // Apply Y-axis rotation
+                                    if (Math.abs(rotDelta) > 0.001f) {
+                                        val cosR = Math.cos(rotDelta.toDouble()).toFloat()
+                                        val sinR = Math.sin(rotDelta.toDouble()).toFloat()
+                                        // Rotate columns 0 and 2 (X and Z axes) around Y
+                                        val c0x = t[0]; val c0y = t[1]; val c0z = t[2]
+                                        val c2x = t[8]; val c2y = t[9]; val c2z = t[10]
+                                        t[0] = c0x * cosR + c2x * sinR
+                                        t[1] = c0y * cosR + c2y * sinR
+                                        t[2] = c0z * cosR + c2z * sinR
+                                        t[8] = -c0x * sinR + c2x * cosR
+                                        t[9] = -c0y * sinR + c2y * cosR
+                                        t[10] = -c0z * sinR + c2z * cosR
+                                    }
+
                                     NativeBridge.transformPrimitive(i, t)
                                     val verts = NativeBridge.getPrimitiveMeshVertices(i)
                                     val indices = NativeBridge.getPrimitiveMeshIndices(i)
@@ -335,10 +388,12 @@ class Feather3DView @JvmOverloads constructor(
                             }
                         }
                         lastPinchDist = dist
+                        lastPinchAngle = angle
                         return true
                     }
                     MotionEvent.ACTION_POINTER_UP -> {
                         lastPinchDist = 0f
+                        lastPinchAngle = 0f
                         return true
                     }
                 }

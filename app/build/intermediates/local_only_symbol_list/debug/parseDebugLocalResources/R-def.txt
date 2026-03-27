@@ -37,6 +37,7 @@ id btnAngleSnap
 id btnClear
 id btnColorPicker
 id btnDeleteSelected
+id btnDuplicateSelected
 id btnExport
 id btnGridSnap
 id btnMirror

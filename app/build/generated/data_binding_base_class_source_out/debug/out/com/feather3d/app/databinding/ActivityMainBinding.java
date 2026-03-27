@@ -43,6 +43,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final MaterialButton btnDeleteSelected;
 
   @NonNull
+  public final MaterialButton btnDuplicateSelected;
+
+  @NonNull
   public final ImageButton btnExport;
 
   @NonNull
@@ -180,27 +183,28 @@ public final class ActivityMainBinding implements ViewBinding {
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull TextView brushSizeLabel,
       @NonNull SeekBar brushSizeSlider, @NonNull MaterialButton btnAngleSnap,
       @NonNull ImageButton btnClear, @NonNull ImageButton btnColorPicker,
-      @NonNull MaterialButton btnDeleteSelected, @NonNull ImageButton btnExport,
-      @NonNull MaterialButton btnGridSnap, @NonNull ImageButton btnMirror,
-      @NonNull ImageButton btnModeDraw, @NonNull ImageButton btnModeErase,
-      @NonNull ImageButton btnModeLiquify, @NonNull ImageButton btnModeNavigate,
-      @NonNull ImageButton btnModePrimitives, @NonNull ImageButton btnModeSculpt,
-      @NonNull ImageButton btnModeSelect, @NonNull MaterialButton btnOrtho,
-      @NonNull ImageButton btnRedo, @NonNull ImageButton btnSettings,
-      @NonNull MaterialButton btnSnapView, @NonNull MaterialButton btnStraight,
-      @NonNull MaterialButton btnSubAdd, @NonNull MaterialButton btnSubInflate,
-      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubPrimCone,
-      @NonNull MaterialButton btnSubPrimCube, @NonNull MaterialButton btnSubPrimCylinder,
-      @NonNull MaterialButton btnSubPrimSphere, @NonNull MaterialButton btnSubSmooth,
-      @NonNull MaterialButton btnSubSub, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
-      @NonNull View colorBlue, @NonNull View colorCyan, @NonNull View colorGreen,
-      @NonNull View colorOrange, @NonNull View colorPink, @NonNull View colorPurple,
-      @NonNull View colorRed, @NonNull View colorWhite, @NonNull View colorYellow,
-      @NonNull Feather3DView feather3dView, @NonNull LinearLayout panelBrushSidebar,
-      @NonNull LinearLayout panelColorPalette, @NonNull LinearLayout panelContextMenu,
-      @NonNull LinearLayout panelDrafting, @NonNull LinearLayout panelHistory,
-      @NonNull LinearLayout panelSystemMenu, @NonNull LinearLayout panelToolMenu,
-      @NonNull TextView statsText, @NonNull TextView textDimension) {
+      @NonNull MaterialButton btnDeleteSelected, @NonNull MaterialButton btnDuplicateSelected,
+      @NonNull ImageButton btnExport, @NonNull MaterialButton btnGridSnap,
+      @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
+      @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
+      @NonNull ImageButton btnModeNavigate, @NonNull ImageButton btnModePrimitives,
+      @NonNull ImageButton btnModeSculpt, @NonNull ImageButton btnModeSelect,
+      @NonNull MaterialButton btnOrtho, @NonNull ImageButton btnRedo,
+      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSnapView,
+      @NonNull MaterialButton btnStraight, @NonNull MaterialButton btnSubAdd,
+      @NonNull MaterialButton btnSubInflate, @NonNull MaterialButton btnSubPinch,
+      @NonNull MaterialButton btnSubPrimCone, @NonNull MaterialButton btnSubPrimCube,
+      @NonNull MaterialButton btnSubPrimCylinder, @NonNull MaterialButton btnSubPrimSphere,
+      @NonNull MaterialButton btnSubSmooth, @NonNull MaterialButton btnSubSub,
+      @NonNull ImageButton btnUndo, @NonNull View colorBlack, @NonNull View colorBlue,
+      @NonNull View colorCyan, @NonNull View colorGreen, @NonNull View colorOrange,
+      @NonNull View colorPink, @NonNull View colorPurple, @NonNull View colorRed,
+      @NonNull View colorWhite, @NonNull View colorYellow, @NonNull Feather3DView feather3dView,
+      @NonNull LinearLayout panelBrushSidebar, @NonNull LinearLayout panelColorPalette,
+      @NonNull LinearLayout panelContextMenu, @NonNull LinearLayout panelDrafting,
+      @NonNull LinearLayout panelHistory, @NonNull LinearLayout panelSystemMenu,
+      @NonNull LinearLayout panelToolMenu, @NonNull TextView statsText,
+      @NonNull TextView textDimension) {
     this.rootView = rootView;
     this.brushSizeLabel = brushSizeLabel;
     this.brushSizeSlider = brushSizeSlider;
@@ -208,6 +212,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnClear = btnClear;
     this.btnColorPicker = btnColorPicker;
     this.btnDeleteSelected = btnDeleteSelected;
+    this.btnDuplicateSelected = btnDuplicateSelected;
     this.btnExport = btnExport;
     this.btnGridSnap = btnGridSnap;
     this.btnMirror = btnMirror;
@@ -315,6 +320,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnDeleteSelected;
       MaterialButton btnDeleteSelected = ViewBindings.findChildViewById(rootView, id);
       if (btnDeleteSelected == null) {
+        break missingId;
+      }
+
+      id = R.id.btnDuplicateSelected;
+      MaterialButton btnDuplicateSelected = ViewBindings.findChildViewById(rootView, id);
+      if (btnDuplicateSelected == null) {
         break missingId;
       }
 
@@ -589,14 +600,15 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
-          btnAngleSnap, btnClear, btnColorPicker, btnDeleteSelected, btnExport, btnGridSnap,
-          btnMirror, btnModeDraw, btnModeErase, btnModeLiquify, btnModeNavigate, btnModePrimitives,
-          btnModeSculpt, btnModeSelect, btnOrtho, btnRedo, btnSettings, btnSnapView, btnStraight,
-          btnSubAdd, btnSubInflate, btnSubPinch, btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder,
-          btnSubPrimSphere, btnSubSmooth, btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan,
-          colorGreen, colorOrange, colorPink, colorPurple, colorRed, colorWhite, colorYellow,
-          feather3dView, panelBrushSidebar, panelColorPalette, panelContextMenu, panelDrafting,
-          panelHistory, panelSystemMenu, panelToolMenu, statsText, textDimension);
+          btnAngleSnap, btnClear, btnColorPicker, btnDeleteSelected, btnDuplicateSelected,
+          btnExport, btnGridSnap, btnMirror, btnModeDraw, btnModeErase, btnModeLiquify,
+          btnModeNavigate, btnModePrimitives, btnModeSculpt, btnModeSelect, btnOrtho, btnRedo,
+          btnSettings, btnSnapView, btnStraight, btnSubAdd, btnSubInflate, btnSubPinch,
+          btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder, btnSubPrimSphere, btnSubSmooth,
+          btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan, colorGreen, colorOrange, colorPink,
+          colorPurple, colorRed, colorWhite, colorYellow, feather3dView, panelBrushSidebar,
+          panelColorPalette, panelContextMenu, panelDrafting, panelHistory, panelSystemMenu,
+          panelToolMenu, statsText, textDimension);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
