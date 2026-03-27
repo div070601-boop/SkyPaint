@@ -3775,6 +3775,7 @@ id brushSizeSlider
 id btnAngleSnap
 id btnClear
 id btnColorPicker
+id btnDeleteSelected
 id btnExport
 id btnGridSnap
 id btnMirror

@@ -345,6 +345,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2) }
         binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3) }
 
+        binding.btnDeleteSelected.setOnClickListener { featherView.deleteSelected() }
+
 
         // Clear
         binding.btnClear.setOnClickListener {
@@ -396,12 +398,14 @@ class MainActivity : AppCompatActivity() {
         val pSphere = binding.btnSubPrimSphere
         val pCyl = binding.btnSubPrimCylinder
         val pCone = binding.btnSubPrimCone
+        val deleteBtn = binding.btnDeleteSelected
 
         // Reset all text colors
         listOf(add, sub, smooth, inflate, pinch, pCube, pSphere, pCyl, pCone).forEach {
             it.setTextColor(0xFF616161.toInt())
             it.setBackgroundColor(0x00000000)
         }
+        deleteBtn.visibility = View.GONE
 
         when (toolCategory) {
             TOOL_NAVIGATE -> {
@@ -478,7 +482,7 @@ class MainActivity : AppCompatActivity() {
                 pCone.visibility = View.VISIBLE
             }
             TOOL_SELECT -> {
-                binding.panelContextMenu.visibility = View.GONE
+                binding.panelContextMenu.visibility = View.VISIBLE
                 add.visibility = View.GONE
                 sub.visibility = View.GONE
                 smooth.visibility = View.GONE
@@ -488,6 +492,7 @@ class MainActivity : AppCompatActivity() {
                 pSphere.visibility = View.GONE
                 pCyl.visibility = View.GONE
                 pCone.visibility = View.GONE
+                deleteBtn.visibility = View.VISIBLE
             }
         }
     }

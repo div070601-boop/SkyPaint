@@ -136,25 +136,77 @@ class Feather3DView @JvmOverloads constructor(
         }
     }
 
+    // ── Primitives ──────────────────────────────────────────────────────────
 
     fun addPrimitive(type: Int) {
-        val identity = floatArrayOf(
+        // Spawn at camera's look-at target so it appears in view
+        val target = cameraController.targetPosition
+        val transform = floatArrayOf(
             1f, 0f, 0f, 0f,
             0f, 1f, 0f, 0f,
             0f, 0f, 1f, 0f,
-            0f, 0f, 0f, 1f
+            target[0], target[1], target[2], 1f
         )
-        val id = NativeBridge.addPrimitive(type, identity, 0.5f, 0.5f, 0.5f, 1.0f)
+        val id = NativeBridge.addPrimitive(type, transform, 0.5f, 0.5f, 0.5f, 1.0f)
         if (id >= 0) {
             val verts = NativeBridge.getPrimitiveMeshVertices(id)
             val indices = NativeBridge.getPrimitiveMeshIndices(id)
-            val transform = NativeBridge.getPrimitiveTransform(id)
+            val t = NativeBridge.getPrimitiveTransform(id)
             val color = NativeBridge.getPrimitiveColor(id)
-            if (verts != null && indices != null && transform != null && color != null) {
-                filamentRenderer.uploadPrimitiveMesh(id, verts, indices, transform, color)
+            if (verts != null && indices != null && t != null && color != null) {
+                filamentRenderer.uploadPrimitiveMesh(id, verts, indices, t, color)
             }
         }
     }
+
+    // ── Selection ───────────────────────────────────────────────────────────
+
+    fun deleteSelected() {
+        val selectedId = NativeBridge.getSelectedObjectId()
+        if (selectedId >= 0) {
+            val count = NativeBridge.getPrimitiveCount()
+            for (i in 0 until count) {
+                NativeBridge.removePrimitive(i)
+                filamentRenderer.clearAll()
+                refreshAllPrimitives()
+                refreshAllStrokes()
+                break
+            }
+            NativeBridge.deselectAll()
+            onSelectionChanged?.invoke(-1)
+        }
+    }
+
+    private fun refreshAllPrimitives() {
+        val count = NativeBridge.getPrimitiveCount()
+        for (i in 0 until count) {
+            val verts = NativeBridge.getPrimitiveMeshVertices(i)
+            val indices = NativeBridge.getPrimitiveMeshIndices(i)
+            val transform = NativeBridge.getPrimitiveTransform(i)
+            val color = NativeBridge.getPrimitiveColor(i)
+            if (verts != null && indices != null && transform != null && color != null) {
+                filamentRenderer.uploadPrimitiveMesh(i, verts, indices, transform, color)
+            }
+        }
+    }
+
+    private fun refreshAllStrokes() {
+        val strokeCount = NativeBridge.getStrokeCount()
+        for (i in 0 until strokeCount) {
+            val verts = NativeBridge.getStrokeMeshVertices(i)
+            val indices = NativeBridge.getStrokeMeshIndices(i)
+            if (verts != null && indices != null) {
+                filamentRenderer.uploadStrokeMesh(i, verts, indices)
+            }
+        }
+        val voxVerts = NativeBridge.getVoxelMeshVertices()
+        val voxIdx = NativeBridge.getVoxelMeshIndices()
+        if (voxVerts != null && voxIdx != null && voxVerts.isNotEmpty()) {
+            filamentRenderer.uploadVoxelMesh(voxVerts, voxIdx)
+        }
+    }
+
+    // ── Drawing Mode ────────────────────────────────────────────────────────
 
     fun setDrawMode(mode: Int) {
         currentDrawMode = mode
@@ -289,6 +341,8 @@ class Feather3DView @JvmOverloads constructor(
 
     fun clearAll() {
         NativeBridge.clearStrokes()
+        NativeBridge.clearPrimitives()
+        NativeBridge.deselectAll()
         filamentRenderer.clearAll()
         updateStats()
     }

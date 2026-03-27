@@ -632,6 +632,19 @@
             android:layout_marginEnd="4dp"
             android:visibility="gone" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteSelected"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Delete"
+            android:textSize="12sp"
+            android:textColor="#D32F2F"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
