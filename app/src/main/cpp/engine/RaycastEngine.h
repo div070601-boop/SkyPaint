@@ -5,7 +5,7 @@
 #include <vector>
 #include <functional>
 
-namespace feather {
+namespace sky {
 
 struct Ray {
     Vec3 origin;
@@ -41,4 +41,4 @@ public:
     static int pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMeshes, std::function<bool(int)> filter = nullptr);
 };
 
-} // namespace feather
+} // namespace sky

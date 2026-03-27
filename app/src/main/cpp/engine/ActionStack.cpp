@@ -1,6 +1,6 @@
 #include "ActionStack.h"
 
-namespace feather {
+namespace sky {
 
 void ActionStack::pushAction(std::unique_ptr<Action> action) {
     // Check if we can merge with the previous action (for rapid continuous actions like drag)
@@ -48,4 +48,4 @@ void ActionStack::clear() {
     m_currentIndex = -1;
 }
 
-} // namespace feather
+} // namespace sky

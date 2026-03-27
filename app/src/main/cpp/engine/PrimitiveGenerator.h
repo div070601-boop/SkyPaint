@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 enum class PrimitiveType {
     CUBE,
@@ -23,4 +23,4 @@ public:
     static Mesh generateTorus(float outerRadius = 0.5f, float innerRadius = 0.2f, int radialSegments = 32, int tubularSegments = 16);
 };
 
-} // namespace feather
+} // namespace sky

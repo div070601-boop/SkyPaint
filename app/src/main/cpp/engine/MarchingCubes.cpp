@@ -1,6 +1,6 @@
 #include "MarchingCubes.h"
 
-namespace feather {
+namespace sky {
 
 Vec3 MarchingCubes::interpolateEdge(const Vec3& p1, const Vec3& p2,
                                      float v1, float v2) const {
@@ -438,4 +438,4 @@ const int MarchingCubes::TRI_TABLE[256][16] = {
     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
 };
 
-} // namespace feather
+} // namespace sky

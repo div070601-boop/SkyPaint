@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project(feather3d_engine LANGUAGES CXX)
+project(sky3d_engine LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,9 +28,9 @@ set(ENGINE_SOURCES
     jni_bridge.cpp
 )
 
-add_library(feather3d_engine SHARED ${ENGINE_SOURCES})
+add_library(sky3d_engine SHARED ${ENGINE_SOURCES})
 
-target_include_directories(feather3d_engine PRIVATE
+target_include_directories(sky3d_engine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/engine
     ${CMAKE_CURRENT_SOURCE_DIR}/math
@@ -39,7 +39,7 @@ target_include_directories(feather3d_engine PRIVATE
 find_library(log-lib log)
 find_library(android-lib android)
 
-target_link_libraries(feather3d_engine
+target_link_libraries(sky3d_engine
     ${log-lib}
     ${android-lib}
 )

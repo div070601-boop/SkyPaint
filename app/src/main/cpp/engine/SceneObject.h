@@ -3,7 +3,7 @@
 #include "../math/MathTypes.h"
 #include <string>
 
-namespace feather {
+namespace sky {
 
 enum class ObjectType {
     STROKE,
@@ -24,4 +24,4 @@ struct SceneObject {
     int primitiveType = 0; // Maps to PrimitiveType enum (0=CUBE, 1=SPHERE, etc.)
 };
 
-} // namespace feather
+} // namespace sky

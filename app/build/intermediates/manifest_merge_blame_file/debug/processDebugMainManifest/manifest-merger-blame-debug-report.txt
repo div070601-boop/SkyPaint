@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.feather3d.app"
+3    package="com.skypaint.app"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -36,12 +36,12 @@
 24
 25    <permission
 25-->[androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
-26        android:name="com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26        android:name="com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 26-->[androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
 27        android:protectionLevel="signature" />
 27-->[androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
 28
-29    <uses-permission android:name="com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29    <uses-permission android:name="com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 29-->[androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
 29-->[androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
 30
@@ -65,7 +65,7 @@
 40-->C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:17:9-47
 41        <activity
 41-->C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:19:9-29:20
-42            android:name="com.feather3d.app.MainActivity"
+42            android:name="com.skypaint.app.MainActivity"
 42-->C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:20:13-41
 43            android:configChanges="orientation|screenSize|keyboardHidden"
 43-->C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:22:13-74
@@ -89,7 +89,7 @@
 53-->[androidx.emoji2:emoji2:1.3.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\e70e713767f6b5d1ed1fdea069017eec\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
 54            android:name="androidx.startup.InitializationProvider"
 54-->[androidx.emoji2:emoji2:1.3.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\e70e713767f6b5d1ed1fdea069017eec\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-55            android:authorities="com.feather3d.app.androidx-startup"
+55            android:authorities="com.skypaint.app.androidx-startup"
 55-->[androidx.emoji2:emoji2:1.3.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\e70e713767f6b5d1ed1fdea069017eec\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 56            android:exported="false" >
 56-->[androidx.emoji2:emoji2:1.3.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\e70e713767f6b5d1ed1fdea069017eec\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37

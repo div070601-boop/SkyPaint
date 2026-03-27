@@ -5,24 +5,24 @@
 #include "engine/GeometryEngine.h"
 #include <glm/gtc/type_ptr.hpp>
 
-#define LOG_TAG "Feather3D-JNI"
+#define LOG_TAG "SkyPaint-JNI"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
-static std::unique_ptr<feather::GeometryEngine> g_engine;
+static std::unique_ptr<sky::GeometryEngine> g_engine;
 
 extern "C" {
 
 // ── Engine Lifecycle ────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_nativeInit(JNIEnv* env, jclass) {
-    g_engine = std::make_unique<feather::GeometryEngine>();
+Java_com_sky3d_app_NativeBridge_nativeInit(JNIEnv* env, jclass) {
+    g_engine = std::make_unique<sky::GeometryEngine>();
     LOGI("GeometryEngine initialized");
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_nativeDestroy(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_nativeDestroy(JNIEnv* env, jclass) {
     g_engine.reset();
     LOGI("GeometryEngine destroyed");
 }
@@ -30,13 +30,13 @@ Java_com_feather3d_app_NativeBridge_nativeDestroy(JNIEnv* env, jclass) {
 // ── Draw Mode ───────────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setDrawMode(JNIEnv* env, jclass, jint mode) {
+Java_com_sky3d_app_NativeBridge_setDrawMode(JNIEnv* env, jclass, jint mode) {
     if (!g_engine) return;
-    g_engine->setDrawMode(static_cast<feather::DrawMode>(mode));
+    g_engine->setDrawMode(static_cast<sky::DrawMode>(mode));
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getDrawMode(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getDrawMode(JNIEnv* env, jclass) {
     if (!g_engine) return 0;
     return static_cast<jint>(g_engine->getDrawMode());
 }
@@ -44,44 +44,44 @@ Java_com_feather3d_app_NativeBridge_getDrawMode(JNIEnv* env, jclass) {
 // ── Stroke Drawing ──────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_beginStroke(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_beginStroke(JNIEnv* env, jclass) {
     if (!g_engine) return;
     g_engine->beginStroke();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_addStrokePoint(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_addStrokePoint(JNIEnv* env, jclass,
     jfloat x, jfloat y, jfloat z, jfloat pressure, jfloat tilt, jfloat timestamp) {
     if (!g_engine) return;
-    g_engine->addStrokePoint(feather::Vec3(x, y, z), pressure, tilt, timestamp);
+    g_engine->addStrokePoint(sky::Vec3(x, y, z), pressure, tilt, timestamp);
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_endStroke(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_endStroke(JNIEnv* env, jclass) {
     if (!g_engine) return -1;
     return g_engine->endStroke();
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getStrokeCount(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getStrokeCount(JNIEnv* env, jclass) {
     if (!g_engine) return 0;
     return g_engine->getStrokeCount();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_removeStroke(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_removeStroke(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return;
     g_engine->removeStroke(index);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_clearStrokes(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_clearStrokes(JNIEnv* env, jclass) {
     if (!g_engine) return;
     g_engine->clearStrokes();
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getStrokePoints(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getStrokePoints(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto& points = g_engine->getStrokePoints(index);
     if (points.empty()) return nullptr;
@@ -111,13 +111,13 @@ Java_com_feather3d_app_NativeBridge_getStrokePoints(JNIEnv* env, jclass, jint in
 // ── Tube Parameters ─────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setTubeRadius(JNIEnv* env, jclass, jfloat radius) {
+Java_com_sky3d_app_NativeBridge_setTubeRadius(JNIEnv* env, jclass, jfloat radius) {
     if (!g_engine) return;
     g_engine->setTubeRadius(radius);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setTubeSegments(JNIEnv* env, jclass, jint segments) {
+Java_com_sky3d_app_NativeBridge_setTubeSegments(JNIEnv* env, jclass, jint segments) {
     if (!g_engine) return;
     g_engine->setTubeSegments(segments);
 }
@@ -125,7 +125,7 @@ Java_com_feather3d_app_NativeBridge_setTubeSegments(JNIEnv* env, jclass, jint se
 // ── Stroke Color ────────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setStrokeColor(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_setStrokeColor(JNIEnv* env, jclass,
     jfloat r, jfloat g, jfloat b, jfloat a) {
     if (!g_engine) return;
     g_engine->setStrokeColor(r, g, b, a);
@@ -134,25 +134,25 @@ Java_com_feather3d_app_NativeBridge_setStrokeColor(JNIEnv* env, jclass,
 // ── Drafting State ──────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setStraightLineMode(JNIEnv* env, jclass, jboolean enable) {
+Java_com_sky3d_app_NativeBridge_setStraightLineMode(JNIEnv* env, jclass, jboolean enable) {
     if (!g_engine) return;
     g_engine->setStraightLineMode(enable == JNI_TRUE);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setGridSnap(JNIEnv* env, jclass, jboolean enable, jfloat size) {
+Java_com_sky3d_app_NativeBridge_setGridSnap(JNIEnv* env, jclass, jboolean enable, jfloat size) {
     if (!g_engine) return;
     g_engine->setGridSnap(enable == JNI_TRUE, size);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setAngleSnap(JNIEnv* env, jclass, jboolean enable, jfloat degrees) {
+Java_com_sky3d_app_NativeBridge_setAngleSnap(JNIEnv* env, jclass, jboolean enable, jfloat degrees) {
     if (!g_engine) return;
     g_engine->setAngleSnap(enable == JNI_TRUE, degrees);
 }
 
 JNIEXPORT jfloat JNICALL
-Java_com_feather3d_app_NativeBridge_getCurrentStrokeLength(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getCurrentStrokeLength(JNIEnv* env, jclass) {
     if (!g_engine) return 0.0f;
     return g_engine->getCurrentStrokeLength();
 }
@@ -160,48 +160,48 @@ Java_com_feather3d_app_NativeBridge_getCurrentStrokeLength(JNIEnv* env, jclass) 
 // ── Voxel Sculpting ─────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_initVoxelGrid(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_initVoxelGrid(JNIEnv* env, jclass,
     jint resolution, jfloat minX, jfloat minY, jfloat minZ,
     jfloat maxX, jfloat maxY, jfloat maxZ) {
     if (!g_engine) return;
     g_engine->initVoxelGrid(resolution,
-        feather::Vec3(minX, minY, minZ),
-        feather::Vec3(maxX, maxY, maxZ));
+        sky::Vec3(minX, minY, minZ),
+        sky::Vec3(maxX, maxY, maxZ));
     LOGI("VoxelGrid initialized: res=%d", resolution);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_sculptAt(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_sculptAt(JNIEnv* env, jclass,
     jfloat x, jfloat y, jfloat z, jfloat radius, jfloat strength) {
     if (!g_engine) return;
-    g_engine->sculptAt(feather::Vec3(x, y, z), radius, strength);
+    g_engine->sculptAt(sky::Vec3(x, y, z), radius, strength);
 }
 
 // ── Liquify ─────────────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setLiquifyRadius(JNIEnv* env, jclass, jfloat radius) {
+Java_com_sky3d_app_NativeBridge_setLiquifyRadius(JNIEnv* env, jclass, jfloat radius) {
     if (!g_engine) return;
     g_engine->setLiquifyRadius(radius);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setLiquifyStrength(JNIEnv* env, jclass, jfloat strength) {
+Java_com_sky3d_app_NativeBridge_setLiquifyStrength(JNIEnv* env, jclass, jfloat strength) {
     if (!g_engine) return;
     g_engine->setLiquifyStrength(strength);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_liquifyAt(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_liquifyAt(JNIEnv* env, jclass,
     jfloat px, jfloat py, jfloat pz, jfloat dx, jfloat dy, jfloat dz) {
     if (!g_engine) return;
-    g_engine->liquifyAt(feather::Vec3(px, py, pz), feather::Vec3(dx, dy, dz));
+    g_engine->liquifyAt(sky::Vec3(px, py, pz), sky::Vec3(dx, dy, dz));
 }
 
 // ── Decimation ──────────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_decimateVoxelMesh(JNIEnv* env, jclass, jfloat ratio) {
+Java_com_sky3d_app_NativeBridge_decimateVoxelMesh(JNIEnv* env, jclass, jfloat ratio) {
     if (!g_engine) return;
     g_engine->decimateVoxelMesh(ratio);
 }
@@ -209,7 +209,7 @@ Java_com_feather3d_app_NativeBridge_decimateVoxelMesh(JNIEnv* env, jclass, jfloa
 // ── Mesh Data Retrieval (for renderer) ──────────────────────────────────────
 
 // Returns interleaved vertex data: [pos.x, pos.y, pos.z, norm.x, norm.y, norm.z, u, v, r, g, b, a, ...]
-static jfloatArray meshVerticesToFloatArray(JNIEnv* env, const feather::Mesh& mesh) {
+static jfloatArray meshVerticesToFloatArray(JNIEnv* env, const sky::Mesh& mesh) {
     int floatsPerVertex = 12; // 3 pos + 3 normal + 2 uv + 4 color
     int totalFloats = static_cast<int>(mesh.vertices.size()) * floatsPerVertex;
 
@@ -238,7 +238,7 @@ static jfloatArray meshVerticesToFloatArray(JNIEnv* env, const feather::Mesh& me
     return result;
 }
 
-static jintArray meshIndicesToIntArray(JNIEnv* env, const feather::Mesh& mesh) {
+static jintArray meshIndicesToIntArray(JNIEnv* env, const sky::Mesh& mesh) {
     int totalIndices = static_cast<int>(mesh.indices.size());
     jintArray result = env->NewIntArray(totalIndices);
     if (!result) return nullptr;
@@ -249,56 +249,56 @@ static jintArray meshIndicesToIntArray(JNIEnv* env, const feather::Mesh& mesh) {
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getStrokeMeshVertices(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getStrokeMeshVertices(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto& mesh = g_engine->getStrokeMesh(index);
     return meshVerticesToFloatArray(env, mesh);
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_feather3d_app_NativeBridge_getStrokeMeshIndices(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getStrokeMeshIndices(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto& mesh = g_engine->getStrokeMesh(index);
     return meshIndicesToIntArray(env, mesh);
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getCombinedMeshVertices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getCombinedMeshVertices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getCombinedStrokeMesh();
     return meshVerticesToFloatArray(env, mesh);
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_feather3d_app_NativeBridge_getCombinedMeshIndices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getCombinedMeshIndices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getCombinedStrokeMesh();
     return meshIndicesToIntArray(env, mesh);
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getCurrentStrokeMeshVertices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getCurrentStrokeMeshVertices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getCurrentStrokeMesh();
     return meshVerticesToFloatArray(env, mesh);
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_feather3d_app_NativeBridge_getCurrentStrokeMeshIndices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getCurrentStrokeMeshIndices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getCurrentStrokeMesh();
     return meshIndicesToIntArray(env, mesh);
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getVoxelMeshVertices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getVoxelMeshVertices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getVoxelMesh();
     return meshVerticesToFloatArray(env, mesh);
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_feather3d_app_NativeBridge_getVoxelMeshIndices(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getVoxelMeshIndices(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto mesh = g_engine->getVoxelMesh();
     return meshIndicesToIntArray(env, mesh);
@@ -307,14 +307,14 @@ Java_com_feather3d_app_NativeBridge_getVoxelMeshIndices(JNIEnv* env, jclass) {
 // ── Export ───────────────────────────────────────────────────────────────────
 
 JNIEXPORT jstring JNICALL
-Java_com_feather3d_app_NativeBridge_exportOBJ(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_exportOBJ(JNIEnv* env, jclass) {
     if (!g_engine) return env->NewStringUTF("");
     std::string obj = g_engine->exportOBJ();
     return env->NewStringUTF(obj.c_str());
 }
 
 JNIEXPORT jbyteArray JNICALL
-Java_com_feather3d_app_NativeBridge_exportGLB(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_exportGLB(JNIEnv* env, jclass) {
     if (!g_engine) return nullptr;
     auto data = g_engine->exportGLB();
 
@@ -326,7 +326,7 @@ Java_com_feather3d_app_NativeBridge_exportGLB(JNIEnv* env, jclass) {
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_exportOBJToFile(JNIEnv* env, jclass, jstring path) {
+Java_com_sky3d_app_NativeBridge_exportOBJToFile(JNIEnv* env, jclass, jstring path) {
     if (!g_engine) return JNI_FALSE;
     const char* pathStr = env->GetStringUTFChars(path, nullptr);
     bool success = g_engine->exportOBJToFile(std::string(pathStr));
@@ -335,7 +335,7 @@ Java_com_feather3d_app_NativeBridge_exportOBJToFile(JNIEnv* env, jclass, jstring
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_exportGLBToFile(JNIEnv* env, jclass, jstring path) {
+Java_com_sky3d_app_NativeBridge_exportGLBToFile(JNIEnv* env, jclass, jstring path) {
     if (!g_engine) return JNI_FALSE;
     const char* pathStr = env->GetStringUTFChars(path, nullptr);
     bool success = g_engine->exportGLBToFile(std::string(pathStr));
@@ -346,13 +346,13 @@ Java_com_feather3d_app_NativeBridge_exportGLBToFile(JNIEnv* env, jclass, jstring
 // ── Scene Info ──────────────────────────────────────────────────────────────
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getTotalVertexCount(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getTotalVertexCount(JNIEnv* env, jclass) {
     if (!g_engine) return 0;
     return g_engine->getTotalVertexCount();
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getTotalTriangleCount(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getTotalTriangleCount(JNIEnv* env, jclass) {
     if (!g_engine) return 0;
     return g_engine->getTotalTriangleCount();
 }
@@ -360,58 +360,58 @@ Java_com_feather3d_app_NativeBridge_getTotalTriangleCount(JNIEnv* env, jclass) {
 // ── Undo / Redo ─────────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_undo(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_undo(JNIEnv* env, jclass) {
     if (g_engine) g_engine->undo();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_redo(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_redo(JNIEnv* env, jclass) {
     if (g_engine) g_engine->redo();
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_canUndo(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_canUndo(JNIEnv* env, jclass) {
     return g_engine ? (g_engine->canUndo() ? JNI_TRUE : JNI_FALSE) : JNI_FALSE;
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_canRedo(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_canRedo(JNIEnv* env, jclass) {
     return g_engine ? (g_engine->canRedo() ? JNI_TRUE : JNI_FALSE) : JNI_FALSE;
 }
 
 // -- Primitives --------------------------------------------------------------
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_addPrimitive(JNIEnv* env, jclass, jint type, jfloatArray transform, jfloat r, jfloat g, jfloat b, jfloat a) {
+Java_com_sky3d_app_NativeBridge_addPrimitive(JNIEnv* env, jclass, jint type, jfloatArray transform, jfloat r, jfloat g, jfloat b, jfloat a) {
     if (!g_engine) return -1;
     
     jfloat* tElements = env->GetFloatArrayElements(transform, nullptr);
-    feather::Mat4 mat = glm::make_mat4(tElements);
+    sky::Mat4 mat = glm::make_mat4(tElements);
     env->ReleaseFloatArrayElements(transform, tElements, JNI_ABORT);
     
-    return g_engine->addPrimitive(static_cast<feather::PrimitiveType>(type), mat, feather::Vec4(r, g, b, a));
+    return g_engine->addPrimitive(static_cast<sky::PrimitiveType>(type), mat, sky::Vec4(r, g, b, a));
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveCount(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveCount(JNIEnv* env, jclass) {
     if (!g_engine) return 0;
     return g_engine->getPrimitiveCount();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_removePrimitive(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_removePrimitive(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return;
     g_engine->removePrimitive(index);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_clearPrimitives(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_clearPrimitives(JNIEnv* env, jclass) {
     if (!g_engine) return;
     g_engine->clearPrimitives();
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveMeshVertices(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveMeshVertices(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto* prim = g_engine->getPrimitive(index);
     if (!prim) return nullptr;
@@ -419,7 +419,7 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveMeshVertices(JNIEnv* env, jclass
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveMeshIndices(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveMeshIndices(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto* prim = g_engine->getPrimitive(index);
     if (!prim) return nullptr;
@@ -427,7 +427,7 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveMeshIndices(JNIEnv* env, jclass,
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveTransform(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveTransform(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto* prim = g_engine->getPrimitive(index);
     if (!prim) return nullptr;
@@ -439,7 +439,7 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveTransform(JNIEnv* env, jclass, j
 }
 
 JNIEXPORT jfloatArray JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return nullptr;
     const auto* prim = g_engine->getPrimitive(index);
     if (!prim) return nullptr;
@@ -451,7 +451,7 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint 
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveType(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveType(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return -1;
     const auto* prim = g_engine->getPrimitive(index);
     if (!prim) return -1;
@@ -461,37 +461,37 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveType(JNIEnv* env, jclass, jint i
 // -- Object Properties -------------------------------------------------------
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_isPrimitiveVisible(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_isPrimitiveVisible(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return JNI_FALSE;
     return g_engine->isPrimitiveVisible(index) ? JNI_TRUE : JNI_FALSE;
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setPrimitiveVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
+Java_com_sky3d_app_NativeBridge_setPrimitiveVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
     if (!g_engine) return;
     g_engine->setPrimitiveVisible(index, visible);
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_isPrimitiveLocked(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_isPrimitiveLocked(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return JNI_FALSE;
     return g_engine->isPrimitiveLocked(index) ? JNI_TRUE : JNI_FALSE;
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setPrimitiveLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
+Java_com_sky3d_app_NativeBridge_setPrimitiveLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
     if (!g_engine) return;
     g_engine->setPrimitiveLocked(index, locked);
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_feather3d_app_NativeBridge_getPrimitiveName(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getPrimitiveName(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return env->NewStringUTF("");
     return env->NewStringUTF(g_engine->getPrimitiveName(index).c_str());
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setPrimitiveName(JNIEnv* env, jclass, jint index, jstring name) {
+Java_com_sky3d_app_NativeBridge_setPrimitiveName(JNIEnv* env, jclass, jint index, jstring name) {
     if (!g_engine) return;
     const char* nativeString = env->GetStringUTFChars(name, 0);
     g_engine->setPrimitiveName(index, nativeString);
@@ -499,37 +499,37 @@ Java_com_feather3d_app_NativeBridge_setPrimitiveName(JNIEnv* env, jclass, jint i
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_isStrokeVisible(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_isStrokeVisible(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return JNI_FALSE;
     return g_engine->isStrokeVisible(index) ? JNI_TRUE : JNI_FALSE;
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setStrokeVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
+Java_com_sky3d_app_NativeBridge_setStrokeVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
     if (!g_engine) return;
     g_engine->setStrokeVisible(index, visible);
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_feather3d_app_NativeBridge_isStrokeLocked(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_isStrokeLocked(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return JNI_FALSE;
     return g_engine->isStrokeLocked(index) ? JNI_TRUE : JNI_FALSE;
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setStrokeLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
+Java_com_sky3d_app_NativeBridge_setStrokeLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
     if (!g_engine) return;
     g_engine->setStrokeLocked(index, locked);
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_feather3d_app_NativeBridge_getStrokeName(JNIEnv* env, jclass, jint index) {
+Java_com_sky3d_app_NativeBridge_getStrokeName(JNIEnv* env, jclass, jint index) {
     if (!g_engine) return env->NewStringUTF("");
     return env->NewStringUTF(g_engine->getStrokeName(index).c_str());
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_setStrokeName(JNIEnv* env, jclass, jint index, jstring name) {
+Java_com_sky3d_app_NativeBridge_setStrokeName(JNIEnv* env, jclass, jint index, jstring name) {
     if (!g_engine) return;
     const char* nativeString = env->GetStringUTFChars(name, 0);
     g_engine->setStrokeName(index, nativeString);
@@ -539,7 +539,7 @@ Java_com_feather3d_app_NativeBridge_setStrokeName(JNIEnv* env, jclass, jint inde
 // -- Selection & Transform ---------------------------------------------------
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_pickObjectAt(JNIEnv* env, jclass,
+Java_com_sky3d_app_NativeBridge_pickObjectAt(JNIEnv* env, jclass,
     jfloat rayOx, jfloat rayOy, jfloat rayOz,
     jfloat rayDx, jfloat rayDy, jfloat rayDz) {
     if (!g_engine) return -1;
@@ -547,28 +547,28 @@ Java_com_feather3d_app_NativeBridge_pickObjectAt(JNIEnv* env, jclass,
 }
 
 JNIEXPORT jint JNICALL
-Java_com_feather3d_app_NativeBridge_getSelectedObjectId(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_getSelectedObjectId(JNIEnv* env, jclass) {
     if (!g_engine) return -1;
     return g_engine->getSelectedObjectId();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_deselectAll(JNIEnv* env, jclass) {
+Java_com_sky3d_app_NativeBridge_deselectAll(JNIEnv* env, jclass) {
     if (!g_engine) return;
     g_engine->deselectAll();
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_transformPrimitive(JNIEnv* env, jclass, jint index, jfloatArray transform) {
+Java_com_sky3d_app_NativeBridge_transformPrimitive(JNIEnv* env, jclass, jint index, jfloatArray transform) {
     if (!g_engine) return;
     jfloat* tElements = env->GetFloatArrayElements(transform, nullptr);
-    feather::Mat4 mat = glm::make_mat4(tElements);
+    sky::Mat4 mat = glm::make_mat4(tElements);
     env->ReleaseFloatArrayElements(transform, tElements, JNI_ABORT);
     g_engine->transformPrimitive(index, mat);
 }
 
 JNIEXPORT void JNICALL
-Java_com_feather3d_app_NativeBridge_mergeSelectedPrimitive(JNIEnv* env, jclass, jboolean subtract) {
+Java_com_sky3d_app_NativeBridge_mergeSelectedPrimitive(JNIEnv* env, jclass, jboolean subtract) {
     if (!g_engine) return;
     g_engine->mergeSelectedPrimitive(subtract == JNI_TRUE);
 }

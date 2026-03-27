@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feather3d.app"
+    package="com.skypaint.app"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -23,10 +23,10 @@
         android:maxSdkVersion="28" />
 
     <permission
-        android:name="com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -39,7 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Feather3D" >
         <activity
-            android:name="com.feather3d.app.MainActivity"
+            android:name="com.skypaint.app.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true"
             android:screenOrientation="unspecified" >
@@ -52,7 +52,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.feather3d.app.androidx-startup"
+            android:authorities="com.skypaint.app.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

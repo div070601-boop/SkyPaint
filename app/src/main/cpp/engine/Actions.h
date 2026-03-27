@@ -7,7 +7,7 @@
 #include "../math/MathTypes.h"
 #include <vector>
 
-namespace feather {
+namespace sky {
 
 /// Command to undo or redo a 3D stroke
 class StrokeAction : public Action {
@@ -147,4 +147,4 @@ private:
     std::vector<float> m_newVoxelField;
 };
 
-} // namespace feather
+} // namespace sky

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.feather3d.app-mergeDebugResources-34:/values-ca/values-ca.xml",
+            "outputFile": "com.skypaint.app-mergeDebugResources-34:/values-ca/values-ca.xml",
             "map": [
                 {
                     "source": "C:\\Users\\div07\\.gradle\\caches\\8.11.1\\transforms\\6ba66fff8ad3954525703d1c4d27c66e\\transformed\\core-1.18.0\\res\\values-ca\\values-ca.xml",

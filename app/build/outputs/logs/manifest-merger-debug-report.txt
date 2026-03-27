@@ -114,7 +114,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\di
 		ADDED from C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
 		ADDED from C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:17:9-47
-activity#com.feather3d.app.MainActivity
+activity#com.skypaint.app.MainActivity
 ADDED from C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:19:9-29:20
 	android:screenOrientation
 		ADDED from C:\Users\div07\Desktop\Feather 3d\app\src\main\AndroidManifest.xml:23:13-52
@@ -256,7 +256,7 @@ ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\tran
 		ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
-permission#com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
@@ -266,7 +266,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
-uses-permission#com.feather3d.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#com.skypaint.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.18.0] C:\Users\div07\.gradle\caches\8.11.1\transforms\6ba66fff8ad3954525703d1c4d27c66e\transformed\core-1.18.0\AndroidManifest.xml:26:22-94

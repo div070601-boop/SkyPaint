@@ -1,6 +1,6 @@
 import sys
 
-with open('app/src/main/java/com/feather3d/app/MainActivity.kt', 'r', encoding='utf-8') as f:
+with open('app/src/main/java/com/skypaint/app/MainActivity.kt', 'r', encoding='utf-8') as f:
     content = f.read()
 
 # 1. Add TOOL_PRIMITIVES
@@ -33,10 +33,10 @@ part4 = """        binding.btnSubPinch.setOnClickListener {
             setSubMode(NativeBridge.MODE_LIQUIFY_PINCH, it)
         }
 
-        binding.btnSubPrimCube.setOnClickListener { featherView.addPrimitive(0) }
-        binding.btnSubPrimSphere.setOnClickListener { featherView.addPrimitive(1) }
-        binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2) }
-        binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3) }
+        binding.btnSubPrimCube.setOnClickListener { skyView.addPrimitive(0) }
+        binding.btnSubPrimSphere.setOnClickListener { skyView.addPrimitive(1) }
+        binding.btnSubPrimCylinder.setOnClickListener { skyView.addPrimitive(2) }
+        binding.btnSubPrimCone.setOnClickListener { skyView.addPrimitive(3) }
 """
 content = content.replace("""        binding.btnSubPinch.setOnClickListener {
             setSubMode(NativeBridge.MODE_LIQUIFY_PINCH, it)
@@ -125,7 +125,7 @@ part9 = """        val strokeCount = NativeBridge.getStrokeCount()
             val verts = NativeBridge.getStrokeMeshVertices(i)
             val indices = NativeBridge.getStrokeMeshIndices(i)
             if (verts != null && indices != null) {
-                featherView.filamentRenderer.uploadStrokeMesh(i, verts, indices)
+                skyView.filamentRenderer.uploadStrokeMesh(i, verts, indices)
             }
         }
 
@@ -136,7 +136,7 @@ part9 = """        val strokeCount = NativeBridge.getStrokeCount()
             val transform = NativeBridge.getPrimitiveTransform(i)
             val color = NativeBridge.getPrimitiveColor(i)
             if (verts != null && indices != null && transform != null && color != null) {
-                featherView.filamentRenderer.uploadPrimitiveMesh(i, verts, indices, transform, color)
+                skyView.filamentRenderer.uploadPrimitiveMesh(i, verts, indices, transform, color)
             }
         }"""
 content = content.replace("""        val strokeCount = NativeBridge.getStrokeCount()
@@ -144,9 +144,9 @@ content = content.replace("""        val strokeCount = NativeBridge.getStrokeCou
             val verts = NativeBridge.getStrokeMeshVertices(i)
             val indices = NativeBridge.getStrokeMeshIndices(i)
             if (verts != null && indices != null) {
-                featherView.filamentRenderer.uploadStrokeMesh(i, verts, indices)
+                skyView.filamentRenderer.uploadStrokeMesh(i, verts, indices)
             }
         }""", part9)
 
-with open('app/src/main/java/com/feather3d/app/MainActivity.kt', 'w', encoding='utf-8') as f:
+with open('app/src/main/java/com/skypaint/app/MainActivity.kt', 'w', encoding='utf-8') as f:
     f.write(content)

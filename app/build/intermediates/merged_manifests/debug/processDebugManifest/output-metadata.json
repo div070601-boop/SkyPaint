@@ -4,7 +4,7 @@
     "type": "MERGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.feather3d.app",
+  "applicationId": "com.skypaint.app",
   "variantName": "debug",
   "elements": [
     {

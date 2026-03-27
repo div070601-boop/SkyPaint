@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 /// SDF-based voxel grid for sculpting operations
 class VoxelGrid {
@@ -87,4 +87,4 @@ private:
     }
 };
 
-} // namespace feather
+} // namespace sky

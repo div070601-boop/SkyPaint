@@ -1,0 +1,86 @@
+ninja: Entering directory `C:\Users\div07\Desktop\Feather 3d\app\.cxx\Debug\6v465442\arm64-v8a'
+[1/2] Building CXX object CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o
+FAILED: CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o 
+C:\Users\div07\AppData\Local\Android\Sdk\ndk\27.0.12077973\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android26 --sysroot=C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dsky3d_engine_EXPORTS -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math" -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17 -MD -MT CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o -MF CMakeFiles\sky3d_engine.dir\engine\GeometryEngine.cpp.o.d -o CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o -c "C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp"
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:1:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.h:3:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/../math/MathTypes.h:3:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/glm.hpp:118:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/vec3.hpp:5:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/vector_bool3.hpp:5:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec3.hpp:435:
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec3.inl:56:7: error: cannot convert 'glm::vec<4, float>' to 'float' without a conversion operator
+   56 |                 : x(static_cast<T>(_x))
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:435:14: note: in instantiation of function template specialization 'glm::vec<3, float>::vec<glm::vec<4, float>, glm::vec<4, float>, glm::vec<4, float>>' requested here
+  435 |         Vec3 pos(obj.transform[12], obj.transform[13], obj.transform[14]);
+      |              ^
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:1:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.h:3:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/../math/MathTypes.h:3:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/glm.hpp:118:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/vec3.hpp:5:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/vector_bool3.hpp:5:
+In file included from C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec3.hpp:435:
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec3.inl:57:7: error: cannot convert 'glm::vec<4, float>' to 'float' without a conversion operator
+   57 |                 , y(static_cast<T>(_y))
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec3.inl:58:7: error: cannot convert 'glm::vec<4, float>' to 'float' without a conversion operator
+   58 |                 , z(static_cast<T>(_z))
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:437:27: error: no viable overloaded '='
+  437 |         obj.transform[12] = pos.x;
+      |         ~~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:438:27: error: no viable overloaded '='
+  438 |         obj.transform[13] = pos.y;
+      |         ~~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:439:27: error: no viable overloaded '='
+  439 |         obj.transform[14] = pos.z;
+      |         ~~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:579:30: error: no viable overloaded '='
+  579 |             newTransform[12] = pos.x;
+      |             ~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:580:30: error: no viable overloaded '='
+  580 |             newTransform[13] = pos.y;
+      |             ~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine/GeometryEngine.cpp:581:30: error: no viable overloaded '='
+  581 |             newTransform[14] = pos.z;
+      |             ~~~~~~~~~~~~~~~~ ^ ~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:252:55: note: candidate function not viable: no known conversion from 'float' to 'const vec<4, float, (qualifier)0U>' for 1st argument
+  252 |                 GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, T, Q> const& v) GLM_DEFAULT;
+      |                                                                     ^         ~~~~~~~~~~~~~~~~~~~~~
+C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party/glm/./ext/../detail/type_vec4.hpp:255:53: note: candidate template ignored: could not match 'vec<4, U, (qualifier)0U>' against 'float'
+  255 |                 GLM_FUNC_DISCARD_DECL GLM_CONSTEXPR vec<4, T, Q>& operator=(vec<4, U, Q> const& v);
+      |                                                                   ^
+9 errors generated.
+ninja: build stopped: subcommand failed.

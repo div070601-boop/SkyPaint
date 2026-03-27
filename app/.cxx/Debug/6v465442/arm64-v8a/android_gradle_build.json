@@ -17,11 +17,11 @@
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
-    "feather3d_engine::@6890427a1f51a3e7e1df": {
+    "sky3d_engine::@6890427a1f51a3e7e1df": {
       "toolchain": "toolchain",
       "abi": "arm64-v8a",
-      "artifactName": "feather3d_engine",
-      "output": "C:\\Users\\div07\\Desktop\\Feather 3d\\app\\build\\intermediates\\cxx\\Debug\\6v465442\\obj\\arm64-v8a\\libfeather3d_engine.so",
+      "artifactName": "sky3d_engine",
+      "output": "C:\\Users\\div07\\Desktop\\Feather 3d\\app\\build\\intermediates\\cxx\\Debug\\6v465442\\obj\\arm64-v8a\\libsky3d_engine.so",
       "runtimeFiles": []
     }
   },

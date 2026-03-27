@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: feather3d_engine
+# Project: sky3d_engine
 # Configurations: Debug
 # =============================================================================
 
@@ -41,145 +41,145 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/div07/Desktop/Feather$ 3d/app/.cxx/Debug/6v465442/arm64-v8a/
 # =============================================================================
-# Object build statements for SHARED_LIBRARY target feather3d_engine
+# Object build statements for SHARED_LIBRARY target sky3d_engine
 
 
 #############################################
-# Order-only phony target for feather3d_engine
+# Order-only phony target for sky3d_engine
 
-build cmake_object_order_depends_target_feather3d_engine: phony || CMakeFiles/feather3d_engine.dir
+build cmake_object_order_depends_target_sky3d_engine: phony || CMakeFiles/sky3d_engine.dir
 
-build CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/GeometryEngine.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\GeometryEngine.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/GeometryEngine.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\GeometryEngine.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/StrokeSystem.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\StrokeSystem.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/StrokeSystem.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/StrokeSystem.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\StrokeSystem.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/SplineGenerator.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\SplineGenerator.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/SplineGenerator.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/SplineGenerator.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\SplineGenerator.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/TubeMeshGenerator.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\TubeMeshGenerator.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/TubeMeshGenerator.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/TubeMeshGenerator.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\TubeMeshGenerator.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/VoxelGrid.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\VoxelGrid.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/VoxelGrid.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/VoxelGrid.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\VoxelGrid.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/PrimitiveGenerator.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/PrimitiveGenerator.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\PrimitiveGenerator.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/PrimitiveGenerator.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/PrimitiveGenerator.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\PrimitiveGenerator.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/RaycastEngine.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\RaycastEngine.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/RaycastEngine.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/RaycastEngine.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\RaycastEngine.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MarchingCubes.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\MarchingCubes.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/MarchingCubes.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MarchingCubes.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\MarchingCubes.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/LiquifyBrush.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\LiquifyBrush.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/LiquifyBrush.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/LiquifyBrush.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\LiquifyBrush.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MeshDecimation.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\MeshDecimation.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/MeshDecimation.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MeshDecimation.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\MeshDecimation.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MeshExporter.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\MeshExporter.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/MeshExporter.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/MeshExporter.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\MeshExporter.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/SnapEngine.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/SnapEngine.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\SnapEngine.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/SnapEngine.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/SnapEngine.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\SnapEngine.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/ActionStack.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\engine\ActionStack.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/engine/ActionStack.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/engine/ActionStack.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\engine\ActionStack.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir\engine
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir\engine
 
-build CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o: CXX_COMPILER__feather3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/jni_bridge.cpp || cmake_object_order_depends_target_feather3d_engine
-  DEFINES = -Dfeather3d_engine_EXPORTS
-  DEP_FILE = CMakeFiles\feather3d_engine.dir\jni_bridge.cpp.o.d
+build CMakeFiles/sky3d_engine.dir/jni_bridge.cpp.o: CXX_COMPILER__sky3d_engine_Debug C$:/Users/div07/Desktop/Feather$ 3d/app/src/main/cpp/jni_bridge.cpp || cmake_object_order_depends_target_sky3d_engine
+  DEFINES = -Dsky3d_engine_EXPORTS
+  DEP_FILE = CMakeFiles\sky3d_engine.dir\jni_bridge.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info  -fPIC -std=c++17
   INCLUDES = -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/third_party" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/engine" -I"C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp/math"
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
-  OBJECT_FILE_DIR = CMakeFiles\feather3d_engine.dir
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\sky3d_engine.dir
 
 
 # =============================================================================
-# Link build statements for SHARED_LIBRARY target feather3d_engine
+# Link build statements for SHARED_LIBRARY target sky3d_engine
 
 
 #############################################
-# Link the shared library C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.so
+# Link the shared library C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libsky3d_engine.so
 
-build C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so: CXX_SHARED_LIBRARY_LINKER__feather3d_engine_Debug CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o CMakeFiles/feather3d_engine.dir/engine/SplineGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/TubeMeshGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o CMakeFiles/feather3d_engine.dir/engine/PrimitiveGenerator.cpp.o CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o CMakeFiles/feather3d_engine.dir/engine/LiquifyBrush.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshDecimation.cpp.o CMakeFiles/feather3d_engine.dir/engine/MeshExporter.cpp.o CMakeFiles/feather3d_engine.dir/engine/SnapEngine.cpp.o CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o | C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so
+build C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libsky3d_engine.so: CXX_SHARED_LIBRARY_LINKER__sky3d_engine_Debug CMakeFiles/sky3d_engine.dir/engine/GeometryEngine.cpp.o CMakeFiles/sky3d_engine.dir/engine/StrokeSystem.cpp.o CMakeFiles/sky3d_engine.dir/engine/SplineGenerator.cpp.o CMakeFiles/sky3d_engine.dir/engine/TubeMeshGenerator.cpp.o CMakeFiles/sky3d_engine.dir/engine/VoxelGrid.cpp.o CMakeFiles/sky3d_engine.dir/engine/PrimitiveGenerator.cpp.o CMakeFiles/sky3d_engine.dir/engine/RaycastEngine.cpp.o CMakeFiles/sky3d_engine.dir/engine/MarchingCubes.cpp.o CMakeFiles/sky3d_engine.dir/engine/LiquifyBrush.cpp.o CMakeFiles/sky3d_engine.dir/engine/MeshDecimation.cpp.o CMakeFiles/sky3d_engine.dir/engine/MeshExporter.cpp.o CMakeFiles/sky3d_engine.dir/engine/SnapEngine.cpp.o CMakeFiles/sky3d_engine.dir/engine/ActionStack.cpp.o CMakeFiles/sky3d_engine.dir/jni_bridge.cpp.o | C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so C$:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -O2 -fexceptions -fno-limit-debug-info
   LINK_FLAGS = -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments  -Wl,-z,max-page-size=16384
   LINK_LIBRARIES = C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so  C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/libandroid.so  -latomic -lm
-  OBJECT_DIR = CMakeFiles\feather3d_engine.dir
+  OBJECT_DIR = CMakeFiles\sky3d_engine.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  SONAME = libfeather3d_engine.so
+  SONAME = libsky3d_engine.so
   SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libfeather3d_engine.so"
-  TARGET_PDB = feather3d_engine.so.dbg
+  TARGET_FILE = "C:\Users\div07\Desktop\Feather 3d\app\build\intermediates\cxx\Debug\6v465442\obj\arm64-v8a\libsky3d_engine.so"
+  TARGET_PDB = sky3d_engine.so.dbg
 
 
 #############################################
@@ -207,9 +207,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build feather3d_engine: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so
+build libsky3d_engine.so: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libsky3d_engine.so
 
-build libfeather3d_engine.so: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so
+build sky3d_engine: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libsky3d_engine.so
 
 # =============================================================================
 # Folder targets.
@@ -219,7 +219,7 @@ build libfeather3d_engine.so: phony C$:/Users/div07/Desktop/Feather$ 3d/app/buil
 #############################################
 # Folder: C:/Users/div07/Desktop/Feather 3d/app/.cxx/Debug/6v465442/arm64-v8a
 
-build all: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so
+build all: phony C$:/Users/div07/Desktop/Feather$ 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libsky3d_engine.so
 
 # =============================================================================
 # Built-in targets

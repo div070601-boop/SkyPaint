@@ -1,6 +1,6 @@
 # SkyPaint
 
-SkyPaint is a high-performance open-source Android application that replicates the core functionality of professional 3D drawing and sculpting tools, inspired by apps like "Feather 3D". It provides a rich 3D canvas where stylus strokes generate physical tubular geometry in space, complemented by a fully-featured voxel sculpting, liquify system, and parametric primitives with interactive selection and manipulation.
+SkyPaint is a high-performance open-source Android application that replicates the core functionality of professional 3D drawing and sculpting tools, inspired by apps like "Sky 3D". It provides a rich 3D canvas where stylus strokes generate physical tubular geometry in space, complemented by a fully-featured voxel sculpting, liquify system, and parametric primitives with interactive selection and manipulation.
 
 Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI coordination, **Native C++ via JNI** for heavy computational geometry extraction, and the **Google Filament Engine** for state-of-the-art physically based rendering (PBR).
 
@@ -30,7 +30,7 @@ Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI c
    - **MeshDecimation**: Reduces polygon counts using vertex clustering to prevent GPU starvation.
 
 2. **Kotlin App Layer**
-   - **`Feather3DView`**: Connects Android's native `SurfaceView` composition directly to the Filament graphic contexts. Handles selection gestures (tap-to-pick, drag-to-move, pinch-to-scale).
+   - **`SkyPaintView`**: Connects Android's native `SurfaceView` composition directly to the Filament graphic contexts. Handles selection gestures (tap-to-pick, drag-to-move, pinch-to-scale).
    - **`StylusInputHandler`**: Raycasts 2D screen coordinates into the 3D near-plane world, intercepting high-frequency motion events and routing them asynchronously.
    - **`FilamentRenderer`**: Dispatches raw vertex (`.filamat`) combinations, lighting, environments, and mesh instances straight to hardware buffers.
 
@@ -40,7 +40,7 @@ Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI c
    ```bash
    git clone https://github.com/div070601-boop/SkyPaint.git
    ```
-2. Open the project directory (`Feather 3d`) in **Android Studio Ladybug** or newer.
+2. Open the project directory (`Sky 3d`) in **Android Studio Ladybug** or newer.
 3. Allow Gradle to synchronize dependencies.
 4. Hit **Run** on any connected Android device or emulator. (Note: A physical device with Stylus support is highly recommended).
 

@@ -1,6 +1,6 @@
 #include "SplineGenerator.h"
 
-namespace feather {
+namespace sky {
 
 Vec3 SplineGenerator::catmullRom(
     const Vec3& p0, const Vec3& p1,
@@ -91,4 +91,4 @@ std::vector<SplineSample> SplineGenerator::generate(
     return samples;
 }
 
-} // namespace feather
+} // namespace sky

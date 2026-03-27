@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.feather3d.app-mergeDebugResources-34:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.skypaint.app-mergeDebugResources-34:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\div07\\.gradle\\caches\\8.11.1\\transforms\\79a2c69ca50b938e76a64599cb1852cc\\transformed\\material-1.13.0\\res\\values-w360dp-port-v13\\values-w360dp-port-v13.xml",

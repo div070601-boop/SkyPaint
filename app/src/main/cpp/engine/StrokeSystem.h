@@ -3,7 +3,7 @@
 #include "../math/MathTypes.h"
 #include <string>
 
-namespace feather {
+namespace sky {
 
 /// Manages stroke lifecycle — collecting points, finalizing strokes
 class StrokeSystem {
@@ -96,4 +96,4 @@ private:
     StrokePoint smoothPoint(const StrokePoint& raw) const;
 };
 
-} // namespace feather
+} // namespace sky

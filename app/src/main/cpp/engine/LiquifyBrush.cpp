@@ -1,6 +1,6 @@
 #include "LiquifyBrush.h"
 
-namespace feather {
+namespace sky {
 
 float LiquifyBrush::falloff(float distance) const {
     if (distance >= m_radius) return 0.0f;
@@ -114,4 +114,4 @@ void LiquifyBrush::pinch(Mesh& mesh, const Vec3& brushCenter) const {
     mesh.dirty = true;
 }
 
-} // namespace feather
+} // namespace sky

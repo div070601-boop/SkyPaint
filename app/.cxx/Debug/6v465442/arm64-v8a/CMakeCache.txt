@@ -152,7 +152,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=feather3d_engine
+CMAKE_PROJECT_NAME:STATIC=sky3d_engine
 
 //Ranlib
 CMAKE_RANLIB:FILEPATH=C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ranlib.exe
@@ -241,6 +241,15 @@ feather3d_engine_SOURCE_DIR:STATIC=C:/Users/div07/Desktop/Feather 3d/app/src/mai
 
 //Path to a library.
 log-lib:FILEPATH=C:/Users/div07/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/26/liblog.so
+
+//Value Computed by CMake
+sky3d_engine_BINARY_DIR:STATIC=C:/Users/div07/Desktop/Feather 3d/app/.cxx/Debug/6v465442/arm64-v8a
+
+//Value Computed by CMake
+sky3d_engine_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+sky3d_engine_SOURCE_DIR:STATIC=C:/Users/div07/Desktop/Feather 3d/app/src/main/cpp
 
 
 ########################

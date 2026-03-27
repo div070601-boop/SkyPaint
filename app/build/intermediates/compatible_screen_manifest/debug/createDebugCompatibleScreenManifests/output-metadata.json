@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.feather3d.app",
+  "applicationId": "com.skypaint.app",
   "variantName": "debug",
   "elements": []
 }

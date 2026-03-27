@@ -1,6 +1,6 @@
 #include "TubeMeshGenerator.h"
 
-namespace feather {
+namespace sky {
 
 void TubeMeshGenerator::buildFrame(const Vec3& tangent, Vec3& outNormal, Vec3& outBinormal) const {
     // Choose a reference vector that isn't parallel to the tangent
@@ -129,4 +129,4 @@ Mesh TubeMeshGenerator::generate(const std::vector<SplineSample>& samples) const
     return mesh;
 }
 
-} // namespace feather
+} // namespace sky

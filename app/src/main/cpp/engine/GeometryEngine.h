@@ -14,7 +14,7 @@
 #include "SceneObject.h"
 #include "RaycastEngine.h"
 
-namespace feather {
+namespace sky {
 
 /// Drawing mode for the engine
 enum class DrawMode {
@@ -175,4 +175,4 @@ private:
     Mesh generateMeshFromStroke(const std::vector<StrokePoint>& points);
 };
 
-} // namespace feather
+} // namespace sky

@@ -1,7 +1,7 @@
 #include "SnapEngine.h"
 #include <cmath>
 
-namespace feather {
+namespace sky {
 
 Vec3 SnapEngine::snapToGrid(const Vec3& point, float gridSize) {
     if (gridSize <= 0.0f) return point;
@@ -60,4 +60,4 @@ float SnapEngine::getLineLength(const Vec3& a, const Vec3& b) {
     return glm::distance(a, b);
 }
 
-} // namespace feather
+} // namespace sky

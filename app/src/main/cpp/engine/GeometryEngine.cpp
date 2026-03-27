@@ -4,7 +4,7 @@
 #include "SnapEngine.h"
 #include <algorithm>
 
-namespace feather {
+namespace sky {
 
 GeometryEngine::GeometryEngine() {
     // Default tube parameters
@@ -608,4 +608,4 @@ void GeometryEngine::mergeSelectedPrimitive(bool subtract) {
     }
 }
 
-} // namespace feather
+} // namespace sky

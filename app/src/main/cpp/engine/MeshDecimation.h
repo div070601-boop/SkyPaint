@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 /// Quadric error metric mesh decimation (edge collapse)
 class MeshDecimation {
@@ -47,4 +47,4 @@ private:
     void compactMesh(Mesh& mesh) const;
 };
 
-} // namespace feather
+} // namespace sky

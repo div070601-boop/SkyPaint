@@ -1,7 +1,7 @@
 #include "PrimitiveGenerator.h"
 #include <cmath>
 
-namespace feather {
+namespace sky {
 
 Mesh PrimitiveGenerator::generateCube(float size) {
     Mesh mesh;
@@ -345,4 +345,4 @@ Mesh PrimitiveGenerator::generateTorus(float outerRadius, float innerRadius, int
     return mesh;
 }
 
-} // namespace feather
+} // namespace sky

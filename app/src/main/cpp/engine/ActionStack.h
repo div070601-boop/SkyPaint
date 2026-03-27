@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdint>
 
-namespace feather {
+namespace sky {
 
 /// Base interface for any undoable operation
 class Action {
@@ -43,4 +43,4 @@ private:
     int m_currentIndex = -1; // Index of the last executed action
 };
 
-} // namespace feather
+} // namespace sky

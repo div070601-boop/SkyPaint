@@ -1,10 +1,6 @@
 [
     {
-        "merged": "com.feather3d.app-mergeDebugResources-35:/layout/activity_main.xml",
-        "source": "com.feather3d.app-main-38:/layout/activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-mergeDebugResources-35:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\layout\\activity_main.xml"
+        "merged": "com.skypaint.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.skypaint.app-main-38:/layout/activity_main.xml"
     }
 ]

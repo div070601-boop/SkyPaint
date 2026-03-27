@@ -80,7 +80,6 @@ id colorPurple
 id colorRed
 id colorWhite
 id colorYellow
-id feather3dView
 id objectListContainer
 id panelBrushSidebar
 id panelColorPalette
@@ -90,9 +89,10 @@ id panelHistory
 id panelObjectList
 id panelSystemMenu
 id panelToolMenu
+id sky3dView
 id statsText
 id textDimension
 layout activity_main
 mipmap ic_launcher
 string app_name
-style Theme.Feather3D
+style Theme.SkyPaint

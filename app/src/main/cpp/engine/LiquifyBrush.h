@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 /// Vertex deformation brush with smooth falloff
 class LiquifyBrush {
@@ -44,4 +44,4 @@ private:
                                                 const Vec3& center) const;
 };
 
-} // namespace feather
+} // namespace sky

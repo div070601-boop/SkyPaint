@@ -1,7 +1,7 @@
 #include "StrokeSystem.h"
 #include "SnapEngine.h"
 
-namespace feather {
+namespace sky {
 
 void StrokeSystem::beginStroke() {
     m_currentStroke.clear();
@@ -167,4 +167,4 @@ void StrokeSystem::setName(int index, const std::string& name) {
     }
 }
 
-} // namespace feather
+} // namespace sky

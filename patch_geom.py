@@ -47,8 +47,8 @@ void GeometryEngine::clearPrimitives() {
 
 """
 
-# Insert right before '} // namespace feather'
-content = content.replace('} // namespace feather', primitive_code + '} // namespace feather')
+# Insert right before '} // namespace sky'
+content = content.replace('} // namespace sky', primitive_code + '} // namespace sky')
 
 with open('app/src/main/cpp/engine/GeometryEngine.cpp', 'w', encoding='utf-8') as f:
     f.write(content)

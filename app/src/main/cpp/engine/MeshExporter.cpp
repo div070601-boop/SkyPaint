@@ -3,13 +3,13 @@
 #include <sstream>
 #include <cstring>
 
-namespace feather {
+namespace sky {
 
 // ── OBJ Export ──────────────────────────────────────────────────────────────
 
 std::string MeshExporter::exportOBJ(const Mesh& mesh, const std::string& objectName) const {
     std::ostringstream ss;
-    ss << "# Feather 3D Export\n";
+    ss << "# Sky 3D Export\n";
     ss << "# Vertices: " << mesh.vertices.size() << "\n";
     ss << "# Faces: " << mesh.indices.size() / 3 << "\n\n";
     ss << "o " << objectName << "\n\n";
@@ -48,7 +48,7 @@ std::string MeshExporter::exportOBJ(const Mesh& mesh, const std::string& objectN
 std::string MeshExporter::exportOBJ(const std::vector<Mesh>& meshes,
                                      const std::string& baseName) const {
     std::ostringstream ss;
-    ss << "# Feather 3D Export\n\n";
+    ss << "# Sky 3D Export\n\n";
 
     uint32_t vertexOffset = 0;
     for (size_t m = 0; m < meshes.size(); ++m) {
@@ -168,7 +168,7 @@ std::vector<uint8_t> MeshExporter::exportGLB(const Mesh& mesh,
     // Build JSON
     std::ostringstream json;
     json << "{";
-    json << "\"asset\":{\"version\":\"2.0\",\"generator\":\"Feather3D\"},";
+    json << "\"asset\":{\"version\":\"2.0\",\"generator\":\"SkyPaint\"},";
     json << "\"scene\":0,";
     json << "\"scenes\":[{\"nodes\":[0]}],";
     json << "\"nodes\":[{\"mesh\":0,\"name\":\"" << objectName << "\"}],";
@@ -255,4 +255,4 @@ bool MeshExporter::exportGLBToFile(const Mesh& mesh, const std::string& filePath
     return file.good();
 }
 
-} // namespace feather
+} // namespace sky

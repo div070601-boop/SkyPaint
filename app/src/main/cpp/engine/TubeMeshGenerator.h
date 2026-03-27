@@ -3,7 +3,7 @@
 #include "../math/MathTypes.h"
 #include "SplineGenerator.h"
 
-namespace feather {
+namespace sky {
 
 /// Generates tube geometry by sweeping a circle along a spline
 class TubeMeshGenerator {
@@ -27,4 +27,4 @@ private:
     void buildFrame(const Vec3& tangent, Vec3& outNormal, Vec3& outBinormal) const;
 };
 
-} // namespace feather
+} // namespace sky

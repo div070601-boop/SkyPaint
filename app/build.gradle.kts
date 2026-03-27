@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.feather3d.app"
+    namespace = "com.skypaint.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.feather3d.app"
+        applicationId = "com.skypaint.app"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

@@ -3,7 +3,7 @@
 #include "../math/MathTypes.h"
 #include "VoxelGrid.h"
 
-namespace feather {
+namespace sky {
 
 /// Classic Marching Cubes implementation
 class MarchingCubes {
@@ -35,4 +35,4 @@ private:
     static const int TRI_TABLE[256][16];
 };
 
-} // namespace feather
+} // namespace sky

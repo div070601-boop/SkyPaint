@@ -1,6 +1,6 @@
 #include "VoxelGrid.h"
 
-namespace feather {
+namespace sky {
 
 void VoxelGrid::initialize(int resolution, const Vec3& boundsMin, const Vec3& boundsMax) {
     m_resolution = resolution;
@@ -268,4 +268,4 @@ void VoxelGrid::clearDirty() {
     m_dirtyMax[0] = m_dirtyMax[1] = m_dirtyMax[2] = 0;
 }
 
-} // namespace feather
+} // namespace sky

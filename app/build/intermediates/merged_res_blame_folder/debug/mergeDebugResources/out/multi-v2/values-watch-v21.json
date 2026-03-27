@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.feather3d.app-mergeDebugResources-34:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.skypaint.app-mergeDebugResources-34:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\div07\\.gradle\\caches\\8.11.1\\transforms\\dd031ae9d4fcc17cfecdfe013ff15699\\transformed\\appcompat-1.7.1\\res\\values-watch-v21\\values-watch-v21.xml",

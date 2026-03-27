@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 /// Catmull-Rom spline evaluated from stroke points
 struct SplineSample {
@@ -38,4 +38,4 @@ private:
     float m_tension = 0.5f;
 };
 
-} // namespace feather
+} // namespace sky

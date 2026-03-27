@@ -3,7 +3,7 @@
 #include <cmath>
 #include <limits>
 
-namespace feather {
+namespace sky {
 
 float RaycastEngine::rayAABB(const Ray& ray, const Vec3& bmin, const Vec3& bmax) {
     float tmin = -std::numeric_limits<float>::infinity();
@@ -110,4 +110,4 @@ int RaycastEngine::pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMes
     return bestIndex;
 }
 
-} // namespace feather
+} // namespace sky

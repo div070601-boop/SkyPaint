@@ -4,7 +4,7 @@
 #include <unordered_set>
 #include <functional>
 
-namespace feather {
+namespace sky {
 
 // ── Quadric Implementation ──────────────────────────────────────────────────
 
@@ -255,4 +255,4 @@ void MeshDecimation::compactMesh(Mesh& mesh) const {
     mesh.vertices = std::move(compacted);
 }
 
-} // namespace feather
+} // namespace sky

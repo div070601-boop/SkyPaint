@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace feather {
+namespace sky {
 
 using Vec2 = glm::vec2;
 using Vec3 = glm::vec3;
@@ -91,4 +91,4 @@ struct BoundingBox {
     Vec3 size() const { return max - min; }
 };
 
-} // namespace feather
+} // namespace sky

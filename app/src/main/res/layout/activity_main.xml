@@ -8,8 +8,8 @@
     <!-- ═══════════════════════════════════════════════════════════════════
          LAYER 0: Full-bleed 3D Canvas (SurfaceView)
          ═══════════════════════════════════════════════════════════════════ -->
-    <com.feather3d.app.Feather3DView
-        android:id="@+id/feather3dView"
+    <com.skypaint.app.SkyPaintView
+        android:id="@+id/sky3dView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -715,8 +715,10 @@
             android:minWidth="0dp"
             android:paddingHorizontal="14dp"
             android:layout_marginEnd="4dp"
-            android:visibility="gone" />
-
+            android:visibility="gone" />
+
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSubPrimTorus"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -728,8 +730,10 @@
             android:minWidth="0dp"
             android:paddingHorizontal="14dp"
             android:layout_marginEnd="4dp"
-            android:visibility="gone" />
-
+            android:visibility="gone" />
+
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDeleteSelected"
             style="@style/Widget.MaterialComponents.Button.TextButton"

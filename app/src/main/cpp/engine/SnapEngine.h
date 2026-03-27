@@ -2,7 +2,7 @@
 
 #include "../math/MathTypes.h"
 
-namespace feather {
+namespace sky {
 
 class SnapEngine {
 public:
@@ -20,4 +20,4 @@ public:
     static float getLineLength(const Vec3& a, const Vec3& b);
 };
 
-} // namespace feather
+} // namespace sky
