@@ -164,17 +164,21 @@ class Feather3DView @JvmOverloads constructor(
     fun deleteSelected() {
         val selectedId = NativeBridge.getSelectedObjectId()
         if (selectedId >= 0) {
+            // Remove the first primitive (for now, single-selection)
             val count = NativeBridge.getPrimitiveCount()
-            for (i in 0 until count) {
-                NativeBridge.removePrimitive(i)
+            if (count > 0) {
+                // Find the correct index - for single selection, remove index 0
+                // as primitives are stored sequentially
+                val removeIdx = (selectedId - 1).coerceIn(0, count - 1)
+                NativeBridge.removePrimitive(removeIdx)
                 filamentRenderer.clearAll()
                 refreshAllPrimitives()
                 refreshAllStrokes()
-                break
             }
             NativeBridge.deselectAll()
             filamentRenderer.unhighlightAll()
             onSelectionChanged?.invoke(-1)
+            updateStats()
         }
     }
 

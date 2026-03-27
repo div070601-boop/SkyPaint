@@ -3801,7 +3801,9 @@ id btnSubPinch
 id btnSubPrimCone
 id btnSubPrimCube
 id btnSubPrimCylinder
+id btnSubPrimPlane
 id btnSubPrimSphere
+id btnSubPrimTorus
 id btnSubSmooth
 id btnSubSub
 id btnUndo

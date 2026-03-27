@@ -193,7 +193,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupSystemMenu() {
         binding.btnSettings.setOnClickListener {
-            Toast.makeText(this, "Settings (coming soon)", Toast.LENGTH_SHORT).show()
+            showSettingsDialog()
         }
 
         binding.btnExport.setOnClickListener {
@@ -413,6 +413,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnSubPrimSphere.setOnClickListener { featherView.addPrimitive(1, activeColorR, activeColorG, activeColorB) }
         binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2, activeColorR, activeColorG, activeColorB) }
         binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3, activeColorR, activeColorG, activeColorB) }
+        binding.btnSubPrimPlane.setOnClickListener { featherView.addPrimitive(4, activeColorR, activeColorG, activeColorB) }
+        binding.btnSubPrimTorus.setOnClickListener { featherView.addPrimitive(5, activeColorR, activeColorG, activeColorB) }
 
         binding.btnDeleteSelected.setOnClickListener { featherView.deleteSelected() }
         binding.btnDuplicateSelected.setOnClickListener { featherView.duplicateSelected() }
@@ -468,11 +470,13 @@ class MainActivity : AppCompatActivity() {
         val pSphere = binding.btnSubPrimSphere
         val pCyl = binding.btnSubPrimCylinder
         val pCone = binding.btnSubPrimCone
+        val pPlane = binding.btnSubPrimPlane
+        val pTorus = binding.btnSubPrimTorus
         val deleteBtn = binding.btnDeleteSelected
         val dupeBtn = binding.btnDuplicateSelected
 
         // Reset all text colors
-        listOf(add, sub, smooth, inflate, pinch, pCube, pSphere, pCyl, pCone).forEach {
+        listOf(add, sub, smooth, inflate, pinch, pCube, pSphere, pCyl, pCone, pPlane, pTorus).forEach {
             it.setTextColor(0xFF616161.toInt())
             it.setBackgroundColor(0x00000000)
         }
@@ -532,6 +536,8 @@ class MainActivity : AppCompatActivity() {
                 pSphere.visibility = View.GONE
                 pCyl.visibility = View.GONE
                 pCone.visibility = View.GONE
+                pPlane.visibility = View.GONE
+                pTorus.visibility = View.GONE
 
                 smooth.text = "Smooth"
                 inflate.text = "Inflate"
@@ -552,6 +558,8 @@ class MainActivity : AppCompatActivity() {
                 pSphere.visibility = View.VISIBLE
                 pCyl.visibility = View.VISIBLE
                 pCone.visibility = View.VISIBLE
+                pPlane.visibility = View.VISIBLE
+                pTorus.visibility = View.VISIBLE
             }
             TOOL_SELECT -> {
                 binding.panelContextMenu.visibility = View.VISIBLE
@@ -564,6 +572,8 @@ class MainActivity : AppCompatActivity() {
                 pSphere.visibility = View.GONE
                 pCyl.visibility = View.GONE
                 pCone.visibility = View.GONE
+                pPlane.visibility = View.GONE
+                pTorus.visibility = View.GONE
                 deleteBtn.visibility = View.VISIBLE
                 dupeBtn.visibility = View.VISIBLE
             }
@@ -645,5 +655,50 @@ class MainActivity : AppCompatActivity() {
         featherView.destroy()
         NativeBridge.nativeDestroy()
         super.onDestroy()
+    }
+
+    // ── Settings Dialog ─────────────────────────────────────────────────
+
+    private var showGrid = true
+    private var showStats = true
+
+    private fun showSettingsDialog() {
+        val items = arrayOf(
+            "Grid: ${if (showGrid) "ON" else "OFF"}",
+            "Wireframe: ${if (featherView.filamentRenderer.wireframeMode) "ON" else "OFF"}",
+            "Stats: ${if (showStats) "ON" else "OFF"}",
+            "Shading: ${featherView.filamentRenderer.shadingMode.name}"
+        )
+
+        AlertDialog.Builder(this, com.google.android.material.R.style.ThemeOverlay_MaterialComponents_Dialog_Alert)
+            .setTitle("Settings")
+            .setItems(items) { _, which ->
+                when (which) {
+                    0 -> {
+                        showGrid = !showGrid
+                        featherView.filamentRenderer.setGridVisible(showGrid)
+                        Toast.makeText(this, "Grid: ${if (showGrid) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                    }
+                    1 -> {
+                        featherView.filamentRenderer.wireframeMode = !featherView.filamentRenderer.wireframeMode
+                        Toast.makeText(this, "Wireframe: ${if (featherView.filamentRenderer.wireframeMode) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                    }
+                    2 -> {
+                        showStats = !showStats
+                        binding.statsText.visibility = if (showStats) View.VISIBLE else View.GONE
+                        Toast.makeText(this, "Stats: ${if (showStats) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                    }
+                    3 -> {
+                        // Cycle shading modes
+                        val modes = FilamentRenderer.ShadingMode.entries.toTypedArray()
+                        val current = featherView.filamentRenderer.shadingMode
+                        val nextIdx = (modes.indexOf(current) + 1) % modes.size
+                        featherView.filamentRenderer.shadingMode = modes[nextIdx]
+                        Toast.makeText(this, "Shading: ${modes[nextIdx].name}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Close", null)
+            .show()
     }
 }

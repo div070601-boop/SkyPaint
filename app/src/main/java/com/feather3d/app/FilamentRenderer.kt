@@ -324,6 +324,16 @@ class FilamentRenderer(private val context: Context) {
         }
     }
 
+    fun setGridVisible(visible: Boolean) {
+        if (gridEntity != 0) {
+            if (visible) {
+                scene.addEntity(gridEntity)
+            } else {
+                scene.removeEntity(gridEntity)
+            }
+        }
+    }
+
     /**
      * Update camera from CameraController state
      */

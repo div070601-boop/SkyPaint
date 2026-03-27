@@ -682,6 +682,32 @@
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimPlane"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Plane"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubPrimTorus"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Torus"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDeleteSelected"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
