@@ -10,12 +10,12 @@ Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI c
 - **Stylus 3D Drawing**: Capture raw pressure and tilt data from stylus devices. Translates screen-space continuous stroke data into dynamic 3D spline-based tube geometry.
 - **Precision Drafting Tools**: Rubber-band straight lines, real-time 3D grid, and 15-degree angle snapping, topped with a live geometric dimension measurement display.
 - **Per-Vertex Vibrant Colors**: Change stroke colors dynamically mid-brush with full Material support.
-- **3D Primitives**: Spawn Cubes, Spheres, Cylinders, and Cones directly into the scene at the camera focal point, each with customizable color from the palette.
-- **Selection & Transform**: Tap-to-pick raycasting (ray-AABB intersection) for object selection. Drag to translate, pinch to scale selected primitives. Delete selected objects instantly.
-- **Voxel Sculpting Engine**: High-performance backend voxel engine wrapped in a Marching Cubes extractor algorithm. Supports Additive, Subtractive, and Smoothing modes on the 3D grid.
+- **3D Primitives**: Spawn Cubes, Spheres, Cylinders, Cones, Planes, and Toruses directly into the scene at the camera focal point.
+- **Selection & Transform**: Tap-to-pick raycasting (ray-AABB intersection) for object selection. Drag to translate, pinch to scale, and two-finger twist to rotate selected primitives.
+- **Voxel Sculpting & CSG**: High-performance voxel engine with **Constructive Solid Geometry (CSG)**. Merge primitives into the voxel terrain with Union or Subtraction operations.
 - **Liquify Brush**: Dynamically inflate, pinch, push, or smooth local mesh vertices for organic manipulation.
-- **Google Filament Renderer**: Real-time rendering equipped with directional lighting, ambient occlusion, PBR material properties, MatCap shading, and antialiasing.
-- **Undo/Redo Command System**: Robust C++ Action Stack supporting history navigation for both lightweight 3D stroke geometry and heavy volumetric grid snapshots. 
+- **Google Filament Renderer**: Real-time rendering equipped with directional lighting, PBR materials, MatCap shading, and antialiasing.
+- **Undo/Redo Command System**: Robust C++ Action Stack supporting history for strokes, voxel sculpts, primitive transforms/lifecycle, and CSG merge operations.
 - **Exporting Capabilities**: Export your 3D creations (strokes, voxel sculpts, and primitives) directly to `.obj` or `.glb` formats for external use or 3D printing.
 - **Asynchronous Architecture**: Lock-free multi-threaded geometry generation guaranteeing 60+ FPS while avoiding UI thread blockage during dense mesh extraction loops.
 
