@@ -138,7 +138,7 @@ class Feather3DView @JvmOverloads constructor(
 
     // ── Primitives ──────────────────────────────────────────────────────────
 
-    fun addPrimitive(type: Int) {
+    fun addPrimitive(type: Int, r: Float = 0.5f, g: Float = 0.5f, b: Float = 0.5f) {
         // Spawn at camera's look-at target so it appears in view
         val target = cameraController.targetPosition
         val transform = floatArrayOf(
@@ -147,7 +147,7 @@ class Feather3DView @JvmOverloads constructor(
             0f, 0f, 1f, 0f,
             target[0], target[1], target[2], 1f
         )
-        val id = NativeBridge.addPrimitive(type, transform, 0.5f, 0.5f, 0.5f, 1.0f)
+        val id = NativeBridge.addPrimitive(type, transform, r, g, b, 1.0f)
         if (id >= 0) {
             val verts = NativeBridge.getPrimitiveMeshVertices(id)
             val indices = NativeBridge.getPrimitiveMeshIndices(id)
@@ -220,6 +220,7 @@ class Feather3DView @JvmOverloads constructor(
     private var selectDragStartX = 0f
     private var selectDragStartY = 0f
     private var isDraggingSelected = false
+    private var lastPinchDist = 0f
     var onSelectionChanged: ((Int) -> Unit)? = null
 
     @SuppressLint("ClickableViewAccessibility")
@@ -289,6 +290,57 @@ class Feather3DView @JvmOverloads constructor(
                 MotionEvent.ACTION_UP -> {
                     isDraggingSelected = false
                     return true
+                }
+            }
+        }
+
+        // Pinch-to-scale in Select mode (2 fingers)
+        if (currentDrawMode == -2 && event.pointerCount == 2) {
+            val selectedId = NativeBridge.getSelectedObjectId()
+            if (selectedId >= 0) {
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_POINTER_DOWN -> {
+                        val dx = event.getX(0) - event.getX(1)
+                        val dy = event.getY(0) - event.getY(1)
+                        lastPinchDist = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val dx = event.getX(0) - event.getX(1)
+                        val dy = event.getY(0) - event.getY(1)
+                        val dist = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+                        if (lastPinchDist > 0f) {
+                            val scaleFactor = dist / lastPinchDist
+                            // Apply uniform scale to the first primitive
+                            val count = NativeBridge.getPrimitiveCount()
+                            for (i in 0 until count) {
+                                val transform = NativeBridge.getPrimitiveTransform(i)
+                                if (transform != null) {
+                                    val t = transform.copyOf()
+                                    // Scale columns 0,1,2 (the 3x3 rotation/scale submatrix)
+                                    for (col in 0..2) {
+                                        t[col * 4 + 0] *= scaleFactor
+                                        t[col * 4 + 1] *= scaleFactor
+                                        t[col * 4 + 2] *= scaleFactor
+                                    }
+                                    NativeBridge.transformPrimitive(i, t)
+                                    val verts = NativeBridge.getPrimitiveMeshVertices(i)
+                                    val indices = NativeBridge.getPrimitiveMeshIndices(i)
+                                    val color = NativeBridge.getPrimitiveColor(i)
+                                    if (verts != null && indices != null && color != null) {
+                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, t, color)
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        lastPinchDist = dist
+                        return true
+                    }
+                    MotionEvent.ACTION_POINTER_UP -> {
+                        lastPinchDist = 0f
+                        return true
+                    }
                 }
             }
         }

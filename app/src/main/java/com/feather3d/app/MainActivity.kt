@@ -146,6 +146,9 @@ class MainActivity : AppCompatActivity() {
     // ── Panel F: Color Palette (Bottom-Right) ────────────────────────────
 
     private var activeColorView: View? = null
+    private var activeColorR = 0.20f
+    private var activeColorG = 0.20f
+    private var activeColorB = 0.20f
 
     private fun setupColorPalette() {
         data class ColorEntry(val viewId: Int, val r: Float, val g: Float, val b: Float)
@@ -167,6 +170,9 @@ class MainActivity : AppCompatActivity() {
             val view = findViewById<View>(entry.viewId)
             view.setOnClickListener {
                 NativeBridge.setStrokeColor(entry.r, entry.g, entry.b, 1.0f)
+                activeColorR = entry.r
+                activeColorG = entry.g
+                activeColorB = entry.b
 
                 // Visual feedback: scale up active, scale down previous
                 activeColorView?.animate()?.scaleX(1.0f)?.scaleY(1.0f)?.setDuration(100)?.start()
@@ -340,10 +346,10 @@ class MainActivity : AppCompatActivity() {
             setSubMode(NativeBridge.MODE_LIQUIFY_PINCH, it)
         }
 
-        binding.btnSubPrimCube.setOnClickListener { featherView.addPrimitive(0) }
-        binding.btnSubPrimSphere.setOnClickListener { featherView.addPrimitive(1) }
-        binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2) }
-        binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3) }
+        binding.btnSubPrimCube.setOnClickListener { featherView.addPrimitive(0, activeColorR, activeColorG, activeColorB) }
+        binding.btnSubPrimSphere.setOnClickListener { featherView.addPrimitive(1, activeColorR, activeColorG, activeColorB) }
+        binding.btnSubPrimCylinder.setOnClickListener { featherView.addPrimitive(2, activeColorR, activeColorG, activeColorB) }
+        binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3, activeColorR, activeColorG, activeColorB) }
 
         binding.btnDeleteSelected.setOnClickListener { featherView.deleteSelected() }
 
