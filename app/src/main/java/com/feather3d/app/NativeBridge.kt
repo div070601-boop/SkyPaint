@@ -38,6 +38,8 @@ object NativeBridge {
     @JvmStatic external fun getStrokeCount(): Int
     @JvmStatic external fun removeStroke(index: Int)
     @JvmStatic external fun clearStrokes()
+    @JvmStatic external fun getStrokePoints(index: Int): FloatArray?
+
 
     // ── Tube Parameters ─────────────────────────────────────────────────
     @JvmStatic external fun setTubeRadius(radius: Float)
@@ -90,6 +92,7 @@ object NativeBridge {
     @JvmStatic external fun getPrimitiveMeshIndices(index: Int): IntArray?
     @JvmStatic external fun getPrimitiveTransform(index: Int): FloatArray?
     @JvmStatic external fun getPrimitiveColor(index: Int): FloatArray?
+    @JvmStatic external fun getPrimitiveType(index: Int): Int
 
     // -- Selection & Transform -----------------------------------------------
     @JvmStatic external fun pickObjectAt(rayOx: Float, rayOy: Float, rayOz: Float,

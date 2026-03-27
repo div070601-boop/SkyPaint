@@ -21,6 +21,7 @@ struct SceneObject {
     bool visible = true;
     bool locked = false;
     ObjectType type = ObjectType::PRIMITIVE;
+    int primitiveType = 0; // Maps to PrimitiveType enum (0=CUBE, 1=SPHERE, etc.)
 };
 
 } // namespace feather

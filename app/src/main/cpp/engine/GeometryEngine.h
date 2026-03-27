@@ -62,6 +62,8 @@ public:
     void removeStroke(int index);
     void clearStrokes();
 
+    const std::vector<StrokePoint>& getStrokePoints(int strokeIndex) const;
+
     // ── Tube Parameters ─────────────────────────────────────────────────
     void setTubeRadius(float radius);
     void setTubeSegments(int segments);

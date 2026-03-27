@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var featherView: Feather3DView
     private lateinit var exportManager: ExportManager
+    private lateinit var sceneManager: SceneManager
 
     private var currentMode = NativeBridge.MODE_STROKE
     private var currentSubMode = NativeBridge.MODE_STROKE
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         featherView.init()
 
         exportManager = ExportManager(this)
+        sceneManager = SceneManager(this)
 
         // Initialize voxel grid for sculpting (centered, 64³)
         NativeBridge.initVoxelGrid(
@@ -197,7 +199,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnExport.setOnClickListener {
-            showExportDialog()
+            showFileMenuDialog()
         }
 
         binding.btnObjectList.setOnClickListener {
@@ -592,15 +594,85 @@ class MainActivity : AppCompatActivity() {
 
     // ── Export ────────────────────────────────────────────────────────────
 
-    private fun showExportDialog() {
-        val options = arrayOf("Export OBJ", "Export GLB (glTF)")
+    private fun showFileMenuDialog() {
+        val options = arrayOf(
+            "Save Scene",
+            "Load Scene",
+            "Delete Scene",
+            "Export OBJ",
+            "Export GLB (glTF)"
+        )
         AlertDialog.Builder(this, com.google.android.material.R.style.ThemeOverlay_MaterialComponents_Dialog_Alert)
-            .setTitle("Export Scene")
+            .setTitle("File Menu")
             .setItems(options) { _, which ->
-                val timestamp = System.currentTimeMillis() / 1000
                 when (which) {
-                    0 -> exportManager.exportOBJ("skypaint_$timestamp")
-                    1 -> exportManager.exportGLB("skypaint_$timestamp")
+                    0 -> showSaveSceneDialog()
+                    1 -> showLoadSceneDialog()
+                    2 -> showDeleteSceneDialog()
+                    3 -> exportManager.exportOBJ("skypaint_${System.currentTimeMillis() / 1000}")
+                    4 -> exportManager.exportGLB("skypaint_${System.currentTimeMillis() / 1000}")
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showSaveSceneDialog() {
+        val input = android.widget.EditText(this)
+        input.hint = "Scene Name"
+        AlertDialog.Builder(this)
+            .setTitle("Save Scene")
+            .setView(input)
+            .setPositiveButton("Save") { _, _ ->
+                val name = input.text.toString().trim()
+                if (name.isNotEmpty()) {
+                    if (sceneManager.saveScene(name)) {
+                        Toast.makeText(this, "Saved: $name", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showLoadSceneDialog() {
+        val scenes = sceneManager.listScenes()
+        if (scenes.isEmpty()) {
+            Toast.makeText(this, "No saved scenes found", Toast.LENGTH_SHORT).show()
+            return
+        }
+        AlertDialog.Builder(this)
+            .setTitle("Load Scene")
+            .setItems(scenes.toTypedArray()) { _, which ->
+                val name = scenes[which]
+                val data = sceneManager.loadScene(name)
+                if (data != null) {
+                    refreshAllMeshes()
+                    Toast.makeText(this, "Loaded: $name", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showDeleteSceneDialog() {
+        val scenes = sceneManager.listScenes()
+        if (scenes.isEmpty()) {
+            Toast.makeText(this, "No saved scenes found", Toast.LENGTH_SHORT).show()
+            return
+        }
+        AlertDialog.Builder(this)
+            .setTitle("Delete Scene")
+            .setItems(scenes.toTypedArray()) { _, which ->
+                val name = scenes[which]
+                if (sceneManager.deleteScene(name)) {
+                    Toast.makeText(this, "Deleted: $name", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Cancel", null)

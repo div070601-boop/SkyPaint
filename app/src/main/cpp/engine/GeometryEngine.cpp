@@ -108,8 +108,13 @@ void GeometryEngine::removeStroke(int index) {
 }
 
 void GeometryEngine::clearStrokes() {
-    m_strokeSystem.clearAll();
     m_strokeMeshes.clear();
+    m_strokeSystem.clearAll();
+    m_actionStack.clear();
+}
+
+const std::vector<StrokePoint>& GeometryEngine::getStrokePoints(int strokeIndex) const {
+    return m_strokeSystem.getStrokePoints(strokeIndex);
 }
 
 // ── Tube Parameters ─────────────────────────────────────────────────────────
@@ -407,6 +412,7 @@ int GeometryEngine::addPrimitive(PrimitiveType type, const Mat4& transform, cons
     obj.transform = transform;
     obj.color = color;
     obj.type = ObjectType::PRIMITIVE;
+    obj.primitiveType = static_cast<int>(type);
 
     switch (type) {
         case PrimitiveType::CUBE:     obj.mesh = PrimitiveGenerator::generateCube(); break;

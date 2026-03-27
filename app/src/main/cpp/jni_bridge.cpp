@@ -80,6 +80,34 @@ Java_com_feather3d_app_NativeBridge_clearStrokes(JNIEnv* env, jclass) {
     g_engine->clearStrokes();
 }
 
+JNIEXPORT jfloatArray JNICALL
+Java_com_feather3d_app_NativeBridge_getStrokePoints(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return nullptr;
+    const auto& points = g_engine->getStrokePoints(index);
+    if (points.empty()) return nullptr;
+
+    const int floatsPerPoint = 10;
+    jfloatArray result = env->NewFloatArray(points.size() * floatsPerPoint);
+    if (!result) return nullptr;
+
+    std::vector<float> data(points.size() * floatsPerPoint);
+    for (size_t i = 0; i < points.size(); ++i) {
+        data[i * floatsPerPoint + 0] = points[i].position.x;
+        data[i * floatsPerPoint + 1] = points[i].position.y;
+        data[i * floatsPerPoint + 2] = points[i].position.z;
+        data[i * floatsPerPoint + 3] = points[i].pressure;
+        data[i * floatsPerPoint + 4] = points[i].tilt;
+        data[i * floatsPerPoint + 5] = points[i].timestamp;
+        data[i * floatsPerPoint + 6] = points[i].color.r;
+        data[i * floatsPerPoint + 7] = points[i].color.g;
+        data[i * floatsPerPoint + 8] = points[i].color.b;
+        data[i * floatsPerPoint + 9] = points[i].color.a;
+    }
+    
+    env->SetFloatArrayRegion(result, 0, data.size(), data.data());
+    return result;
+}
+
 // ── Tube Parameters ─────────────────────────────────────────────────────────
 
 JNIEXPORT void JNICALL
@@ -420,6 +448,14 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveColor(JNIEnv* env, jclass, jint 
     if (!result) return nullptr;
     env->SetFloatArrayRegion(result, 0, 4, glm::value_ptr(prim->color));
     return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveType(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return -1;
+    const auto* prim = g_engine->getPrimitive(index);
+    if (!prim) return -1;
+    return prim->primitiveType;
 }
 
 // -- Selection & Transform ---------------------------------------------------
