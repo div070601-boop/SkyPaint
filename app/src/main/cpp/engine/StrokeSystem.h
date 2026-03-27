@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../math/MathTypes.h"
+#include <string>
 
 namespace feather {
 
@@ -43,12 +44,20 @@ public:
     void removeStroke(int index);
 
     /// Push a finalized stroke back (used for Redo)
-    void pushStroke(const std::vector<StrokePoint>& stroke) { m_strokes.push_back(stroke); }
+    void pushStroke(const std::vector<StrokePoint>& stroke) { 
+        m_strokes.push_back(stroke); 
+        m_visible.push_back(true);
+        m_locked.push_back(false);
+        m_names.push_back("Stroke");
+    }
     
     /// Pop the last stroke (used for Undo)
     void popStroke() {
         if (!m_strokes.empty()) {
             m_strokes.pop_back();
+            m_visible.pop_back();
+            m_locked.pop_back();
+            m_names.pop_back();
         }
     }
 
@@ -58,8 +67,20 @@ public:
     /// Check if currently drawing
     bool isDrawing() const { return m_isDrawing; }
 
+    // Properties
+    bool isVisible(int index) const;
+    void setVisible(int index, bool visible);
+    bool isLocked(int index) const;
+    void setLocked(int index, bool locked);
+    std::string getName(int index) const;
+    void setName(int index, const std::string& name);
+
 private:
     std::vector<std::vector<StrokePoint>> m_strokes;
+    std::vector<bool> m_visible;
+    std::vector<bool> m_locked;
+    std::vector<std::string> m_names;
+
     std::vector<StrokePoint> m_currentStroke;
     bool m_isDrawing = false;
     Vec4 m_activeColor{1.0f, 1.0f, 1.0f, 1.0f};

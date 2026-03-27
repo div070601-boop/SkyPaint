@@ -26,3 +26,19 @@
 102	4244	7962917557394475	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
 30	3147	7962917954015107	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
 3147	3348	7962917955989896	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	384f1b1549aa3c87
+132	3114	7962934158551922	CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o	27995325b05eb1e4
+80	3544	7962934162930616	CMakeFiles/feather3d_engine.dir/engine/StrokeSystem.cpp.o	914c64cfcf4afd07
+141	3576	7962934163231940	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+113	5453	7962934181935724	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
+5454	5651	7962934183971547	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	384f1b1549aa3c87
+33	1513	7962938295915789	CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o	ef34a364e624f33f
+22	2051	7962938301245646	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+8	3164	7962938312371428	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
+3164	3358	7962938314274992	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	384f1b1549aa3c87
+14	2067	7962942105913821	CMakeFiles/feather3d_engine.dir/engine/ActionStack.cpp.o	ef34a364e624f33f
+25	2646	7962942111698683	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+88	2458	7962970944774947	CMakeFiles/feather3d_engine.dir/engine/RaycastEngine.cpp.o	27995325b05eb1e4
+64	2577	7962970946167281	CMakeFiles/feather3d_engine.dir/engine/VoxelGrid.cpp.o	7d02def987420039
+77	2644	7962970946777338	CMakeFiles/feather3d_engine.dir/engine/MarchingCubes.cpp.o	58fb169abbb0b296
+101	3075	7962970951062502	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
+48	3706	7962981530856932	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938

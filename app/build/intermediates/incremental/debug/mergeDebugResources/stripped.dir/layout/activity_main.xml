@@ -531,6 +531,29 @@
             android:minWidth="0dp"
             android:paddingHorizontal="14dp" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMerge"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Union (CSG)"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubtract"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Subtract (CSG)"
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:minWidth="0dp"
+            android:paddingHorizontal="14dp" />
+
         <!-- Clear All -->
         <ImageButton
             android:id="@+id/btnClear"

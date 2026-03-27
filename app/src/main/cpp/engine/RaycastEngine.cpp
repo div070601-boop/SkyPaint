@@ -46,10 +46,13 @@ void RaycastEngine::computeAABB(const Mesh& mesh, Vec3& outMin, Vec3& outMax) {
     }
 }
 
-RayHit RaycastEngine::pickObject(const Ray& ray, const std::vector<SceneObject>& objects) {
+RayHit RaycastEngine::pickObject(const Ray& ray, const std::vector<SceneObject>& objects, std::function<bool(int)> filter) {
     RayHit bestHit;
 
-    for (const auto& obj : objects) {
+    for (size_t i = 0; i < objects.size(); ++i) {
+        if (filter && !filter(i)) continue;
+
+        const auto& obj = objects[i];
         // Compute local AABB
         Vec3 localMin, localMax;
         computeAABB(obj.mesh, localMin, localMax);
@@ -82,11 +85,13 @@ RayHit RaycastEngine::pickObject(const Ray& ray, const std::vector<SceneObject>&
     return bestHit;
 }
 
-int RaycastEngine::pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMeshes) {
+int RaycastEngine::pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMeshes, std::function<bool(int)> filter) {
     float bestDist = std::numeric_limits<float>::max();
     int bestIndex = -1;
 
     for (int i = 0; i < static_cast<int>(strokeMeshes.size()); ++i) {
+        if (filter && !filter(i)) continue;
+
         Vec3 bmin, bmax;
         computeAABB(strokeMeshes[i], bmin, bmax);
 

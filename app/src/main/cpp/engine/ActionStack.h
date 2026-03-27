@@ -1,15 +1,30 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <chrono>
+#include <cstdint>
 
 namespace feather {
 
 /// Base interface for any undoable operation
 class Action {
 public:
+    Action() {
+        m_timestamp = std::chrono::steady_clock::now().time_since_epoch().count();
+    }
     virtual ~Action() = default;
     virtual void undo() = 0;
     virtual void redo() = 0;
+
+    virtual int getTypeId() const { return 0; }
+    virtual bool canMergeWith(const Action*) const { return false; }
+    virtual void merge(const Action*) {}
+
+    int64_t getTimestamp() const { return m_timestamp; }
+    void setTimestamp(int64_t ts) { m_timestamp = ts; }
+
+protected:
+    int64_t m_timestamp;
 };
 
 /// Manages the history of actions for undo/redo

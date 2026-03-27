@@ -94,12 +94,29 @@ object NativeBridge {
     @JvmStatic external fun getPrimitiveColor(index: Int): FloatArray?
     @JvmStatic external fun getPrimitiveType(index: Int): Int
 
+    // -- Object Properties ---------------------------------------------------
+    @JvmStatic external fun isPrimitiveVisible(index: Int): Boolean
+    @JvmStatic external fun setPrimitiveVisible(index: Int, visible: Boolean)
+    @JvmStatic external fun isPrimitiveLocked(index: Int): Boolean
+    @JvmStatic external fun setPrimitiveLocked(index: Int, locked: Boolean)
+    
+    @JvmStatic external fun isStrokeVisible(index: Int): Boolean
+    @JvmStatic external fun setStrokeVisible(index: Int, visible: Boolean)
+    @JvmStatic external fun isStrokeLocked(index: Int): Boolean
+    @JvmStatic external fun setStrokeLocked(index: Int, locked: Boolean)
+    
+    @JvmStatic external fun getPrimitiveName(index: Int): String
+    @JvmStatic external fun setPrimitiveName(index: Int, name: String)
+    @JvmStatic external fun getStrokeName(index: Int): String
+    @JvmStatic external fun setStrokeName(index: Int, name: String)
+
     // -- Selection & Transform -----------------------------------------------
     @JvmStatic external fun pickObjectAt(rayOx: Float, rayOy: Float, rayOz: Float,
                                           rayDx: Float, rayDy: Float, rayDz: Float): Int
     @JvmStatic external fun getSelectedObjectId(): Int
     @JvmStatic external fun deselectAll()
     @JvmStatic external fun transformPrimitive(index: Int, transform: FloatArray)
+    @JvmStatic external fun mergeSelectedPrimitive(subtract: Boolean)
 
     // ── Export ───────────────────────────────────────────────────────────
     @JvmStatic external fun exportOBJ(): String

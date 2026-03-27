@@ -52,6 +52,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final MaterialButton btnGridSnap;
 
   @NonNull
+  public final MaterialButton btnMerge;
+
+  @NonNull
   public final ImageButton btnMirror;
 
   @NonNull
@@ -127,6 +130,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final MaterialButton btnSubSub;
 
   @NonNull
+  public final MaterialButton btnSubtract;
+
+  @NonNull
   public final ImageButton btnUndo;
 
   @NonNull
@@ -200,19 +206,20 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull ImageButton btnClear, @NonNull ImageButton btnColorPicker,
       @NonNull MaterialButton btnDeleteSelected, @NonNull MaterialButton btnDuplicateSelected,
       @NonNull ImageButton btnExport, @NonNull MaterialButton btnGridSnap,
-      @NonNull ImageButton btnMirror, @NonNull ImageButton btnModeDraw,
-      @NonNull ImageButton btnModeErase, @NonNull ImageButton btnModeLiquify,
-      @NonNull ImageButton btnModeNavigate, @NonNull ImageButton btnModePrimitives,
-      @NonNull ImageButton btnModeSculpt, @NonNull ImageButton btnModeSelect,
-      @NonNull ImageButton btnObjectList, @NonNull MaterialButton btnOrtho,
-      @NonNull ImageButton btnRedo, @NonNull ImageButton btnSettings,
-      @NonNull MaterialButton btnSnapView, @NonNull MaterialButton btnStraight,
-      @NonNull MaterialButton btnSubAdd, @NonNull MaterialButton btnSubInflate,
-      @NonNull MaterialButton btnSubPinch, @NonNull MaterialButton btnSubPrimCone,
-      @NonNull MaterialButton btnSubPrimCube, @NonNull MaterialButton btnSubPrimCylinder,
-      @NonNull MaterialButton btnSubPrimPlane, @NonNull MaterialButton btnSubPrimSphere,
-      @NonNull MaterialButton btnSubPrimTorus, @NonNull MaterialButton btnSubSmooth,
-      @NonNull MaterialButton btnSubSub, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
+      @NonNull MaterialButton btnMerge, @NonNull ImageButton btnMirror,
+      @NonNull ImageButton btnModeDraw, @NonNull ImageButton btnModeErase,
+      @NonNull ImageButton btnModeLiquify, @NonNull ImageButton btnModeNavigate,
+      @NonNull ImageButton btnModePrimitives, @NonNull ImageButton btnModeSculpt,
+      @NonNull ImageButton btnModeSelect, @NonNull ImageButton btnObjectList,
+      @NonNull MaterialButton btnOrtho, @NonNull ImageButton btnRedo,
+      @NonNull ImageButton btnSettings, @NonNull MaterialButton btnSnapView,
+      @NonNull MaterialButton btnStraight, @NonNull MaterialButton btnSubAdd,
+      @NonNull MaterialButton btnSubInflate, @NonNull MaterialButton btnSubPinch,
+      @NonNull MaterialButton btnSubPrimCone, @NonNull MaterialButton btnSubPrimCube,
+      @NonNull MaterialButton btnSubPrimCylinder, @NonNull MaterialButton btnSubPrimPlane,
+      @NonNull MaterialButton btnSubPrimSphere, @NonNull MaterialButton btnSubPrimTorus,
+      @NonNull MaterialButton btnSubSmooth, @NonNull MaterialButton btnSubSub,
+      @NonNull MaterialButton btnSubtract, @NonNull ImageButton btnUndo, @NonNull View colorBlack,
       @NonNull View colorBlue, @NonNull View colorCyan, @NonNull View colorGreen,
       @NonNull View colorOrange, @NonNull View colorPink, @NonNull View colorPurple,
       @NonNull View colorRed, @NonNull View colorWhite, @NonNull View colorYellow,
@@ -232,6 +239,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnDuplicateSelected = btnDuplicateSelected;
     this.btnExport = btnExport;
     this.btnGridSnap = btnGridSnap;
+    this.btnMerge = btnMerge;
     this.btnMirror = btnMirror;
     this.btnModeDraw = btnModeDraw;
     this.btnModeErase = btnModeErase;
@@ -257,6 +265,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnSubPrimTorus = btnSubPrimTorus;
     this.btnSubSmooth = btnSubSmooth;
     this.btnSubSub = btnSubSub;
+    this.btnSubtract = btnSubtract;
     this.btnUndo = btnUndo;
     this.colorBlack = colorBlack;
     this.colorBlue = colorBlue;
@@ -360,6 +369,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnGridSnap;
       MaterialButton btnGridSnap = ViewBindings.findChildViewById(rootView, id);
       if (btnGridSnap == null) {
+        break missingId;
+      }
+
+      id = R.id.btnMerge;
+      MaterialButton btnMerge = ViewBindings.findChildViewById(rootView, id);
+      if (btnMerge == null) {
         break missingId;
       }
 
@@ -513,6 +528,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnSubtract;
+      MaterialButton btnSubtract = ViewBindings.findChildViewById(rootView, id);
+      if (btnSubtract == null) {
+        break missingId;
+      }
+
       id = R.id.btnUndo;
       ImageButton btnUndo = ViewBindings.findChildViewById(rootView, id);
       if (btnUndo == null) {
@@ -653,13 +674,13 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((ConstraintLayout) rootView, brushSizeLabel, brushSizeSlider,
           btnAngleSnap, btnClear, btnColorPicker, btnDeleteSelected, btnDuplicateSelected,
-          btnExport, btnGridSnap, btnMirror, btnModeDraw, btnModeErase, btnModeLiquify,
+          btnExport, btnGridSnap, btnMerge, btnMirror, btnModeDraw, btnModeErase, btnModeLiquify,
           btnModeNavigate, btnModePrimitives, btnModeSculpt, btnModeSelect, btnObjectList, btnOrtho,
           btnRedo, btnSettings, btnSnapView, btnStraight, btnSubAdd, btnSubInflate, btnSubPinch,
           btnSubPrimCone, btnSubPrimCube, btnSubPrimCylinder, btnSubPrimPlane, btnSubPrimSphere,
-          btnSubPrimTorus, btnSubSmooth, btnSubSub, btnUndo, colorBlack, colorBlue, colorCyan,
-          colorGreen, colorOrange, colorPink, colorPurple, colorRed, colorWhite, colorYellow,
-          feather3dView, objectListContainer, panelBrushSidebar, panelColorPalette,
+          btnSubPrimTorus, btnSubSmooth, btnSubSub, btnSubtract, btnUndo, colorBlack, colorBlue,
+          colorCyan, colorGreen, colorOrange, colorPink, colorPurple, colorRed, colorWhite,
+          colorYellow, feather3dView, objectListContainer, panelBrushSidebar, panelColorPalette,
           panelContextMenu, panelDrafting, panelHistory, panelObjectList, panelSystemMenu,
           panelToolMenu, statsText, textDimension);
     }

@@ -319,12 +319,13 @@ class Feather3DView @JvmOverloads constructor(
                                     newTransform[13] += worldDy  // translate Y
                                     NativeBridge.transformPrimitive(i, newTransform)
 
-                                    // Re-upload mesh with new transform
+                                    // Re-upload mesh with new snapped transform
+                                    val syncedTransform = NativeBridge.getPrimitiveTransform(i) ?: newTransform
                                     val verts = NativeBridge.getPrimitiveMeshVertices(i)
                                     val indices = NativeBridge.getPrimitiveMeshIndices(i)
                                     val color = NativeBridge.getPrimitiveColor(i)
                                     if (verts != null && indices != null && color != null) {
-                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, newTransform, color)
+                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, syncedTransform, color)
                                     }
                                     break
                                 }
@@ -393,11 +394,12 @@ class Feather3DView @JvmOverloads constructor(
                                     }
 
                                     NativeBridge.transformPrimitive(i, t)
+                                    val syncedTransform = NativeBridge.getPrimitiveTransform(i) ?: t
                                     val verts = NativeBridge.getPrimitiveMeshVertices(i)
                                     val indices = NativeBridge.getPrimitiveMeshIndices(i)
                                     val color = NativeBridge.getPrimitiveColor(i)
                                     if (verts != null && indices != null && color != null) {
-                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, t, color)
+                                        filamentRenderer.uploadPrimitiveMesh(i, verts, indices, syncedTransform, color)
                                     }
                                     break
                                 }
@@ -460,6 +462,15 @@ class Feather3DView @JvmOverloads constructor(
 
         // Request next frame
         choreographer?.postFrameCallback(this)
+    }
+
+    fun refreshVoxelMesh() {
+        val verts = NativeBridge.getVoxelMeshVertices()
+        val indices = NativeBridge.getVoxelMeshIndices()
+        if (verts != null && indices != null) {
+            filamentRenderer.uploadVoxelMesh(verts, indices)
+        }
+        updateStats()
     }
 
     fun clearAll() {

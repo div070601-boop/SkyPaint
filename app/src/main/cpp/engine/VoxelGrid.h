@@ -27,6 +27,9 @@ public:
     /// Subtract a sphere from the distance field
     void subtractSphere(const Vec3& center, float radius, float strength = 1.0f);
 
+    /// Merge an arbitrary predefined primitive into the terrain (CSG Boolean)
+    void mergePrimitiveSDF(int primitiveType, const Mat4& transform, bool isSubtract);
+
     /// Smooth the field in a region
     void smooth(const Vec3& center, float radius, int iterations = 1);
 

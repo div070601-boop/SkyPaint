@@ -24,12 +24,12 @@
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_mirror.xml"
     },
     {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_bg_panel.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_panel.xml"
-    },
-    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_liquify.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_liquify.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_bg_panel.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_panel.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_redo.xml.flat",

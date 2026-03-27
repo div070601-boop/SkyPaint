@@ -90,11 +90,61 @@ public:
         }
     }
 
+    int getTypeId() const override { return 1; }
+
+    bool canMergeWith(const Action* other) const override {
+        if (other->getTypeId() != 1) return false;
+        const auto* tOther = static_cast<const PrimitiveTransformAction*>(other);
+        return tOther->m_index == m_index;
+    }
+
+    void merge(const Action* other) override {
+        const auto* tOther = static_cast<const PrimitiveTransformAction*>(other);
+        m_newTransform = tOther->m_newTransform;
+    }
+
 private:
     std::vector<SceneObject>& m_primitives;
     int m_index;
     Mat4 m_oldTransform;
     Mat4 m_newTransform;
+};
+
+/// Command to undo/redo a primitive CSG merge to voxel grid
+class PrimitiveCSGAction : public Action {
+public:
+    PrimitiveCSGAction(VoxelGrid& voxelGrid, std::vector<SceneObject>& primitives,
+                       int primitiveIndex, const std::vector<float>& oldVoxelField)
+        : m_voxelGrid(voxelGrid), m_primitives(primitives),
+          m_index(primitiveIndex), m_oldVoxelField(oldVoxelField) {
+        // Capture new state
+        m_newVoxelField = m_voxelGrid.getField();
+    }
+
+    void undo() override {
+        // Restore voxel grid
+        m_voxelGrid.setField(m_oldVoxelField);
+        // Reshow the primitive
+        if (m_index >= 0 && m_index < static_cast<int>(m_primitives.size())) {
+            m_primitives[m_index].visible = true;
+        }
+    }
+
+    void redo() override {
+        // Apply voxel grid
+        m_voxelGrid.setField(m_newVoxelField);
+        // Hide the primitive
+        if (m_index >= 0 && m_index < static_cast<int>(m_primitives.size())) {
+            m_primitives[m_index].visible = false;
+        }
+    }
+
+private:
+    VoxelGrid& m_voxelGrid;
+    std::vector<SceneObject>& m_primitives;
+    int m_index;
+    std::vector<float> m_oldVoxelField;
+    std::vector<float> m_newVoxelField;
 };
 
 } // namespace feather

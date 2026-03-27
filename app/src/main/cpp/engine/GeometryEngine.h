@@ -101,6 +101,22 @@ public:
     void removePrimitive(int index);
     void clearPrimitives();
 
+    // ── Object Properties ───────────────────────────────────────────────
+    bool isPrimitiveVisible(int index) const;
+    void setPrimitiveVisible(int index, bool visible);
+    bool isPrimitiveLocked(int index) const;
+    void setPrimitiveLocked(int index, bool locked);
+    std::string getPrimitiveName(int index) const;
+    void setPrimitiveName(int index, const std::string& name);
+
+    bool isStrokeVisible(int index) const;
+    void setStrokeVisible(int index, bool visible);
+    bool isStrokeLocked(int index) const;
+    void setStrokeLocked(int index, bool locked);
+    std::string getStrokeName(int index) const;
+    void setStrokeName(int index, const std::string& name);
+
+
     std::string exportOBJ() const;
     std::vector<uint8_t> exportGLB() const;
     bool exportOBJToFile(const std::string& path) const;
@@ -117,6 +133,9 @@ public:
     void setSelectedObjectId(int id) { m_selectedObjectId = id; }
     void deselectAll() { m_selectedObjectId = -1; }
     void transformPrimitive(int index, const Mat4& transform);
+    
+    // Merge primitive to voxel layer (CSG)
+    void mergeSelectedPrimitive(bool subtract);
 
     // Access stroke meshes for picking
     const std::vector<Mesh>& getStrokeMeshes() const { return m_strokeMeshes; }
@@ -148,6 +167,9 @@ private:
     std::vector<SceneObject> m_primitiveObjects;
     int m_nextObjectId = 1;
     int m_selectedObjectId = -1;
+
+    bool m_gridSnap = false;
+    float m_gridSize = 0.5f;
 
     /// Generate tube mesh from stroke
     Mesh generateMeshFromStroke(const std::vector<StrokePoint>& points);

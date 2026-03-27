@@ -77,6 +77,9 @@ int StrokeSystem::endStroke() {
     }
 
     m_strokes.push_back(std::move(m_currentStroke));
+    m_visible.push_back(true);
+    m_locked.push_back(false);
+    m_names.push_back("Stroke");
     m_currentStroke.clear();
     return static_cast<int>(m_strokes.size()) - 1;
 }
@@ -100,11 +103,17 @@ int StrokeSystem::getStrokeCount() const {
 void StrokeSystem::removeStroke(int index) {
     if (index >= 0 && index < static_cast<int>(m_strokes.size())) {
         m_strokes.erase(m_strokes.begin() + index);
+        m_visible.erase(m_visible.begin() + index);
+        m_locked.erase(m_locked.begin() + index);
+        m_names.erase(m_names.begin() + index);
     }
 }
 
 void StrokeSystem::clearAll() {
     m_strokes.clear();
+    m_visible.clear();
+    m_locked.clear();
+    m_names.clear();
     m_currentStroke.clear();
     m_isDrawing = false;
 }
@@ -123,6 +132,39 @@ StrokePoint StrokeSystem::smoothPoint(const StrokePoint& raw) const {
     smoothed.timestamp = raw.timestamp;
 
     return smoothed;
+}
+
+bool StrokeSystem::isVisible(int index) const {
+    if (index < 0 || index >= static_cast<int>(m_visible.size())) return false;
+    return m_visible[index];
+}
+
+void StrokeSystem::setVisible(int index, bool visible) {
+    if (index >= 0 && index < static_cast<int>(m_visible.size())) {
+        m_visible[index] = visible;
+    }
+}
+
+bool StrokeSystem::isLocked(int index) const {
+    if (index < 0 || index >= static_cast<int>(m_locked.size())) return false;
+    return m_locked[index];
+}
+
+void StrokeSystem::setLocked(int index, bool locked) {
+    if (index >= 0 && index < static_cast<int>(m_locked.size())) {
+        m_locked[index] = locked;
+    }
+}
+
+std::string StrokeSystem::getName(int index) const {
+    if (index < 0 || index >= static_cast<int>(m_names.size())) return "";
+    return m_names[index];
+}
+
+void StrokeSystem::setName(int index, const std::string& name) {
+    if (index >= 0 && index < static_cast<int>(m_names.size())) {
+        m_names[index] = name;
+    }
 }
 
 } // namespace feather

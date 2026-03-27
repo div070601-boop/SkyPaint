@@ -458,6 +458,84 @@ Java_com_feather3d_app_NativeBridge_getPrimitiveType(JNIEnv* env, jclass, jint i
     return prim->primitiveType;
 }
 
+// -- Object Properties -------------------------------------------------------
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_isPrimitiveVisible(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return JNI_FALSE;
+    return g_engine->isPrimitiveVisible(index) ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setPrimitiveVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
+    if (!g_engine) return;
+    g_engine->setPrimitiveVisible(index, visible);
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_isPrimitiveLocked(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return JNI_FALSE;
+    return g_engine->isPrimitiveLocked(index) ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setPrimitiveLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
+    if (!g_engine) return;
+    g_engine->setPrimitiveLocked(index, locked);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_feather3d_app_NativeBridge_getPrimitiveName(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return env->NewStringUTF("");
+    return env->NewStringUTF(g_engine->getPrimitiveName(index).c_str());
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setPrimitiveName(JNIEnv* env, jclass, jint index, jstring name) {
+    if (!g_engine) return;
+    const char* nativeString = env->GetStringUTFChars(name, 0);
+    g_engine->setPrimitiveName(index, nativeString);
+    env->ReleaseStringUTFChars(name, nativeString);
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_isStrokeVisible(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return JNI_FALSE;
+    return g_engine->isStrokeVisible(index) ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setStrokeVisible(JNIEnv* env, jclass, jint index, jboolean visible) {
+    if (!g_engine) return;
+    g_engine->setStrokeVisible(index, visible);
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_feather3d_app_NativeBridge_isStrokeLocked(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return JNI_FALSE;
+    return g_engine->isStrokeLocked(index) ? JNI_TRUE : JNI_FALSE;
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setStrokeLocked(JNIEnv* env, jclass, jint index, jboolean locked) {
+    if (!g_engine) return;
+    g_engine->setStrokeLocked(index, locked);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_feather3d_app_NativeBridge_getStrokeName(JNIEnv* env, jclass, jint index) {
+    if (!g_engine) return env->NewStringUTF("");
+    return env->NewStringUTF(g_engine->getStrokeName(index).c_str());
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_setStrokeName(JNIEnv* env, jclass, jint index, jstring name) {
+    if (!g_engine) return;
+    const char* nativeString = env->GetStringUTFChars(name, 0);
+    g_engine->setStrokeName(index, nativeString);
+    env->ReleaseStringUTFChars(name, nativeString);
+}
+
 // -- Selection & Transform ---------------------------------------------------
 
 JNIEXPORT jint JNICALL
@@ -487,6 +565,12 @@ Java_com_feather3d_app_NativeBridge_transformPrimitive(JNIEnv* env, jclass, jint
     feather::Mat4 mat = glm::make_mat4(tElements);
     env->ReleaseFloatArrayElements(transform, tElements, JNI_ABORT);
     g_engine->transformPrimitive(index, mat);
+}
+
+JNIEXPORT void JNICALL
+Java_com_feather3d_app_NativeBridge_mergeSelectedPrimitive(JNIEnv* env, jclass, jboolean subtract) {
+    if (!g_engine) return;
+    g_engine->mergeSelectedPrimitive(subtract == JNI_TRUE);
 }
 
 } // extern "C"

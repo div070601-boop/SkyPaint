@@ -3781,6 +3781,7 @@ id btnDeleteSelected
 id btnDuplicateSelected
 id btnExport
 id btnGridSnap
+id btnMerge
 id btnMirror
 id btnModeDraw
 id btnModeErase
@@ -3806,6 +3807,7 @@ id btnSubPrimSphere
 id btnSubPrimTorus
 id btnSubSmooth
 id btnSubSub
+id btnSubtract
 id btnUndo
 id buttonPanel
 id cache_measures

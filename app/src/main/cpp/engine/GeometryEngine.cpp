@@ -1,4 +1,8 @@
 #include "GeometryEngine.h"
+#include "PrimitiveGenerator.h"
+#include "RaycastEngine.h"
+#include "SnapEngine.h"
+#include <algorithm>
 
 namespace feather {
 
@@ -77,7 +81,9 @@ const Mesh& GeometryEngine::getStrokeMesh(int strokeIndex) const {
 
 Mesh GeometryEngine::getCombinedStrokeMesh() const {
     Mesh combined;
-    for (const auto& mesh : m_strokeMeshes) {
+    for (size_t i = 0; i < m_strokeMeshes.size(); ++i) {
+        if (!isStrokeVisible(static_cast<int>(i))) continue;
+        const auto& mesh = m_strokeMeshes[i];
         uint32_t offset = static_cast<uint32_t>(combined.vertices.size());
         combined.vertices.insert(combined.vertices.end(),
                                  mesh.vertices.begin(), mesh.vertices.end());
@@ -142,6 +148,8 @@ void GeometryEngine::setStraightLineMode(bool enable) {
 }
 
 void GeometryEngine::setGridSnap(bool enable, float size) {
+    m_gridSnap = enable;
+    m_gridSize = size;
     m_strokeSystem.setGridSnap(enable, size);
 }
 
@@ -423,6 +431,14 @@ int GeometryEngine::addPrimitive(PrimitiveType type, const Mat4& transform, cons
         case PrimitiveType::TORUS:    obj.mesh = PrimitiveGenerator::generateTorus(); break;
     }
 
+    if (m_gridSnap && m_gridSize > 0.001f) {
+        Vec3 pos(obj.transform[12], obj.transform[13], obj.transform[14]);
+        pos = SnapEngine::snapToGrid(pos, m_gridSize);
+        obj.transform[12] = pos.x;
+        obj.transform[13] = pos.y;
+        obj.transform[14] = pos.z;
+    }
+
     m_primitiveObjects.push_back(obj);
 
     // Push undo action
@@ -452,6 +468,74 @@ void GeometryEngine::clearPrimitives() {
     m_primitiveObjects.clear();
 }
 
+// ── Object Properties ───────────────────────────────────────────────────────
+
+bool GeometryEngine::isPrimitiveVisible(int index) const {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        return m_primitiveObjects[index].visible;
+    }
+    return false;
+}
+
+void GeometryEngine::setPrimitiveVisible(int index, bool visible) {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        m_primitiveObjects[index].visible = visible;
+    }
+}
+
+bool GeometryEngine::isPrimitiveLocked(int index) const {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        return m_primitiveObjects[index].locked;
+    }
+    return false;
+}
+
+void GeometryEngine::setPrimitiveLocked(int index, bool locked) {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        m_primitiveObjects[index].locked = locked;
+    }
+}
+
+std::string GeometryEngine::getPrimitiveName(int index) const {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        return m_primitiveObjects[index].name;
+    }
+    return "";
+}
+
+void GeometryEngine::setPrimitiveName(int index, const std::string& name) {
+    if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        m_primitiveObjects[index].name = name;
+    }
+}
+
+// Strokes
+bool GeometryEngine::isStrokeVisible(int index) const {
+    return m_strokeSystem.isVisible(index);
+}
+
+void GeometryEngine::setStrokeVisible(int index, bool visible) {
+    m_strokeSystem.setVisible(index, visible);
+    // Since strokes are exported as one big mesh, we might need a way to filter them during build,
+    // but for now, we just update the flag.
+}
+
+bool GeometryEngine::isStrokeLocked(int index) const {
+    return m_strokeSystem.isLocked(index);
+}
+
+void GeometryEngine::setStrokeLocked(int index, bool locked) {
+    m_strokeSystem.setLocked(index, locked);
+}
+
+std::string GeometryEngine::getStrokeName(int index) const {
+    return m_strokeSystem.getName(index);
+}
+
+void GeometryEngine::setStrokeName(int index, const std::string& name) {
+    m_strokeSystem.setName(index, name);
+}
+
 // ── Selection & Transform ───────────────────────────────────────────────────
 
 int GeometryEngine::pickObjectAt(float rayOx, float rayOy, float rayOz,
@@ -460,15 +544,22 @@ int GeometryEngine::pickObjectAt(float rayOx, float rayOy, float rayOz,
     ray.origin = Vec3(rayOx, rayOy, rayOz);
     ray.direction = glm::normalize(Vec3(rayDx, rayDy, rayDz));
 
-    // First try primitives
-    RayHit hit = RaycastEngine::pickObject(ray, m_primitiveObjects);
+    // First try primitives (ignore hidden or locked)
+    RayHit hit = RaycastEngine::pickObject(ray, m_primitiveObjects, [this](int idx) {
+        if (idx < 0 || idx >= static_cast<int>(m_primitiveObjects.size())) return false;
+        return m_primitiveObjects[idx].visible && !m_primitiveObjects[idx].locked;
+    });
+    
     if (hit.objectId >= 0) {
         m_selectedObjectId = hit.objectId;
         return hit.objectId;
     }
 
     // Then try strokes
-    int strokeIdx = RaycastEngine::pickStroke(ray, m_strokeMeshes);
+    int strokeIdx = RaycastEngine::pickStroke(ray, m_strokeMeshes, [this](int idx) {
+        return isStrokeVisible(idx) && !isStrokeLocked(idx);
+    });
+    
     if (strokeIdx >= 0) {
         // Use negative IDs for strokes: -(strokeIndex + 1)
         m_selectedObjectId = -(strokeIdx + 1);
@@ -481,10 +572,39 @@ int GeometryEngine::pickObjectAt(float rayOx, float rayOy, float rayOz,
 
 void GeometryEngine::transformPrimitive(int index, const Mat4& transform) {
     if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        Mat4 newTransform = transform;
+        if (m_gridSnap && m_gridSize > 0.001f) {
+            Vec3 pos(newTransform[12], newTransform[13], newTransform[14]);
+            pos = SnapEngine::snapToGrid(pos, m_gridSize);
+            newTransform[12] = pos.x;
+            newTransform[13] = pos.y;
+            newTransform[14] = pos.z;
+        }
+
         Mat4 oldTransform = m_primitiveObjects[index].transform;
-        m_primitiveObjects[index].transform = transform;
+        m_primitiveObjects[index].transform = newTransform;
         m_actionStack.pushAction(std::make_unique<PrimitiveTransformAction>(
-            m_primitiveObjects, index, oldTransform, transform));
+            m_primitiveObjects, index, oldTransform, newTransform));
+    }
+}
+
+void GeometryEngine::mergeSelectedPrimitive(bool subtract) {
+    if (m_selectedObjectId >= 0 && m_selectedObjectId < static_cast<int>(m_primitiveObjects.size())) {
+        // Capture old state for undo
+        std::vector<float> oldFieldSnapshot = m_voxelGrid.getField();
+        int primitiveIndex = m_selectedObjectId;
+
+        const auto& obj = m_primitiveObjects[primitiveIndex];
+        m_voxelGrid.mergePrimitiveSDF(obj.primitiveType, obj.transform, subtract);
+        m_voxelMeshDirty = true;
+        
+        // Hide it
+        m_primitiveObjects[primitiveIndex].visible = false;
+        m_selectedObjectId = -1;
+
+        // Push to undo stack
+        m_actionStack.pushAction(std::make_unique<PrimitiveCSGAction>(
+            m_voxelGrid, m_primitiveObjects, primitiveIndex, oldFieldSnapshot));
     }
 }
 

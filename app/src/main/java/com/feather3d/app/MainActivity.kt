@@ -222,13 +222,30 @@ class MainActivity : AppCompatActivity() {
         // Strokes
         val strokeCount = NativeBridge.getStrokeCount()
         for (i in 0 until strokeCount) {
-            val tv = android.widget.TextView(this).apply {
-                text = "\uD83D\uDD8C Stroke $i"
-                textSize = 11f
-                setTextColor(0xFF757575.toInt())
-                setPadding(8, 4, 8, 4)
-            }
-            container.addView(tv)
+            val isVisible = NativeBridge.isStrokeVisible(i)
+            val isLocked = NativeBridge.isStrokeLocked(i)
+            val rawName = NativeBridge.getStrokeName(i)
+            val strokeName = if (rawName.isNotEmpty()) rawName else "Stroke $i"
+
+            val row = buildObjectListRow(
+                icon = "\uD83D\uDD8C", // Paintbrush
+                name = strokeName,
+                colorHex = "#757575",
+                isVisible = isVisible,
+                isLocked = isLocked,
+                onVisibilityToggle = {
+                    NativeBridge.setStrokeVisible(i, !isVisible)
+                    featherView.filamentRenderer.setStrokeVisible(i, !isVisible)
+                    refreshSceneObjectList()
+                },
+                onLockToggle = {
+                    NativeBridge.setStrokeLocked(i, !isLocked)
+                    refreshSceneObjectList()
+                },
+                onRename = { showRenameDialog(true, i, strokeName) },
+                onClick = { /* strokes can't be selected natively yet */ }
+            )
+            container.addView(row)
         }
 
         // Primitives
@@ -240,19 +257,38 @@ class MainActivity : AppCompatActivity() {
                 val g = (color[1] * 255).toInt().coerceIn(0, 255)
                 val b = (color[2] * 255).toInt().coerceIn(0, 255)
                 String.format("#%02X%02X%02X", r, g, b)
-            } else "#888"
+            } else "#888888"
 
-            val tv = android.widget.TextView(this).apply {
-                text = "\u25A0 ${primitiveNames.getOrElse(0) { "Prim" }} $i"
-                textSize = 11f
-                setTextColor(android.graphics.Color.parseColor(colorHex))
-                setPadding(8, 6, 8, 6)
-                setOnClickListener {
-                    // Select this primitive
-                    featherView.filamentRenderer.highlightPrimitive(i)
+            val isVisible = NativeBridge.isPrimitiveVisible(i)
+            val isLocked = NativeBridge.isPrimitiveLocked(i)
+            val rawName = NativeBridge.getPrimitiveName(i)
+            
+            val typeIdx = NativeBridge.getPrimitiveType(i).coerceIn(0, primitiveNames.size - 1)
+            val primName = if (rawName.isNotEmpty()) rawName else "${primitiveNames[typeIdx]} $i"
+
+            val row = buildObjectListRow(
+                icon = "\u25A0", // Square
+                name = primName,
+                colorHex = colorHex,
+                isVisible = isVisible,
+                isLocked = isLocked,
+                onVisibilityToggle = {
+                    NativeBridge.setPrimitiveVisible(i, !isVisible)
+                    featherView.filamentRenderer.setPrimitiveVisible(i, !isVisible)
+                    refreshSceneObjectList()
+                },
+                onLockToggle = {
+                    NativeBridge.setPrimitiveLocked(i, !isLocked)
+                    refreshSceneObjectList()
+                },
+                onRename = { showRenameDialog(false, i, primName) },
+                onClick = {
+                    if (!isLocked && isVisible) {
+                        featherView.filamentRenderer.highlightPrimitive(i)
+                    }
                 }
-            }
-            container.addView(tv)
+            )
+            container.addView(row)
         }
 
         if (strokeCount == 0 && primCount == 0) {
@@ -264,6 +300,75 @@ class MainActivity : AppCompatActivity() {
             }
             container.addView(tv)
         }
+    }
+
+    private fun buildObjectListRow(
+        icon: String, name: String, colorHex: String,
+        isVisible: Boolean, isLocked: Boolean,
+        onVisibilityToggle: () -> Unit,
+        onLockToggle: () -> Unit,
+        onRename: () -> Unit,
+        onClick: () -> Unit
+    ): View {
+        val row = android.widget.LinearLayout(this).apply {
+            orientation = android.widget.LinearLayout.HORIZONTAL
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            gravity = android.view.Gravity.CENTER_VERTICAL
+            setPadding(8, 4, 8, 4)
+            setOnClickListener { onClick() }
+            setOnLongClickListener { onRename(); true }
+        }
+
+        val nameTv = android.widget.TextView(this).apply {
+            text = "$icon $name"
+            textSize = 12f
+            setTextColor(android.graphics.Color.parseColor(colorHex))
+            layoutParams = android.widget.LinearLayout.LayoutParams(0, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            paintFlags = if (isVisible) paintFlags else paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+        }
+        
+        val visibilityBtn = android.widget.TextView(this).apply {
+            text = if (isVisible) "👁" else "🙈"
+            textSize = 12f
+            setPadding(12, 4, 12, 4)
+            setOnClickListener { onVisibilityToggle() }
+        }
+
+        val lockBtn = android.widget.TextView(this).apply {
+            text = if (isLocked) "🔒" else "🔓"
+            textSize = 12f
+            setPadding(12, 4, 12, 4)
+            setOnClickListener { onLockToggle() }
+        }
+
+        row.addView(nameTv)
+        row.addView(visibilityBtn)
+        row.addView(lockBtn)
+        return row
+    }
+
+    private fun showRenameDialog(isStroke: Boolean, index: Int, currentName: String) {
+        val input = android.widget.EditText(this).apply {
+            setText(currentName)
+            selectAll()
+        }
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Rename Object")
+            .setView(input)
+            .setPositiveButton("OK") { _, _ ->
+                val newName = input.text.toString().trim()
+                if (isStroke) {
+                    NativeBridge.setStrokeName(index, newName)
+                } else {
+                    NativeBridge.setPrimitiveName(index, newName)
+                }
+                refreshSceneObjectList()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     // ── Panel B: Tool Menu (Top-Right) ───────────────────────────────────
@@ -417,6 +522,23 @@ class MainActivity : AppCompatActivity() {
         binding.btnSubPrimCone.setOnClickListener { featherView.addPrimitive(3, activeColorR, activeColorG, activeColorB) }
         binding.btnSubPrimPlane.setOnClickListener { featherView.addPrimitive(4, activeColorR, activeColorG, activeColorB) }
         binding.btnSubPrimTorus.setOnClickListener { featherView.addPrimitive(5, activeColorR, activeColorG, activeColorB) }
+
+        binding.btnMerge.setOnClickListener {
+            val selectedId = NativeBridge.getSelectedObjectId()
+            if (selectedId >= 0 && selectedId < NativeBridge.getPrimitiveCount()) {
+                NativeBridge.mergeSelectedPrimitive(false)
+                Toast.makeText(this, "Union (Merge) applied", Toast.LENGTH_SHORT).show()
+                featherView.refreshVoxelMesh()
+            }
+        }
+        binding.btnSubtract.setOnClickListener {
+            val selectedId = NativeBridge.getSelectedObjectId()
+            if (selectedId >= 0 && selectedId < NativeBridge.getPrimitiveCount()) {
+                NativeBridge.mergeSelectedPrimitive(true)
+                Toast.makeText(this, "Subtract applied", Toast.LENGTH_SHORT).show()
+                featherView.refreshVoxelMesh()
+            }
+        }
 
         binding.btnDeleteSelected.setOnClickListener { featherView.deleteSelected() }
         binding.btnDuplicateSelected.setOnClickListener { featherView.duplicateSelected() }
@@ -578,6 +700,9 @@ class MainActivity : AppCompatActivity() {
                 pTorus.visibility = View.GONE
                 deleteBtn.visibility = View.VISIBLE
                 dupeBtn.visibility = View.VISIBLE
+                
+                binding.btnMerge.visibility = View.VISIBLE
+                binding.btnSubtract.visibility = View.VISIBLE
             }
         }
     }

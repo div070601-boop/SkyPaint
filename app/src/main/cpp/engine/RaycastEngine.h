@@ -3,6 +3,7 @@
 #include "../math/MathTypes.h"
 #include "SceneObject.h"
 #include <vector>
+#include <functional>
 
 namespace feather {
 
@@ -35,13 +36,9 @@ public:
      * Transforms each object's AABB by its transform matrix before testing.
      * Returns the hit info (objectId == -1 if nothing hit).
      */
-    static RayHit pickObject(const Ray& ray, const std::vector<SceneObject>& objects);
+    static RayHit pickObject(const Ray& ray, const std::vector<SceneObject>& objects, std::function<bool(int)> filter = nullptr);
 
-    /**
-     * Pick among stroke meshes (untransformed, at origin).
-     * Returns the stroke index, or -1.
-     */
-    static int pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMeshes);
+    static int pickStroke(const Ray& ray, const std::vector<Mesh>& strokeMeshes, std::function<bool(int)> filter = nullptr);
 };
 
 } // namespace feather
