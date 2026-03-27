@@ -13,6 +13,7 @@ color toolActive
 color toolInactive
 drawable bg_color_swatch
 drawable bg_floating_panel
+drawable bg_panel
 drawable bg_tool_btn
 drawable bg_tool_btn_active
 drawable ic_clear
@@ -20,6 +21,7 @@ drawable ic_draw
 drawable ic_eraser
 drawable ic_export
 drawable ic_launcher
+drawable ic_layers
 drawable ic_liquify
 drawable ic_mirror
 drawable ic_move
@@ -48,6 +50,7 @@ id btnModeNavigate
 id btnModePrimitives
 id btnModeSculpt
 id btnModeSelect
+id btnObjectList
 id btnOrtho
 id btnRedo
 id btnSettings
@@ -74,11 +77,13 @@ id colorRed
 id colorWhite
 id colorYellow
 id feather3dView
+id objectListContainer
 id panelBrushSidebar
 id panelColorPalette
 id panelContextMenu
 id panelDrafting
 id panelHistory
+id panelObjectList
 id panelSystemMenu
 id panelToolMenu
 id statsText

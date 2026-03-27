@@ -199,6 +199,69 @@ class MainActivity : AppCompatActivity() {
         binding.btnExport.setOnClickListener {
             showExportDialog()
         }
+
+        binding.btnObjectList.setOnClickListener {
+            val panel = binding.panelObjectList
+            if (panel.visibility == View.VISIBLE) {
+                panel.visibility = View.GONE
+            } else {
+                refreshSceneObjectList()
+                panel.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun refreshSceneObjectList() {
+        val container = binding.objectListContainer
+        container.removeAllViews()
+
+        val primitiveNames = arrayOf("Cube", "Sphere", "Cylinder", "Cone", "Plane", "Torus")
+
+        // Strokes
+        val strokeCount = NativeBridge.getStrokeCount()
+        for (i in 0 until strokeCount) {
+            val tv = android.widget.TextView(this).apply {
+                text = "\uD83D\uDD8C Stroke $i"
+                textSize = 11f
+                setTextColor(0xFF757575.toInt())
+                setPadding(8, 4, 8, 4)
+            }
+            container.addView(tv)
+        }
+
+        // Primitives
+        val primCount = NativeBridge.getPrimitiveCount()
+        for (i in 0 until primCount) {
+            val color = NativeBridge.getPrimitiveColor(i)
+            val colorHex = if (color != null) {
+                val r = (color[0] * 255).toInt().coerceIn(0, 255)
+                val g = (color[1] * 255).toInt().coerceIn(0, 255)
+                val b = (color[2] * 255).toInt().coerceIn(0, 255)
+                String.format("#%02X%02X%02X", r, g, b)
+            } else "#888"
+
+            val tv = android.widget.TextView(this).apply {
+                text = "\u25A0 ${primitiveNames.getOrElse(0) { "Prim" }} $i"
+                textSize = 11f
+                setTextColor(android.graphics.Color.parseColor(colorHex))
+                setPadding(8, 6, 8, 6)
+                setOnClickListener {
+                    // Select this primitive
+                    featherView.filamentRenderer.highlightPrimitive(i)
+                }
+            }
+            container.addView(tv)
+        }
+
+        if (strokeCount == 0 && primCount == 0) {
+            val tv = android.widget.TextView(this).apply {
+                text = "Empty scene"
+                textSize = 11f
+                setTextColor(0xFF9E9E9E.toInt())
+                setPadding(8, 8, 8, 8)
+            }
+            container.addView(tv)
+        }
     }
 
     // ── Panel B: Tool Menu (Top-Right) ───────────────────────────────────

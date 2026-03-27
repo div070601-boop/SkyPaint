@@ -3540,6 +3540,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable bg_color_swatch
 drawable bg_floating_panel
+drawable bg_panel
 drawable bg_tool_btn
 drawable bg_tool_btn_active
 drawable btn_checkbox_checked_mtrl
@@ -3572,6 +3573,7 @@ drawable ic_expand_more_22px
 drawable ic_export
 drawable ic_keyboard_black_24dp
 drawable ic_launcher
+drawable ic_layers
 drawable ic_liquify
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
@@ -3787,6 +3789,7 @@ id btnModeNavigate
 id btnModePrimitives
 id btnModeSculpt
 id btnModeSelect
+id btnObjectList
 id btnOrtho
 id btnRedo
 id btnSettings
@@ -4038,6 +4041,7 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id objectListContainer
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -4067,6 +4071,7 @@ id panelColorPalette
 id panelContextMenu
 id panelDrafting
 id panelHistory
+id panelObjectList
 id panelSystemMenu
 id panelToolMenu
 id parallax

@@ -66,6 +66,55 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Export"
             app:tint="#616161" />
+
+        <!-- Objects List toggle -->
+        <ImageButton
+            android:id="@+id/btnObjectList"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_layers"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Objects"
+            app:tint="#616161" />
+    </LinearLayout>
+
+    <!-- Scene Objects Panel (bottom-left, toggleable) -->
+    <LinearLayout
+        android:id="@+id/panelObjectList"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="250dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_panel"
+        android:elevation="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scene Objects"
+            android:textColor="#424242"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp">
+
+            <LinearLayout
+                android:id="@+id/objectListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
     </LinearLayout>
 
     <!-- Stats overlay — TopCenter -->

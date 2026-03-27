@@ -1,15 +1,43 @@
 [
     {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_clear.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_clear.xml"
-    },
-    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_eraser.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_eraser.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_bg_tool_btn.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_tool_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\mipmap_ic_launcher.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\mipmap\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_export.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_export.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_layers.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_layers.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_mirror.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_mirror.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_liquify.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_liquify.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_redo.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_redo.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_clear.xml.flat",
+        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_clear.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_smooth.xml.flat",
@@ -28,12 +56,8 @@
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_tool_btn_active.xml"
     },
     {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\mipmap_ic_launcher.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\mipmap\\ic_launcher.xml"
-    },
-    {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_export.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_export.xml"
+        "merged": "com.feather3d.app-debug-36:/drawable_bg_panel.xml.flat",
+        "source": "com.feather3d.app-main-38:/drawable/bg_panel.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_move.xml.flat",
@@ -60,32 +84,12 @@
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_mirror.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_mirror.xml"
-    },
-    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_draw.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_draw.xml"
     },
     {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_liquify.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_liquify.xml"
-    },
-    {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_bg_color_swatch.xml.flat",
         "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\bg_color_swatch.xml"
-    },
-    {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_redo.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\drawable\\ic_redo.xml"
-    },
-    {
-        "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-main-38:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "com.feather3d.app-debug-36:/layout_activity_main.xml.flat",
-        "source": "com.feather3d.app-main-38:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\div07\\.gradle\\daemon\\8.11.1\\com.feather3d.app-debug-36:\\drawable_ic_undo.xml.flat",
