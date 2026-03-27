@@ -173,6 +173,7 @@ class Feather3DView @JvmOverloads constructor(
                 break
             }
             NativeBridge.deselectAll()
+            filamentRenderer.unhighlightAll()
             onSelectionChanged?.invoke(-1)
         }
     }
@@ -244,6 +245,11 @@ class Feather3DView @JvmOverloads constructor(
         if (mode >= 0) {
             NativeBridge.setDrawMode(mode)
         }
+        // Unhighlight when leaving Select mode
+        if (mode != -2) {
+            filamentRenderer.unhighlightAll()
+            NativeBridge.deselectAll()
+        }
         stylusInputHandler.setDrawMode(mode)
     }
 
@@ -275,6 +281,12 @@ class Feather3DView @JvmOverloads constructor(
                         ray[0], ray[1], ray[2],  // origin
                         ray[3], ray[4], ray[5]   // direction
                     )
+                    // Visual highlight
+                    if (hitId >= 0) {
+                        filamentRenderer.highlightPrimitive(hitId)
+                    } else {
+                        filamentRenderer.unhighlightAll()
+                    }
                     onSelectionChanged?.invoke(hitId)
                     return true
                 }

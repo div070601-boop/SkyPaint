@@ -48,6 +48,10 @@ class FilamentRenderer(private val context: Context) {
     private val primitiveEntities = mutableListOf<Int>()
     private val entityBuffers = mutableMapOf<Int, Pair<VertexBuffer, IndexBuffer>>()
 
+    // Selection highlight
+    private var highlightMaterialInstance: MaterialInstance? = null
+    private var highlightedPrimitiveIndex = -1
+
     private var voxelEntity: Int = 0
     private var currentStrokeEntity: Int = 0
 
@@ -165,6 +169,13 @@ class FilamentRenderer(private val context: Context) {
             setParameter("baseColor", Colors.RgbaType.SRGB, 1.0f, 1.0f, 1.0f, 1.0f)
             setParameter("roughness", 0.6f)
             setParameter("metallic", 0.0f)
+        }
+
+        // Create highlight material (light cyan tint for selection)
+        highlightMaterialInstance = defaultMaterial?.createInstance()?.apply {
+            setParameter("baseColor", Colors.RgbaType.SRGB, 0.6f, 0.9f, 1.0f, 1.0f)
+            setParameter("roughness", 0.4f)
+            setParameter("metallic", 0.1f)
         }
     }
 
@@ -564,6 +575,38 @@ class FilamentRenderer(private val context: Context) {
         scene.addEntity(entity)
     }
 
+    // ── Selection Highlight ─────────────────────────────────────────────
+
+    fun highlightPrimitive(index: Int) {
+        // Unhighlight previous
+        unhighlightAll()
+
+        if (index < 0 || index >= primitiveEntities.size) return
+        val entity = primitiveEntities[index]
+        val rm = engine.renderableManager
+        val inst = rm.getInstance(entity)
+        if (inst != 0) {
+            highlightMaterialInstance?.let {
+                rm.setMaterialInstanceAt(inst, 0, it)
+            }
+        }
+        highlightedPrimitiveIndex = index
+    }
+
+    fun unhighlightAll() {
+        if (highlightedPrimitiveIndex >= 0 && highlightedPrimitiveIndex < primitiveEntities.size) {
+            val entity = primitiveEntities[highlightedPrimitiveIndex]
+            val rm = engine.renderableManager
+            val inst = rm.getInstance(entity)
+            if (inst != 0) {
+                defaultMaterialInstance?.let {
+                    rm.setMaterialInstanceAt(inst, 0, it)
+                }
+            }
+        }
+        highlightedPrimitiveIndex = -1
+    }
+
     /**
      * Render a frame
      */
@@ -596,6 +639,7 @@ class FilamentRenderer(private val context: Context) {
             engine.destroyEntity(it)
         }
         primitiveEntities.clear()
+        highlightedPrimitiveIndex = -1
 
         if (voxelEntity != 0) {
             scene.removeEntity(voxelEntity)
@@ -623,6 +667,7 @@ class FilamentRenderer(private val context: Context) {
         clearAll()
 
         defaultMaterialInstance?.let { engine.destroyMaterialInstance(it) }
+        highlightMaterialInstance?.let { engine.destroyMaterialInstance(it) }
         defaultMaterial?.let { engine.destroyMaterial(it) }
         
         gridMaterialInstance?.let { engine.destroyMaterialInstance(it) }
