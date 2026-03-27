@@ -119,6 +119,7 @@ public:
     // Access stroke meshes for picking
     const std::vector<Mesh>& getStrokeMeshes() const { return m_strokeMeshes; }
     const std::vector<SceneObject>& getPrimitiveObjects() const { return m_primitiveObjects; }
+    std::vector<SceneObject>& getPrimitiveObjectsMut() { return m_primitiveObjects; }
 
 private:
     DrawMode m_drawMode = DrawMode::STROKE;

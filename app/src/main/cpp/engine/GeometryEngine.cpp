@@ -418,6 +418,10 @@ int GeometryEngine::addPrimitive(PrimitiveType type, const Mat4& transform, cons
     }
 
     m_primitiveObjects.push_back(obj);
+
+    // Push undo action
+    m_actionStack.pushAction(std::make_unique<PrimitiveAddAction>(m_primitiveObjects, obj));
+
     return obj.id;
 }
 
@@ -471,7 +475,10 @@ int GeometryEngine::pickObjectAt(float rayOx, float rayOy, float rayOz,
 
 void GeometryEngine::transformPrimitive(int index, const Mat4& transform) {
     if (index >= 0 && index < static_cast<int>(m_primitiveObjects.size())) {
+        Mat4 oldTransform = m_primitiveObjects[index].transform;
         m_primitiveObjects[index].transform = transform;
+        m_actionStack.pushAction(std::make_unique<PrimitiveTransformAction>(
+            m_primitiveObjects, index, oldTransform, transform));
     }
 }
 
