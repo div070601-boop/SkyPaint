@@ -17,3 +17,5 @@
 25	1813	7962575609173884	CMakeFiles/feather3d_engine.dir/jni_bridge.cpp.o	42e4550b9a042938
 7	2425	7962575615256326	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
 2425	2544	7962575616482050	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	384f1b1549aa3c87
+26	2248	7962886327176289	CMakeFiles/feather3d_engine.dir/engine/GeometryEngine.cpp.o	5fe7c0eaefd96018
+2248	2440	7962886329028459	C:/Users/div07/Desktop/Feather 3d/app/build/intermediates/cxx/Debug/6v465442/obj/arm64-v8a/libfeather3d_engine.so	384f1b1549aa3c87

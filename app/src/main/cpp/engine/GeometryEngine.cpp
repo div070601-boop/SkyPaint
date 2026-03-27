@@ -254,6 +254,20 @@ std::string GeometryEngine::exportOBJ() const {
         allMeshes.push_back(m_voxelMesh);
     }
 
+    // Add primitive meshes (transformed)
+    for (const auto& obj : m_primitiveObjects) {
+        if (!obj.mesh.vertices.empty()) {
+            Mesh transformed = obj.mesh;
+            for (auto& v : transformed.vertices) {
+                Vec4 wp = obj.transform * Vec4(v.position, 1.0f);
+                v.position = Vec3(wp.x, wp.y, wp.z);
+                Vec4 wn = obj.transform * Vec4(v.normal, 0.0f);
+                v.normal = glm::normalize(Vec3(wn.x, wn.y, wn.z));
+            }
+            allMeshes.push_back(transformed);
+        }
+    }
+
     if (allMeshes.empty()) return "";
     return m_meshExporter.exportOBJ(allMeshes);
 }
@@ -271,6 +285,20 @@ std::vector<uint8_t> GeometryEngine::exportGLB() const {
         allMeshes.push_back(m_voxelMesh);
     }
 
+    // Add primitive meshes (transformed)
+    for (const auto& obj : m_primitiveObjects) {
+        if (!obj.mesh.vertices.empty()) {
+            Mesh transformed = obj.mesh;
+            for (auto& v : transformed.vertices) {
+                Vec4 wp = obj.transform * Vec4(v.position, 1.0f);
+                v.position = Vec3(wp.x, wp.y, wp.z);
+                Vec4 wn = obj.transform * Vec4(v.normal, 0.0f);
+                v.normal = glm::normalize(Vec3(wn.x, wn.y, wn.z));
+            }
+            allMeshes.push_back(transformed);
+        }
+    }
+
     if (allMeshes.empty()) return {};
     return m_meshExporter.exportGLB(allMeshes);
 }
@@ -283,6 +311,23 @@ bool GeometryEngine::exportOBJToFile(const std::string& path) const {
                                  m_voxelMesh.vertices.begin(), m_voxelMesh.vertices.end());
         for (uint32_t idx : m_voxelMesh.indices) {
             combined.indices.push_back(idx + offset);
+        }
+    }
+    // Add primitive meshes (transformed)
+    for (const auto& obj : m_primitiveObjects) {
+        if (!obj.mesh.vertices.empty()) {
+            uint32_t offset = static_cast<uint32_t>(combined.vertices.size());
+            for (const auto& v : obj.mesh.vertices) {
+                Vertex tv = v;
+                Vec4 wp = obj.transform * Vec4(v.position, 1.0f);
+                tv.position = Vec3(wp.x, wp.y, wp.z);
+                Vec4 wn = obj.transform * Vec4(v.normal, 0.0f);
+                tv.normal = glm::normalize(Vec3(wn.x, wn.y, wn.z));
+                combined.vertices.push_back(tv);
+            }
+            for (uint32_t idx : obj.mesh.indices) {
+                combined.indices.push_back(idx + offset);
+            }
         }
     }
     return m_meshExporter.exportOBJToFile(combined, path);
@@ -298,6 +343,23 @@ bool GeometryEngine::exportGLBToFile(const std::string& path) const {
             combined.indices.push_back(idx + offset);
         }
     }
+    // Add primitive meshes (transformed)
+    for (const auto& obj : m_primitiveObjects) {
+        if (!obj.mesh.vertices.empty()) {
+            uint32_t offset = static_cast<uint32_t>(combined.vertices.size());
+            for (const auto& v : obj.mesh.vertices) {
+                Vertex tv = v;
+                Vec4 wp = obj.transform * Vec4(v.position, 1.0f);
+                tv.position = Vec3(wp.x, wp.y, wp.z);
+                Vec4 wn = obj.transform * Vec4(v.normal, 0.0f);
+                tv.normal = glm::normalize(Vec3(wn.x, wn.y, wn.z));
+                combined.vertices.push_back(tv);
+            }
+            for (uint32_t idx : obj.mesh.indices) {
+                combined.indices.push_back(idx + offset);
+            }
+        }
+    }
     return m_meshExporter.exportGLBToFile(combined, path);
 }
 
@@ -309,6 +371,9 @@ int GeometryEngine::getTotalVertexCount() const {
         count += static_cast<int>(mesh.vertices.size());
     }
     count += static_cast<int>(m_voxelMesh.vertices.size());
+    for (const auto& obj : m_primitiveObjects) {
+        count += static_cast<int>(obj.mesh.vertices.size());
+    }
     return count;
 }
 
@@ -318,6 +383,9 @@ int GeometryEngine::getTotalTriangleCount() const {
         count += static_cast<int>(mesh.indices.size() / 3);
     }
     count += static_cast<int>(m_voxelMesh.indices.size() / 3);
+    for (const auto& obj : m_primitiveObjects) {
+        count += static_cast<int>(obj.mesh.indices.size() / 3);
+    }
     return count;
 }
 

@@ -1,6 +1,6 @@
 # SkyPaint
 
-SkyPaint is a high-performance open-source Android application that replicates the core functionality of professional 3D drawing and sculpting tools, inspired by apps like "Feather 3D". It provides a rich 3D canvas where stylus strokes generate physical tubular geometry in space, complemented by a fully-featured voxel sculpting and liquify system.
+SkyPaint is a high-performance open-source Android application that replicates the core functionality of professional 3D drawing and sculpting tools, inspired by apps like "Feather 3D". It provides a rich 3D canvas where stylus strokes generate physical tubular geometry in space, complemented by a fully-featured voxel sculpting, liquify system, and parametric primitives with interactive selection and manipulation.
 
 Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI coordination, **Native C++ via JNI** for heavy computational geometry extraction, and the **Google Filament Engine** for state-of-the-art physically based rendering (PBR).
 
@@ -10,11 +10,13 @@ Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI c
 - **Stylus 3D Drawing**: Capture raw pressure and tilt data from stylus devices. Translates screen-space continuous stroke data into dynamic 3D spline-based tube geometry.
 - **Precision Drafting Tools**: Rubber-band straight lines, real-time 3D grid, and 15-degree angle snapping, topped with a live geometric dimension measurement display.
 - **Per-Vertex Vibrant Colors**: Change stroke colors dynamically mid-brush with full Material support.
+- **3D Primitives**: Spawn Cubes, Spheres, Cylinders, and Cones directly into the scene at the camera focal point, each with customizable color from the palette.
+- **Selection & Transform**: Tap-to-pick raycasting (ray-AABB intersection) for object selection. Drag to translate, pinch to scale selected primitives. Delete selected objects instantly.
 - **Voxel Sculpting Engine**: High-performance backend voxel engine wrapped in a Marching Cubes extractor algorithm. Supports Additive, Subtractive, and Smoothing modes on the 3D grid.
 - **Liquify Brush**: Dynamically inflate, pinch, push, or smooth local mesh vertices for organic manipulation.
 - **Google Filament Renderer**: Real-time rendering equipped with directional lighting, ambient occlusion, PBR material properties, MatCap shading, and antialiasing.
 - **Undo/Redo Command System**: Robust C++ Action Stack supporting history navigation for both lightweight 3D stroke geometry and heavy volumetric grid snapshots. 
-- **Exporting Capabilities**: Easily export your 3D creations directly to `.obj` or `.glb` formats for external use or 3D printing.
+- **Exporting Capabilities**: Export your 3D creations (strokes, voxel sculpts, and primitives) directly to `.obj` or `.glb` formats for external use or 3D printing.
 - **Asynchronous Architecture**: Lock-free multi-threaded geometry generation guaranteeing 60+ FPS while avoiding UI thread blockage during dense mesh extraction loops.
 
 ## 🛠 Architecture
@@ -22,11 +24,13 @@ Built with a modern stack leveraging **Kotlin Coroutines** for asynchronous UI c
 1. **JNI / C++ Core (`GeometryEngine`)**
    - **Spline Generator**: Processes raw, jagged touch coordinates and interpolates them into smooth curves.
    - **TubeMeshGenerator**: Wraps continuous spline frames with variable-radius circular geometry based on stylus pressure.
+   - **PrimitiveGenerator**: Generates parametric meshes for Cube, Sphere, Cylinder, Cone, Plane, and Torus with configurable resolution.
+   - **RaycastEngine**: Implements ray-AABB intersection testing for interactive 3D object picking and selection.
    - **VoxelGrid & MarchingCubes**: Implements a structured scalar distance field and triangulates the outer shell for volumetric sculpting.
    - **MeshDecimation**: Reduces polygon counts using vertex clustering to prevent GPU starvation.
 
 2. **Kotlin App Layer**
-   - **`Feather3DView`**: Connects Android's native `SurfaceView` composition directly to the Filament graphic contexts.
+   - **`Feather3DView`**: Connects Android's native `SurfaceView` composition directly to the Filament graphic contexts. Handles selection gestures (tap-to-pick, drag-to-move, pinch-to-scale).
    - **`StylusInputHandler`**: Raycasts 2D screen coordinates into the 3D near-plane world, intercepting high-frequency motion events and routing them asynchronously.
    - **`FilamentRenderer`**: Dispatches raw vertex (`.filamat`) combinations, lighting, environments, and mesh instances straight to hardware buffers.
 
